@@ -40,7 +40,7 @@ const InicioTutor = () =>
         
                                     <Dropdown.Item href="#/action-1">
                                         <Link 
-                                    style={{ textDecoration: 'none' }} to={"/"}>Crear proyecto</Link>
+                                    style={{ textDecoration: 'none' }} to={"/NuevoProyecto"}>Crear proyecto</Link>
                                     </Dropdown.Item>
         
                                     <Dropdown.Item href="#/action-1">
@@ -61,14 +61,13 @@ const InicioTutor = () =>
                             <tr >
                                 <th>Id</th>
                                 <th>Nombre de proyecto</th>
-                                <th>Seleccionar</th>
+                                <th></th>
                             </tr>
                         </thead>
                             <tbody>
                                 <tr>
                                     <td>1</td>
                                     <td>Proyecto ESIC</td>
-                                    <input type="checkbox"></input>
                                 </tr> 
                                 <tr>
                                     <td>2</td>

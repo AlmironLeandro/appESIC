@@ -7,6 +7,7 @@ import Login from './Components/Login'
 import './App.css';
 import InicioTutor from './Components/Tutor/InicioTutor';
 import CargarEstudiante from './Components/Tutor/CargarEstudiante';
+import NuevoProyecto from './Components/Tutor/NuevoProyecto';
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
       <CargarEstudiante/>
     </Route>
     
+    <Route path="/NuevoProyecto">
+      <NuevoProyecto/>
+    </Route>
 
   </Switch>
 </Router>
