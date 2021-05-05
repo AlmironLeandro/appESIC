@@ -1,4 +1,4 @@
-import { Image, Dropdown} from 'react-bootstrap'
+import { Image, Dropdown,Breadcrumb} from 'react-bootstrap'
 import {useState} from 'react'
 import Logo from '../Images/imgg.png'
 import foto_tutor from '../Images/foto_tutor.JPG'
@@ -19,9 +19,7 @@ const NavDeUsuarios = () =>
     
     //FUNCION ASYNC QUE CONECTA CON API CON EL NOMBRE DE USUARIO.
     const nombre = "Diego Migliorino"
-    
- 
-    
+
     const foto = 
     {   
         display:'inline-flex',
@@ -33,8 +31,6 @@ const NavDeUsuarios = () =>
     const estiloNombre={
         backgroundColor:'transparent',
         border:'none'
-        
-        
     }
          
 return(
@@ -42,11 +38,11 @@ return(
             <div className="header">
                 <div style={{width:'150px'}}>
                     <img  src={Logo} style={styleLogo}></img> 
-                
-                    <h2 style={{display:'inline'}} > ESIC</h2> 
+                    <h2 style={{display:'inline', fontSize:'25px'}} > ESIC</h2> 
                 </div>
 
                 <div style={{display:'inline'}}> 
+               
                     <Dropdown style={{display:'inline'}}>
                         <Dropdown.Toggle style={estiloNombre} id="dropdown-basic">
                           <h6 style={{display:'inline-flex'}} > {nombre}</h6> 
@@ -60,7 +56,7 @@ return(
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
-                    <Image src={foto_tutor} style={foto}  roundedCircle />  
+                    <Image src={`https://media-exp1.licdn.com/dms/image/C4E03AQGxC-lbgJGdIQ/profile-displayphoto-shrink_800_800/0/1542669185152?e=1625702400&v=beta&t=GTgAaS2bZSwuo4du39COtWYtTSsMQzXjhr82zrfSRTI`} style={foto}  roundedCircle />  
                 </div>   
             </div>
             

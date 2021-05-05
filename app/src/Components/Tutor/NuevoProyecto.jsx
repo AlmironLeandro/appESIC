@@ -8,14 +8,15 @@ function NuevoProyecto() {
     const estiloForm = {
         display:'inline',
         backgroundcolor:'red'
+    }
+    const estiloFormulario = {
 
     }
     return (
         <Fragment>
             <Header/>
-            <div style={estiloForm}>
-        
-            <Form >
+            <div style={estiloForm}>   
+            <Form style={estiloFormulario}>
                 <Form.Group as={Row} >
                     <Form.Label column sm="2">
                     Nombre:
@@ -26,15 +27,12 @@ function NuevoProyecto() {
                 </Form.Group>
         
                 <Form.Group as={Row} >
-
-                    <Form.Label column sm="2">
+                    <Form.Label column sm="5">
                     <Form.Group controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Example textarea</Form.Label>
-                    <Form.Control as="textarea" rows={3} />
+                    <Form.Label style={{}}>Descripcion del proyecto</Form.Label>
+                    <Form.Control as="textarea" placeholder="Descripcion.." rows={3} />
                 </Form.Group>
                     </Form.Label>
-                    
-                   
                 </Form.Group>
         
             </Form>

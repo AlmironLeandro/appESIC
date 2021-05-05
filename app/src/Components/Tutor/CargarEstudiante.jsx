@@ -1,69 +1,100 @@
 import HeaderUsuario from '../HeaderUsuario'
-import {Form, Row,Col, Button} from 'react-bootstrap'
+import {Form, Row, Button} from 'react-bootstrap'
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
+//Como usar Radium ---> etiqueta <StyleRoot> <ETIQUETA DONDE ESTA APLICADO EL STYLE> </StyleRoot>
+//import Radium from 'radium';  import { StyleRoot } from 'radium';
+// @media (max-width: 600px)' 
 
 
 const CargarEstudiantes = ()=>
 {
-    const estiloForm = {
-        display:'inline',
-        backgroundcolor:'red'
+    const  styles ={
+        estiloForm: {
+                background:'white',
+                border: '3px solid green',
+                background: '#fdfdfdf5',
+                boxShadow:' 0px 2px 10px rgb(136, 136, 136)',
+                width: '500px',
+                height: '380px',
+                margin:'auto',
+                border: '1px solid rgb(119, 184, 184)',
+                boxSizing: 'border-box',
+                borderRadius: '20px',
+                margin:'auto',
+        },
+        styleFormGroup:{
+            margin:'1% auto'
+        },
 
-    }
+        styleButtom:{
+            margin:'1%',
+            width:'100px',
+            background:'#00a0d0',
+            color:'white'
+        },
+
+        styleContentButton:{
+            display:'flex',
+            justifyContent:'center',
+        }
+
+    };
     return(
         <Fragment>
         <HeaderUsuario/>
-    <div style={estiloForm}>
         
-    <Form style={{
+    <div style={ styles.estiloForm }>
         
-    }}>
-        <Form.Group as={Row} >
-            <Form.Label column sm="1">
+    <Form >
+        <Form.Group style={styles.styleFormGroup} as={Row} >
+            <Form.Label  column sm="3">
             Nombre/s:
             </Form.Label>
-                <Col sm="3">
+                <Row >
                     <Form.Control placeholder="Nombre/s" />
-                </Col>
+                </Row>
         </Form.Group>
 
-        <Form.Group as={Row} >
-            <Form.Label column sm="1">
+        <Form.Group style={styles.styleFormGroup} as={Row} >
+            <Form.Label column sm="3">
             Apellido:
             </Form.Label>
-            <Col sm="3">
+            <Row >
                 <Form.Control  placeholder="Apellido" />
-            </Col>
+            </Row>
         </Form.Group>
 
-        <Form.Group as={Row} >
-            <Form.Label column sm="1">
+        <Form.Group style={styles.styleFormGroup} as={Row} >
+            <Form.Label column sm="3">
             Dni:
             </Form.Label>
-            <Col sm="3">
+            <Row >
                 <Form.Control  placeholder="Dni" />
-            </Col>
+            </Row>
         </Form.Group>
 
-        <Form.Group as={Row} >
-            <Form.Label column sm="1">
+        <Form.Group style={styles.styleFormGroup} as={Row} >
+            <Form.Label column sm="3">
             Mail:
             </Form.Label>
-            <Col sm="3">
+            <Row>
                 <Form.Control  placeholder="Mail" />
-            </Col>
+            </Row>
         </Form.Group>
     </Form>
+    <div style={styles.styleContentButton} >
+        <Button style={styles.styleButtom}  type="submit"  > 
+             <Link  style={{ textDecoration: 'none', color:'white' }} to={"/InicioTutor"}>Volver</Link>
+        </Button>
+        <Button  style={styles.styleButtom}type="submit"  > 
+            Guardar
+        </Button>
     </div>
-    <Button className=" btn btn-success buttonSeccion " type="submit"  > 
-       Guardar
-        </Button>
-        <Button className=" btn btn-success buttonSeccion " type="submit"  > 
-        <Link 
-                                    style={{ textDecoration: 'none' }} to={"/InicioTutor"}>Volver</Link>
-        </Button>
+    
+        </div>
+        
     </Fragment>
     )
 }

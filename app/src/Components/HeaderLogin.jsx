@@ -1,5 +1,5 @@
 import Logo from '../Images/imgg.png'
-import {Dropdown} from 'react-bootstrap'
+// import {Dropdown} from 'react-bootstrap'
 
 
 const styleHeader= {
@@ -12,23 +12,23 @@ const styleHeader= {
     backgroundColor:'#4db6ad'
 }
 
+const styleH2 = {
+    fontSize:'25px',
+    display:'inline-flex'
+}
+
 const Nav = () =>
 (
         <div style={styleHeader}>
-           
-            
-            <img src={Logo} style={{margin:'1%', height:'45px',opacity:'0.6',textAlign:'justify', display:'inline-flex' }}></img>
-            <h2 style={{fontSize:'30px',display:'inline-flex'}} >| ESIC  Proyecto integrador</h2>
-            <Dropdown className="desplegable ">
-          
-
+            <img src={Logo} style={{margin:'5px', height:'45px',opacity:'0.6',textAlign:'justify', display:'inline-flex' }}></img>
+            <h2 style={styleH2} >| ESIC  Proyecto integrador</h2>
+            {/* <Dropdown className="desplegable ">
              <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
             </Dropdown.Menu>
-           
-            </Dropdown>
+            </Dropdown> */}
             
             
         </div>
