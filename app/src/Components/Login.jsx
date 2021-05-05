@@ -1,6 +1,5 @@
-import {Form, Button,Col,Row, Media} from 'react-bootstrap'
+import {Form, Button,Col,Row} from 'react-bootstrap'
 import { Link } from 'react-router-dom';
-
 
 const estilo = {
   display: 'flex',

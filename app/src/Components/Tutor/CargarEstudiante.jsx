@@ -12,17 +12,14 @@ const CargarEstudiantes = ()=>
 {
     const  styles ={
         estiloForm: {
-                background:'white',
-                border: '3px solid green',
-                background: '#fdfdfdf5',
+                background:'white', 
                 boxShadow:' 0px 2px 10px rgb(136, 136, 136)',
                 width: '500px',
                 height: '380px',
                 margin:'auto',
                 border: '1px solid rgb(119, 184, 184)',
                 boxSizing: 'border-box',
-                borderRadius: '20px',
-                margin:'auto',
+                borderRadius: '20px',            
         },
         styleFormGroup:{
             margin:'1% auto'

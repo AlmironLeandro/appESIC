@@ -1,11 +1,11 @@
 import NavDeUsuarios from '../HeaderUsuario'
-import {useState} from 'react'
-import { Dropdown, Table,Breadcrumb} from 'react-bootstrap'
+// import {useState} from 'react'
+import {  Table,Breadcrumb} from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 
 const InicioTutor = () =>
 {
-    const [state, setstate] = useState(false)
+    // const [state, setstate] = useState(false)
 
     const tablaEstilo =
     {

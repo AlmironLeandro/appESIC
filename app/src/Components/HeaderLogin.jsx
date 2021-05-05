@@ -20,7 +20,7 @@ const styleH2 = {
 const Nav = () =>
 (
         <div style={styleHeader}>
-            <img src={Logo} style={{margin:'5px', height:'45px',opacity:'0.6',textAlign:'justify', display:'inline-flex' }}></img>
+            <img alt='' src={Logo} style={{margin:'5px', height:'45px',opacity:'0.6',textAlign:'justify', display:'inline-flex' }}></img>
             <h2 style={styleH2} >| ESIC  Proyecto integrador</h2>
             {/* <Dropdown className="desplegable ">
              <Dropdown.Menu>

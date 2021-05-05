@@ -1,7 +1,7 @@
-import { Image, Dropdown,Breadcrumb} from 'react-bootstrap'
-import {useState} from 'react'
+import { Image, Dropdown} from 'react-bootstrap'
+// import {useState} from 'react'
 import Logo from '../Images/imgg.png'
-import foto_tutor from '../Images/foto_tutor.JPG'
+// import foto_tutor from '../Images/foto_tutor.JPG'
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -37,7 +37,7 @@ return(
         <Fragment>
             <div className="header">
                 <div style={{width:'150px'}}>
-                    <img  src={Logo} style={styleLogo}></img> 
+                    <img alt='' src={Logo} style={styleLogo}></img> 
                     <h2 style={{display:'inline', fontSize:'25px'}} > ESIC</h2> 
                 </div>
 
