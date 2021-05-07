@@ -1,7 +1,8 @@
 import HeaderUsuario from '../HeaderUsuario'
 import {Form, Row, Button} from 'react-bootstrap'
-import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Fragment } from 'react'
+import { Link } from 'react-router-dom'
+import Modal from 'react-bootstrap/Modal'
 
 //Como usar Radium ---> etiqueta <StyleRoot> <ETIQUETA DONDE ESTA APLICADO EL STYLE> </StyleRoot>
 //import Radium from 'radium';  import { StyleRoot } from 'radium';

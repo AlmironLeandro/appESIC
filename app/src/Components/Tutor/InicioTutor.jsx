@@ -29,7 +29,7 @@ const InicioTutor = () =>
             </NavDeUsuarios>
             <Breadcrumb  style={{marginTop:'1%'}}>
                 <Breadcrumb.Item active='false' style={styleItem}>
-                    <Link style={{ textDecoration: 'none' }} to={"/"}>Ver perfil</Link>
+                    <Link style={{ textDecoration: 'none' }} to={"/CargaEstudiante"}>Ver perfil</Link>
                 </Breadcrumb.Item>
             
                 <Breadcrumb.Item active='false' style={styleItem}>

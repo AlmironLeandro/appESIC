@@ -8,6 +8,7 @@ import './App.css';
 import InicioTutor from './Components/Tutor/InicioTutor';
 import CargarEstudiante from './Components/Tutor/CargarEstudiante';
 import NuevoProyecto from './Components/Tutor/NuevoProyecto';
+import CargaEstudiante from './Components/Tutor/CargaEstudiante';
 
 function App() {
   return (
@@ -33,6 +34,10 @@ function App() {
     
     <Route path="/NuevoProyecto">
       <NuevoProyecto/>
+    </Route>
+
+    <Route path="/CargaEstudiante">
+      <CargaEstudiante/>
     </Route>
 
   </Switch>

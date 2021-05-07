@@ -79,6 +79,26 @@ input[type="number"] {
   
 }
 
+.volverMenu{
+  background-color:#2b964b;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  z-index: -1;
+}
+
+.cancelar{
+  position:relative;
+  right: 20px;
+  bottom: 5px;
+}
+
+.guardar{
+  position: relative;
+  left: 20px;
+  bottom: 5px;
+}
+
 
 
 
