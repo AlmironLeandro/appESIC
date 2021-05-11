@@ -6,9 +6,9 @@ import HeaderLogin from './Components/HeaderLogin'
 import Login from './Components/Login'
 import './App.css';
 import InicioTutor from './Components/Tutor/InicioTutor';
-import CargarEstudiante from './Components/Tutor/CargarEstudiante';
+
 import NuevoProyecto from './Components/Tutor/NuevoProyecto';
-import CargaEstudiante from './Components/Tutor/CargaEstudiante';
+import CargarEstudiante from './Components/Tutor/CargarEstudiante';
 
 function App() {
   return (
@@ -36,9 +36,7 @@ function App() {
       <NuevoProyecto/>
     </Route>
 
-    <Route path="/CargaEstudiante">
-      <CargaEstudiante/>
-    </Route>
+   
 
   </Switch>
 </Router>
