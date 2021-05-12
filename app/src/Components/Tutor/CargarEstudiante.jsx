@@ -10,8 +10,7 @@ import FormularioEstudiante from './FormularioEstudiante';
 
 const CargarEstudiante=()=> {
     
-    
-    
+
     
     let estudiantesIniciales = JSON.parse(localStorage.getItem('estudiantes'));
         if (!estudiantesIniciales){
@@ -30,7 +29,7 @@ const CargarEstudiante=()=> {
       }else{
         localStorage.setItem('estudiantes', JSON.stringify([])); 
       }
-    }, [estudiantes]);
+    }, [estudiantesIniciales]);
     
     // Función que toma el estudiante nuevo y lo mete en el array de estudiantes
     

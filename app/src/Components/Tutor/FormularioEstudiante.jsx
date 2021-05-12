@@ -29,20 +29,7 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
         }
         )
 };
-
-    const verificarCampos = (error)=>{
-        if(error){
-            setError(false);  
-            alert("Complete todos los campos")
-        }
-        else {  
-            handleClose()
-        }
-
-        setError(false);  
-
-                       
-    }
+    
     
     const limpiarYCerrar=() =>{
         setEstudiante({
@@ -78,12 +65,14 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
     
         //Limpiar el form
        setEstudiante({
+            
             nombre:"",
             apellido:"",
             dni:"",
             mail:""
 
         })
+        setShow(false)
     
     
     };
@@ -103,13 +92,14 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
 
                     <Modal.Header >
                     <Modal.Title>Datos del estudiante</Modal.Title>
+                    
                     </Modal.Header>
 
                     
                     <Modal.Body>
 
-                        {error 
-                        ? <h3>hola</h3>: <h2>chau</h2>}
+                    {error 
+                    ? <p style={{color:"red"}}>Complete todos los campos</p>: <p></p>}
                       
                         <Form  onSubmit={submitForm}>
                              
@@ -167,7 +157,7 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
 
                                 <Row>
                                 <Col>
-                                    <Button size="sm" className="guardar" variant="secondary" type="submit" onClick={verificarCampos}>
+                                    <Button size="sm" className="guardar" variant="secondary" type="submit" onClick={submitForm}>
                                         Guardar
                                     </Button>
                                 </Col>
