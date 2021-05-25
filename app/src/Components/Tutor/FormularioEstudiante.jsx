@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Container, Modal, Button, Col, Row, Form } from 'react-bootstrap'
 import {InputGroup, FormControl} from 'react-bootstrap'
 import uuid from 'uuid/dist/v4';
+import SeleccionarCarrera from './SeleccionarCarrera'
 
 
 const FormularioEstudiante = ({agregarEstudiante}) =>{
@@ -17,10 +18,12 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
         nombre:"",
         apellido: "",
         dni: "",
-        mail: "",        
+        mail: "", 
+        carrera:"",
+            
     })
 
-    const {nombre, apellido, dni, mail} = estudiante;
+    const {nombre, apellido, dni, mail, carrera, materia} = estudiante;
 
     const handleChange = (e) => {
         setEstudiante({
@@ -36,10 +39,13 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
             nombre:"",
             apellido:"",
             dni:"",
-            mail:""
+            mail:"",
+            carrera:"",
+           
 
         })
-
+    
+        setError(false)
         handleClose();
 
     }
@@ -48,7 +54,8 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
         e.preventDefault();
     
         // Validar el formulario
-            if (nombre.trim() === '' || apellido.trim() === '' || dni.trim() === ''|| mail.trim()===''){
+            if (nombre.trim() === '' || apellido.trim() === '' || dni.trim() === ''|| mail.trim()===''
+                || carrera.trim()==='' || materia.trim()===''){
                 setError(true);
                 return;
             }
@@ -69,8 +76,9 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
             nombre:"",
             apellido:"",
             dni:"",
-            mail:""
-
+            mail:"",
+            carrera:"",
+           
         })
         setShow(false)
     
@@ -154,6 +162,7 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
                                         value={mail}
                                     />
                                 </InputGroup>
+                                <SeleccionarCarrera/>
 
                                 <Row>
                                 <Col>
