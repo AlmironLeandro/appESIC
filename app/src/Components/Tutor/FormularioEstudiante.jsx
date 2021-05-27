@@ -19,11 +19,12 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
         apellido: "",
         dni: "",
         mail: "", 
-        carrera:"",
+       // carrera:"",
             
     })
+    
 
-    const {nombre, apellido, dni, mail, carrera, materia} = estudiante;
+    const {nombre, apellido, dni, mail} = estudiante;
 
     const handleChange = (e) => {
         setEstudiante({
@@ -40,7 +41,7 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
             apellido:"",
             dni:"",
             mail:"",
-            carrera:"",
+            //carrera:"",
            
 
         })
@@ -54,8 +55,7 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
         e.preventDefault();
     
         // Validar el formulario
-            if (nombre.trim() === '' || apellido.trim() === '' || dni.trim() === ''|| mail.trim()===''
-                || carrera.trim()==='' || materia.trim()===''){
+            if (nombre.trim() === '' || apellido.trim() === '' || dni.trim() === ''|| mail.trim()===''){
                 setError(true);
                 return;
             }
@@ -77,7 +77,7 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
             apellido:"",
             dni:"",
             mail:"",
-            carrera:"",
+          
            
         })
         setShow(false)
@@ -111,13 +111,16 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
                       
                         <Form  onSubmit={submitForm}>
                              
+                                  
+                                <SeleccionarCarrera/>
+                                 
                                 <InputGroup size="sm" className="mb-3">
                                     <InputGroup.Prepend>
                                     <InputGroup.Text id="inputGroup-sizing-sm">Nombre/s:</InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" 
                                         type="text" 
-                                        placeholder="nombre"
+                                        placeholder="Nombre/s"
                                         name="nombre" 
                                         onChange={handleChange}
                                         value={nombre}
@@ -162,20 +165,21 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
                                         value={mail}
                                     />
                                 </InputGroup>
-                                <SeleccionarCarrera/>
+                                
+                                
 
                                 <Row>
-                                <Col>
-                                    <Button size="sm" className="guardar" variant="secondary" type="submit" onClick={submitForm}>
-                                        Guardar
-                                    </Button>
-                                </Col>
-                                <Col>
-                                    <Button size="sm" className="cancelar" variant="danger" onClick={limpiarYCerrar}>
-                                        Cancelar
-                                    </Button>
-                                </Col>
-                    </Row>
+                                    <Col>
+                                        <Button size="sm" className="guardar" variant="secondary" type="submit" onClick={submitForm}>
+                                            Guardar
+                                        </Button>
+                                    </Col>
+                                    <Col>
+                                        <Button size="sm" className="cancelar" variant="danger" onClick={limpiarYCerrar}>
+                                            Cancelar
+                                        </Button>
+                                    </Col>
+                                </Row>
                                 
 
                         </Form>    

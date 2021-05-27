@@ -1,9 +1,10 @@
 import React from 'react'
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment, useState, useEffect, Row } from 'react'
 import HeaderUsuario from '../HeaderUsuario'
 import VolverMenu from './VolverMenuTutor';
 
 import FormularioEstudiante from './FormularioEstudiante';
+import TablaEstudiantes from './TablaEstudiantes';
 
 
 
@@ -39,8 +40,15 @@ const CargarEstudiante=()=> {
           estudiante
         ])
     };
+  /*   const [estudiante, setEstudiante]=useState({
+      nombre:"",
+      apellido: "",
+      dni: "",
+      mail: "",           
+  })
 
-    
+    const {nombre, apellido, dni, mail} = estudiante; */
+
     const borrarEstudiante = (id) => {
         const nuevosEstudiantes = estudiantes.filter (estudiante => estudiante.id !== id);
         setEstudiantes(nuevosEstudiantes);
@@ -57,7 +65,16 @@ const CargarEstudiante=()=> {
             <br/> 
             <FormularioEstudiante
             agregarEstudiante={agregarEstudiante}
-            />  
+            /> 
+
+           
+              {estudiantes.map(estudiante=>          
+              <TablaEstudiantes
+              estudiante={estudiante}
+              key={estudiante.id}
+              />)}
+            
+
             <VolverMenu/>      
         </Fragment>
        
