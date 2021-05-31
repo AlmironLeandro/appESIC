@@ -40,15 +40,7 @@ const CargarEstudiante=()=> {
           estudiante
         ])
     };
-  /*   const [estudiante, setEstudiante]=useState({
-      nombre:"",
-      apellido: "",
-      dni: "",
-      mail: "",           
-  })
-
-    const {nombre, apellido, dni, mail} = estudiante; */
-
+  
     const borrarEstudiante = (id) => {
         const nuevosEstudiantes = estudiantes.filter (estudiante => estudiante.id !== id);
         setEstudiantes(nuevosEstudiantes);
