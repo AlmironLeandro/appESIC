@@ -41,7 +41,7 @@ const CargarEstudiante=()=> {
         ])
     };
   
-    const borrarEstudiante = (id) => {
+  const borrarEstudiante = (id) => {
         const nuevosEstudiantes = estudiantes.filter (estudiante => estudiante.id !== id);
         setEstudiantes(nuevosEstudiantes);
       };
@@ -60,11 +60,11 @@ const CargarEstudiante=()=> {
             /> 
 
            
-              {estudiantes.map(estudiante=>          
+                     
               <TablaEstudiantes
-              estudiante={estudiante}
-              key={estudiante.id}
-              />)}
+              estudiantes={estudiantes}
+              
+              />
             
 
             <VolverMenu/>      

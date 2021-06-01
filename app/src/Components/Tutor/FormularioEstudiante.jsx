@@ -94,7 +94,8 @@ const FormularioEstudiante = ({agregarEstudiante}) =>{
                 <Button variant="primary" onClick={handleShow}> 
                     Agregar Estudiante
                 </Button>
-
+                <br />
+                <br />
 
                 <Modal size="sm" show={show} >
 
