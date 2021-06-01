@@ -9,7 +9,7 @@ import {traerCarreras}  from '../../Servicios/carrera'
 import HeaderUsuario from '../HeaderUsuario'
 import AlumnoAgregado from './AlumnoAgregado';
 import alumnosJSON from '../../MOCK_DATA.json';
-import VolverMenuTutor from '../Tutor/VolverMenuTutor'
+import VolverMenuTutor from '../Tutor/VolverMenuTutor';
 
 
 
