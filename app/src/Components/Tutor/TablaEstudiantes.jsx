@@ -5,10 +5,16 @@ import { Col, Container, Row, Button} from 'react-bootstrap'
 
 
 const TablaEstudiantes= ({estudiantes}) => {
+    const tablaEstilo =
+    {
+        
+        width: '50%'
+        
+    }
     
     return (
        <Fragment>
-           <Container >
+           <Container style={tablaEstilo}>
            
                 <Row>
                     <Col>
