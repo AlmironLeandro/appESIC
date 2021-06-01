@@ -1,13 +1,25 @@
-import axios from 'axios'
+import axios from 'axios';
 
-export const getCarreras= async()=>{
-    return await axios.get('http://localhost:3001/api/carreras/')
-  .then(response => {
-      const carrerasTodas = response.data.data
-      
-  })
-  .catch(error => {
-      console.log(error)
-  })
+
+//APRENDER COMO CONSUMIR ESTE SERVICIO
+
+
+ export  const traerCarreras= async()=>
+{
+   
+  return await  axios.get('http://localhost:3001/api/carreras/')
+     .then(response => {
+        const carrerasTodas = response.data.data
+        return carrerasTodas
+     
+       
+     })
+     .catch(error => {
+         console.log(error)
 
 }
+)}
+
+
+
+
