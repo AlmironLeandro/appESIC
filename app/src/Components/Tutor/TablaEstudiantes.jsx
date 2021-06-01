@@ -30,7 +30,6 @@ const TablaEstudiantes= ({estudiantes}) => {
                         <p>Mail</p>
                     </Col>
                     
-                    
                 </Row>                                          
                 
                 {estudiantes.map(estudiante=> 

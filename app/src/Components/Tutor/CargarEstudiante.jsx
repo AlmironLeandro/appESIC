@@ -63,7 +63,6 @@ const CargarEstudiante=()=> {
                      
               <TablaEstudiantes
               estudiantes={estudiantes}
-              
               />
             
 
