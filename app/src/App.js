@@ -7,7 +7,7 @@ import Login from './Components/Login'
 import './App.css';
 import InicioTutor from './Components/Tutor/InicioTutor';
 
-import NuevoProyecto from './Components/Tutor/NuevoProyecto';
+import FormularioProyecto from './Components/Tutor/FormularioProyecto';
 import CargarEstudiante from './Components/Tutor/CargarEstudiante';
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
     </Route>
     
     <Route path="/NuevoProyecto">
-      <NuevoProyecto/>
+      <FormularioProyecto/>
     </Route>
 
    
