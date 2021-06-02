@@ -2,12 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Fragment } from 'react';
-import HeaderLogin from './Components/HeaderLogin'
-import Login from './Components/Login'
+import HeaderLogin from './Components/Login/HeaderLogin'
+import Login from './Components/Login/Login'
 import './App.css';
 import InicioTutor from './Components/Tutor/InicioTutor';
 
-import FormularioProyecto from './Components/Tutor/FormularioProyecto';
+import FormularioProyecto from './Components/Tutor/Proyecto/FormularioProyecto';
 import CargarEstudiante from './Components/Tutor/CargarEstudiante';
 
 function App() {

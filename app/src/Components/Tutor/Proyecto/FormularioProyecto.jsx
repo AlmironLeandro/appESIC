@@ -2,14 +2,13 @@ import {Col,Button,Modal} from 'react-bootstrap'
 import {useState,useEffect} from 'react'
 import { Fragment } from 'react'
 import uuid from 'uuid/dist/v4';
-import {formulario} from '../../function/enviar_formulario';
-import {style} from '../../styles/style_Form_proyect';
-import {traerCarreras}  from '../../Servicios/Carrera';
-// import {traerAlumnos} from '../../services/alumnos'
-import HeaderUsuario from '../HeaderUsuario';
+import {formulario} from '../../../function/enviar_formulario';
+import {style} from '../../../styles/style_Form_proyect';
+import {traerCarreras}  from '../../../Servicios/Carrera';
+import HeaderUsuario from '../../HeaderUsuario';
 import AlumnoAgregado from './AlumnoAgregado';
-import alumnosJSON from '../../MOCK_DATA.json';
-import VolverMenuTutor from '../Tutor/VolverMenuTutor';
+import alumnosJSON from '../../../MOCK_DATA.json';
+import VolverMenuTutor from '../VolverMenuTutor';
 
 
 
@@ -36,7 +35,7 @@ useEffect(() => {
     //Filtro de lo que voy escribiendo en el input search "buscar alumno"
     const buscarAlumno = ()=> {
 
-      return  alumnosJSON.filter((alumno)=>
+       alumnosJSON.filter((alumno)=>
         {
         if(inputAlumno ==='' || inputAlumno == null){return alumno }
         else if (alumno.first_name.toLowerCase().includes(inputAlumno.toLowerCase()))
