@@ -1,7 +1,8 @@
 import React ,{useEffect, useState} from 'react'
 import axios from 'axios'
 import {InputGroup,} from 'react-bootstrap'
-import {getCarreras} from '../../Servicios/carrera'
+
+
 
 
 

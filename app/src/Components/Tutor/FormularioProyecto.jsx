@@ -4,7 +4,7 @@ import { Fragment } from 'react'
 import uuid from 'uuid/dist/v4';
 import {formulario} from '../../function/enviar_formulario';
 import {style} from '../../styles/style_Form_proyect';
-import {traerCarreras}  from '../../Servicios/carrera';
+import {traerCarreras}  from '../../Servicios/Carrera';
 // import {traerAlumnos} from '../../services/alumnos'
 import HeaderUsuario from '../HeaderUsuario';
 import AlumnoAgregado from './AlumnoAgregado';
@@ -22,11 +22,13 @@ const FormularioProyecto = () =>
     const cambiaCarrera= e=> {e.preventDefault(); setCarrera(e.target.value)}
 
 
-    const [alumnoPorAgregar, setAlumnoPorAgregar]=useState()
+    const [alumnoPorAgregar, setAlumnoPorAgregar]=useState({})
 
-    const elegirAlumno = e=> {e.preventDefault(); setAlumnoPorAgregar(e.target.value); console.log(alumnoPorAgregar)}
+    const elegirAlumno = e=> {e.preventDefault(); setAlumnoPorAgregar(e.target.value);}
 
-
+useEffect(() => {
+    console.log(alumnoPorAgregar) 
+}, [alumnoPorAgregar])
 
     //Lista de alumnos que aparece en el dropdown
     const [lista, setLista]=useState([])
@@ -75,13 +77,11 @@ const FormularioProyecto = () =>
 
 const [inputAlumno, setInputAlumno]=useState() 
 
-const [idATraer,setIdATraer]=useState({})
 
 const [listaDeAlumnosAgregadoAlProyecto, setListaAlmAgregados]=useState([{}])
 
 const [estudiante, setEstudiante]=useState({
     nombre:'',
-    apellido:'',
     dni:''
 })
 
@@ -169,11 +169,11 @@ return(
                             
                             <datalist id="lista_alumnos"  >
 
-                           <select name="opcionesAlumno" id="alumnoAgregado" value={alumnoPorAgregar} onChange={elegirAlumno}>
+                           <select name="opcionesAlumno" id="alumnoAgregado" value={alumnoPorAgregar} onSelect={elegirAlumno}>
 
                             {lista.map((alumno)=> 
-                            <option key={alumno.id} > 
-                             {alumno.first_name} , {alumno.dni}</option  >) }
+                            <option key={alumno.id}  > {alumno.first_name} Dni: {alumno.dni}
+                            </option  >) }
                       
                              </select>
                     
@@ -196,7 +196,7 @@ return(
                     </form>
             </Col>  
     </div>   
-    <AlumnoAgregado></AlumnoAgregado>                        
+      <AlumnoAgregado></AlumnoAgregado>
 </div>
 <VolverMenuTutor></VolverMenuTutor>
 
