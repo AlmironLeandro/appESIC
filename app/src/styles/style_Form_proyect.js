@@ -1,10 +1,10 @@
 export const style =
 {
     contenedor:{
-       display:'flex',justifyContent:'center'
+       display:'flex',justifyContent:'start', itemAlign:'center'
     },
     contenido:{
-        width:'450px',height:'60vh',margin:'1%', background:' #fff', borderRadius:'20px',padding:'20px',border:'1px solid #ced4da',fontSize:'12px'
+        margin:'1%',width:'450px',height:'60vh', background:' #fff', borderRadius:'20px',padding:'20px',border:'1px solid #ced4da',fontSize:'12px', marginLeft:'10%'
     },
     nombre:{
         display:'inline-flex',background:'#e9ecef',width:'15%',borderRadius: '5px 0px 0px 5px',border:'1px solid #ced4da'

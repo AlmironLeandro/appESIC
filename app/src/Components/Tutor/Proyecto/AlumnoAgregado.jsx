@@ -1,14 +1,16 @@
 
 import { GoX } from "react-icons/go"
 import Radium, { StyleRoot } from 'radium'
+import {useState,useEffect} from 'react'
+import { render } from "react-dom"
 
 const style = 
 {
 "contenedor" : {
 display:'flex',width:'30%', height:'15vh',margin:'1%',borderRadius: '5px 5px 5px 5px',
 border:'1px solid #ced4da',background:'#e9ecef', justifyContent:'center'},
-"columna":{display:'flex',flexDirection: 'column',height:'100%', justifyContent:'start' , width:'90%'},
-"fila":{margin:'2%'},
+"columna":{display:'flex',flexDirection: 'column',height:'100%', justifyContent:'center' , width:'90%'},
+"fila":{margin:'2%', display:'flex', justifyContent:'start'},
 "cruzColumna":{ color:'white',display:'flex',flexDirection: 'column',width:'10%', alignItems:'center',height:'5vh',justifyContent:'center',
   },
   "goX":{
@@ -18,22 +20,22 @@ border:'1px solid #ced4da',background:'#e9ecef', justifyContent:'center'},
 
 
 
-
-
-
-
-
-const AlumnoAgregado = () =>
+const AlumnoAgregado =  (props) =>
 {
-    
-    return(
-       
+//  const [estudiantes, setEstudiantes]=useState([])
+
+//  useEffect(() => {
+//    setEstudiantes(props.estudiante)
+//  }, [props.estudiante])
+  
+   return(
+     
     <div style={style.contenedor}>
        <div style={style.columna}>
-            <div style={style.fila} > Nombre:Leandro Almiron</div> 
-            <div style={style.fila}> Dni: 40463933</div>
+        <div  style={style.fila}  > Nombre: {props.estudiante.first_name} </div>
+        <div style={style.fila}> Dni: {props.estudiante.dni}</div>
        </div>
-       
+       {/* ( <div  style={style.fila} > Nombre: {estudiante}</div> , <div style={style.fila}> Dni: {estudiante}</div>)  */}
         <div style={style.cruzColumna}>
         
         <StyleRoot>
@@ -45,7 +47,7 @@ const AlumnoAgregado = () =>
        
          
     </div>
-    )
+  )
 
 }
 

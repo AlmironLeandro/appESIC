@@ -6,48 +6,42 @@ import {formulario} from '../../../function/enviar_formulario';
 import {style} from '../../../styles/style_Form_proyect';
 import {traerCarreras}  from '../../../Servicios/Carrera';
 import HeaderUsuario from '../../HeaderUsuario';
-import AlumnoAgregado from './AlumnoAgregado';
 import alumnosJSON from '../../../MOCK_DATA.json';
 import VolverMenuTutor from '../VolverMenuTutor';
-
-
+import {buscarAlumno} from '../../../function/buscarAlumno'
+import TestAlumno from './TestAlumno'
 
 const FormularioProyecto = () =>
 {
+     
     //Setea la carrera actual, la cual se desea filtrar.
     const [carrera, setCarrera]=useState() 
 
     //Obtiene el valor de la carrera, para luego setearlaen carrera
     const cambiaCarrera= e=> {e.preventDefault(); setCarrera(e.target.value)}
 
+    const [alumnoPorAgregar, setAlumnoPorAgregar]=useState([])
 
-    const [alumnoPorAgregar, setAlumnoPorAgregar]=useState({})
+    const compararInputAlumConLista = (list,alum)=> { const alumSplit = alum.split(" ");  list.map((estudiante)=> 
+    {if (estudiante.first_name == alumSplit[0] && estudiante.dni == alumSplit[1]){
+            setAlumnoPorAgregar([...alumnoPorAgregar, estudiante])   
+    }}
+    )}
 
-    const elegirAlumno = e=> {e.preventDefault(); setAlumnoPorAgregar(e.target.value);}
+    const [inputAlumno, setInputAlumno]=useState() 
 
-useEffect(() => {
-    console.log(alumnoPorAgregar) 
-}, [alumnoPorAgregar])
-
-    //Lista de alumnos que aparece en el dropdown
     const [lista, setLista]=useState([])
 
-    //Filtro de lo que voy escribiendo en el input search "buscar alumno"
-    const buscarAlumno = ()=> {
-
-       alumnosJSON.filter((alumno)=>
-        {
-        if(inputAlumno ==='' || inputAlumno == null){return alumno }
-        else if (alumno.first_name.toLowerCase().includes(inputAlumno.toLowerCase()))
-        {
-        return inputAlumno
-        }
-    })
-
-}
+    const onClickAlumno = e => {
+        e.preventDefault();
+        compararInputAlumConLista(lista, inputAlumno);
+        setInputAlumno('');
+        
+    }
+    
     useEffect(() => {
-        buscarAlumno();
-        setLista(buscarAlumno().filter((alum)=> alum.materia == carrera));
+        setLista(buscarAlumno(alumnosJSON, inputAlumno).filter((alum)=> alum.carrera == carrera));
+       
     }, [carrera])
    
     //Consumiendo servicio carrera
@@ -56,15 +50,13 @@ useEffect(() => {
         traerCarreras().then(res => setCarreras(res) )
     }, [])
  
-
     //Proyectos en el localstorage
-
     let todosLosProyectos = JSON.parse(localStorage.getItem("proyectos")); 
     if (!todosLosProyectos) {
         todosLosProyectos = [];}
        
     //ARRAY DE PROYECTOS
-    let [proyectos, guardarProyectos] = useState(todosLosProyectos);
+    const [proyectos, guardarProyectos] = useState(todosLosProyectos);
 
     useEffect ( () => {
         if (todosLosProyectos) {
@@ -74,27 +66,13 @@ useEffect(() => {
         }
         }, [proyectos]);
 
-const [inputAlumno, setInputAlumno]=useState() 
-
-
-const [listaDeAlumnosAgregadoAlProyecto, setListaAlmAgregados]=useState([{}])
-
-const [estudiante, setEstudiante]=useState({
-    nombre:'',
-    dni:''
-})
 
 const handleChangeAlumno = e => {
     e.preventDefault();
     setInputAlumno(e.target.value)
 }
 
-const onClickAlumno = e => {
-    e.preventDefault();
-    setListaAlmAgregados([...listaDeAlumnosAgregadoAlProyecto, estudiante]);
-    setInputAlumno('');
-    
-}
+
 
 const [proyecto, actualizarProyecto]=useState({
 nombre:'',
@@ -127,14 +105,16 @@ guardarProyectos([...proyectos, proyecto]);
 
 }
 
-
-
 return(
     <Fragment>
+      
     <HeaderUsuario></HeaderUsuario>    
     <Modal.Header >
         <Modal.Title style={{fontSize:'25px'}}>Datos del proyecto nuevo</Modal.Title>
+        <VolverMenuTutor></VolverMenuTutor>
     </Modal.Header>
+   
+    
    
     <div style={style.contenedor}>
         <div style={style.contenido}>
@@ -163,28 +143,20 @@ return(
                             <input style={style.inputSearch} value={inputAlumno}  type="search" list="lista_alumnos" 
                                 id="listaAlumnos" name="lista_alumnos" placeholder="Buscar alumno" onChange={handleChangeAlumno}/>
                             <Button style={style.botonAgregar} onClick={onClickAlumno}>Agregar</Button>
-
-
-                            
-                            <datalist id="lista_alumnos"  >
-
-                           <select name="opcionesAlumno" id="alumnoAgregado" value={alumnoPorAgregar} onSelect={elegirAlumno}>
-
-                            {lista.map((alumno)=> 
-                            <option key={alumno.id}  > {alumno.first_name} Dni: {alumno.dni}
-                            </option  >) }
-                      
-                             </select>
-                    
-                   
-                            
-                           </datalist> 
-                            </div>
+{/* AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */}
+                           
+                                <datalist id="lista_alumnos"  >
+                                    {lista.map((alumno)=> 
+                                    <option key={alumno.id}  value={alumno.first_name + " " +  alumno.dni} >  </option  >) }
+                                  </datalist>              
+                           
+                        </div>
+                        
                         <div >
                             
                             <select name="carreras" id="carreras" value={carrera} onChange={cambiaCarrera}  >
                                 <option value="">¿Que carrera?</option>
-                                {carreras.map((carrera)=> <option key={carrera.id}value={carrera.nombre}>{carrera.nombre}</option> )}
+                                {carreras.map((carrera)=> <option key={carrera.id} value={carrera.nombre}> {carrera.nombre} </option> )}
                             </select>
 
 
@@ -195,9 +167,15 @@ return(
                     </form>
             </Col>  
     </div>   
-      <AlumnoAgregado></AlumnoAgregado>
+                <div style={{width:'67%', margin:'1%'}}>
+                    <div style={{display:'flex',justifyContent:'start', flexWrap: 'wrap', itemAlign:'center'}}>
+                        {alumnoPorAgregar.length == 0  ?   '' : alumnoPorAgregar.map((estudiante)=> < TestAlumno     estudiante={estudiante}/>  ) }   
+                    </div>
+                </div>
+                
 </div>
-<VolverMenuTutor></VolverMenuTutor>
+
+
 
 </Fragment>
 )
