@@ -2,36 +2,40 @@ import {Col,Button,Modal} from 'react-bootstrap'
 import {useState,useEffect} from 'react'
 import { Fragment } from 'react'
 import uuid from 'uuid/dist/v4';
-import {formulario} from '../../function/enviar_formulario';
-import {style} from '../../styles/style_Form_proyect';
-import {traerCarreras}  from '../../Servicios/Carrera';
-import HeaderUsuario from '../HeaderUsuario';
-import AlumnoAgregado from './AlumnoAgregado';
-import alumnosJSON from '../../MOCK_DATA.json';
-import VolverMenuTutor from '../Tutor/VolverMenuTutor';
-
-
+import {formulario} from '../../../function/enviar_formulario';
+import {style} from '../../../styles/style_Form_proyect';
+import {traerCarreras}  from '../../../Servicios/Carrera';
+import HeaderUsuario from '../../HeaderUsuario';
+import VolverMenuTutor from '../VolverMenuTutor';
+import {buscarAlumno} from '../../../function/buscarAlumno'
+import AgregarAlumno from './AlumnoAgregado'
+import {traerUsuarios as traerAlumnos}  from '../../../Servicios/UsuariosServicio';
 
 const FormularioProyecto = () =>
 {
-     
+    const [lista, setLista]=useState([]) 
+
+    const [alumnosJSON, setAlumnosJSON]=useState([])
+
+    useEffect(() => {
+        traerAlumnos().then(res => setAlumnosJSON(res))
+    }, [])
+    
     //Setea la carrera actual, la cual se desea filtrar.
     const [carrera, setCarrera]=useState() 
 
     //Obtiene el valor de la carrera, para luego setearlaen carrera
-    const cambiaCarrera= e=> {e.preventDefault(); setCarrera(e.target.value)}
+    const cambiaCarrera= e=> {e.preventDefault(); setCarrera(e.target.value); console.log(e.target.value)}
 
     const [alumnoPorAgregar, setAlumnoPorAgregar]=useState([])
 
     const compararInputAlumConLista = (list,alum)=> { const alumSplit = alum.split(" ");  list.map((estudiante)=> 
-    {if (estudiante.first_name == alumSplit[0] && estudiante.dni == alumSplit[1]){
+    {if (estudiante.nombre == alumSplit[0] && estudiante.dni == alumSplit[1]){
             setAlumnoPorAgregar([...alumnoPorAgregar, estudiante])   
     }}
     )}
 
     const [inputAlumno, setInputAlumno]=useState() 
-
-    const [lista, setLista]=useState([])
 
     const onClickAlumno = e => {
         e.preventDefault();
@@ -41,31 +45,29 @@ const FormularioProyecto = () =>
     }
     
     useEffect(() => {
-        setLista(buscarAlumno(alumnosJSON, inputAlumno).filter((alum)=> alum.carrera == carrera));
+        setLista(buscarAlumno(alumnosJSON, inputAlumno).filter((alum)=> alum.idCarrera == carrera));
        
     }, [carrera])
    
     //Consumiendo servicio carrera
     const [carreras, setCarreras]=useState([])
+    
     useEffect(() => {
         traerCarreras().then(res => setCarreras(res) )
     }, [])
  
-    //Proyectos en el localstorage
-    let todosLosProyectos = JSON.parse(localStorage.getItem("proyectos")); 
-    if (!todosLosProyectos) {
-        todosLosProyectos = [];}
+
        
     //ARRAY DE PROYECTOS
-    const [proyectos, guardarProyectos] = useState(todosLosProyectos);
+    const [proyectos, guardarProyectos] = useState({});
 
-    useEffect ( () => {
-        if (todosLosProyectos) {
-            localStorage.setItem('proyectos', JSON.stringify(proyectos))
-        }else{
-            localStorage.setItem('proyectos', JSON.stringify([]));
-        }
-        }, [proyectos]);
+    // useEffect ( () => {
+    //     if (todosLosProyectos) {
+    //         localStorage.setItem('proyectos', JSON.stringify(proyectos))
+    //     }else{
+    //         localStorage.setItem('proyectos', JSON.stringify([]));
+    //     }
+    //     }, [proyectos]);
 
 
 const handleChangeAlumno = e => {
@@ -82,23 +84,28 @@ alumno:[]
 })
 const [error, actualizarError] = useState (false);
 
-const {nombre,detalle,alumno} = proyecto;
+
 
 const handleChange = e => {
 actualizarProyecto( proyecto =>
     ({ ...proyecto,
         [e.target.name] : e.target.value}));
+        console.log(proyecto.detalle,proyecto.nombre)
     
 }
 
-// const actualizarTodo= ()=> {
-//     actualizarProyecto({...proyecto, alumno:alumnos })   } 
+ const actualizarTodo= ()=> {
+    actualizarProyecto({...proyecto, alumno:alumnoPorAgregar }) }
 
-
+const idTutor = 3
+const idMateria= 2
 
 const submitProyecto = e => {
     e.preventDefault();
-        formulario(nombre,detalle,actualizarError,crearProyecto,actualizarProyecto,proyecto,uuid);
+    actualizarTodo()
+        formulario(proyecto.nombre,proyecto.detalle,
+            actualizarError,crearProyecto,actualizarProyecto,
+            proyecto,uuid, proyecto.alumno,idMateria,idTutor);
 }
 
 const crearProyecto = (proyecto) => {
@@ -126,42 +133,38 @@ return(
                         <div style={{marginBottom:'3%'}}>
                             <p style={style.nombre}>Nombre:</p>
                             <input style={style.nombreInput} type='text' placeholder=" Asignar nombre" 
-                            value={nombre} name="nombre" onChange={handleChange}/>   
+                            value={proyecto.nombre} name="nombre" onChange={handleChange}/>   
                         </div>
                 
                         <div style={{marginBottom:'3%'}}>
                             <p style={style.detalleProyec}>Detalle del proyecto</p>
                             <textarea style={{width:'100%',marginBottom:'3%',resize:'none'}} id="" resize="none" 
-                            placeholder="Detalles.." value={detalle} name="detalle" onChange={handleChange}/>
+                            placeholder="Detalles.." value={proyecto.detalle} name="detalle" onChange={handleChange}/>
                         </div>
                    
                         <div style={{marginBottom:'3%'}}>
                             <p style={style.detalleProyec}>Asignar alumnos a proyecto</p>
                         </div>
                         
-                        <div style={style.divSearch}>
+                            <div style={style.divSearch}>
 
-                            <input style={style.inputSearch} value={inputAlumno}  type="search" list="lista_alumnos" 
-                                id="listaAlumnos" name="lista_alumnos" placeholder="Buscar alumno" onChange={handleChangeAlumno}/>
-                            <Button style={style.botonAgregar} onClick={onClickAlumno}>Agregar</Button>
-{/* AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */}
-                           
-                                <datalist id="lista_alumnos"  >
-                                    {lista.map((alumno)=> 
-                                    <option key={alumno.id}  value={alumno.first_name + " " +  alumno.dni} >  </option  >) }
-                                  </datalist>              
-                           
-                        </div>
+                                <input style={style.inputSearch} value={inputAlumno}  type="search" list="lista_alumnos" 
+                                    id="listaAlumnos" name="lista_alumnos" placeholder="Buscar alumno" onChange={handleChangeAlumno}/>
+                                <Button style={style.botonAgregar} onClick={onClickAlumno}>Agregar</Button>
+                                    <datalist id="lista_alumnos"  >
+                                        {lista.map((alumno)=> 
+                                        <option key={alumno.id}  value={alumno.nombre + " " +  alumno.dni} >  </option  >) }
+                                    </datalist>              
+                            </div>
                         
                         <div >
                             
                             <select name="carreras" id="carreras" value={carrera} onChange={cambiaCarrera}  >
                                 <option value="">¿Que carrera?</option>
-                                {carreras.map((carrera)=> <option key={carrera.id} value={carrera.nombre}> {carrera.nombre} </option> )}
+                                {carreras.map((carrera)=> <option key={carrera.id} value={carrera.id}> {carrera.nombre} </option> )}
                             </select>
-
-
                         </div>
+                        
                         <div style={{display:'flex',justifyContent:'center',margin:'3%'}}>
                             <Button  type="sumbit" style={{background:'#6c757d',border:'none'}}>Guardar</Button>
                         </div>
@@ -170,7 +173,9 @@ return(
     </div>   
                 <div style={{width:'67%', margin:'1%'}}>
                     <div style={{display:'flex',justifyContent:'start', flexWrap: 'wrap', itemAlign:'center'}}>
-                        {alumnoPorAgregar.length == 0  ?   '' : alumnoPorAgregar.map((estudiante)=> < TestAlumno     estudiante={estudiante}/>  ) }   
+                        {alumnoPorAgregar.length == 0  ?   '' : alumnoPorAgregar.map((estudiante)=> 
+                        < AgregarAlumno     estudiante={estudiante} lista={alumnoPorAgregar} setAlumnoPorAgregar={setAlumnoPorAgregar}  />  ) }   
+                        
                     </div>
                 </div>
                 
@@ -184,6 +189,3 @@ return(
 }
 
 export default FormularioProyecto;
-
-
-
