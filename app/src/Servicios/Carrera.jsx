@@ -1,9 +1,6 @@
 import axios from 'axios';
 
 
-//APRENDER COMO CONSUMIR ESTE SERVICIO
-
-
  export  const traerCarreras= async()=>
 {
    
@@ -19,6 +16,10 @@ import axios from 'axios';
 
 }
 )}
+
+
+
+
 
 
 

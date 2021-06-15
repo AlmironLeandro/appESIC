@@ -2,14 +2,15 @@ import {Col,Button,Modal} from 'react-bootstrap'
 import {useState,useEffect} from 'react'
 import { Fragment } from 'react'
 import uuid from 'uuid/dist/v4';
-import {formulario} from '../../../function/enviar_formulario';
-import {style} from '../../../styles/style_Form_proyect';
-import {traerCarreras}  from '../../../Servicios/Carrera';
-import HeaderUsuario from '../../HeaderUsuario';
-import alumnosJSON from '../../../MOCK_DATA.json';
-import VolverMenuTutor from '../VolverMenuTutor';
-import {buscarAlumno} from '../../../function/buscarAlumno'
-import TestAlumno from './TestAlumno'
+import {formulario} from '../../function/enviar_formulario';
+import {style} from '../../styles/style_Form_proyect';
+import {traerCarreras}  from '../../Servicios/Carrera';
+import HeaderUsuario from '../HeaderUsuario';
+import AlumnoAgregado from './AlumnoAgregado';
+import alumnosJSON from '../../MOCK_DATA.json';
+import VolverMenuTutor from '../Tutor/VolverMenuTutor';
+
+
 
 const FormularioProyecto = () =>
 {
