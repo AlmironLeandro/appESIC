@@ -7,9 +7,12 @@ const TablaEstudiantes= () => {
    
     const [estudiantes, setEstudiantes]= useState([])
     //Use effect para traer los estudiantes de la base y guardarlo en el useState
+    
     useEffect(() => {
         traerUsuarios().then(res => setEstudiantes(res) )
-    }, [])
+    }, [])  
+    
+ 
 
     return (
     <Fragment >

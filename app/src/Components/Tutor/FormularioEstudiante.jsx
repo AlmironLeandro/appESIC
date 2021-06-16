@@ -74,6 +74,7 @@ const FormularioEstudiante = () =>{
             dni:"",
             mail:"",    
         })
+        
 
         //Función para cerrar el modal
         setShow(false)
