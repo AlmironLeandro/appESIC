@@ -12,6 +12,20 @@ const nuevoCliente = ()=> {
     }
     })
 }
+export const traerProyectos = async ()=> 
+{
+    const cliente =nuevoCliente();
+    return await cliente.get('/proyectos')
+    .then(res => 
+        {
+            const proyectos = res.data.data
+            return proyectos
+        })
+    .catch(error => 
+        {
+            console.log(error)
+        })
+}
 
 export const insertarProyecto =
  async ( nombre,descripcion, idMateria,idTutor,fechaInicio,alumnos)=>{

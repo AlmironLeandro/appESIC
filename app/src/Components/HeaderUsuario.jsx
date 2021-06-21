@@ -51,9 +51,17 @@ return(
                         <Dropdown.Menu>
                             {/* TODO: COMPLETAR LA PANTALLA DE PERFIL... */}    
                             <Dropdown.Item href="#/action-1">
-                                <Link 
-                            style={{ textDecoration: 'none'}} to={"/"}>Cerrar sesion</Link>
+                            <Link style={{ textDecoration: 'none' }} to={"/InicioTutor"}>Ver perfil</Link>
                             </Dropdown.Item>
+
+                            <Dropdown.Item href="#/action-2">
+                            <Link  style={{ textDecoration: 'none' }} to={"/InicioTutor"}>Editar perfil</Link>
+                            </Dropdown.Item>
+                            
+                            <Dropdown.Item href="#/action-2">
+                            <Link style={{ textDecoration: 'none'}} to={"/"}>Cerrar sesion</Link>
+                            </Dropdown.Item>
+
                         </Dropdown.Menu>
                     </Dropdown>
                     <Image src={`https://media-exp1.licdn.com/dms/image/C4E03AQGxC-lbgJGdIQ/profile-displayphoto-shrink_800_800/0/1542669185152?e=1625702400&v=beta&t=GTgAaS2bZSwuo4du39COtWYtTSsMQzXjhr82zrfSRTI`} style={foto}  roundedCircle />  

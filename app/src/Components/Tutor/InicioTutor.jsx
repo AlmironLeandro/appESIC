@@ -1,118 +1,55 @@
+//Import react
+import {useState,useEffect} from 'react'
+import {Table} from 'react-bootstrap'
+// Import componentes
 import NavDeUsuarios from '../HeaderUsuario'
-// import {useState} from 'react'
-import {  Table,Breadcrumb} from 'react-bootstrap'
-import { Link } from 'react-router-dom';
+import MenuProyecto from './MenuProyecto'
+// Import servicios
+import {traerProyectos} from '../../Servicios/ProyectoServicio'
+//Import styles css
+import {styles} from '../../styles/inicioTutor'
 
 const InicioTutor = () =>
 {
-    // const [state, setstate] = useState(false)
+    const [proyectos,setProyectos]=useState([])
+    useEffect(() => {
+        traerProyectos().then(res => setProyectos(res))
+        console.log(proyectos)
+    }, [])
 
-    const tablaEstilo =
-    {
-        
-        width:'50%'
-        
-    }
-
-    const styleItem =
-    {
-        margin:'1%',
-        marginLeft:'7%',
-        textDecoration:'none'
-        
-    }
 
     return(
         <div >
-            {/* HEADER-->  */}
             <NavDeUsuarios>  
             </NavDeUsuarios>
-            <Breadcrumb  style={{marginTop:'1%'}}>
-                <Breadcrumb.Item active='false' style={styleItem}>
-                    <Link style={{ textDecoration: 'none' }} to={"/CargaEstudiante"}>Ver perfil</Link>
-               
-                </Breadcrumb.Item>
-            
-                <Breadcrumb.Item active='false' style={styleItem}>
-                    <Link  style={{ textDecoration: 'none' }} to={"/"}>Editar perfil</Link>
-                </Breadcrumb.Item>
-
-                <Breadcrumb.Item active='false' style={styleItem}>
-                    <Link  style={{ textDecoration: 'none' }}  to={"/NuevoProyecto"}>Crear proyecto</Link>
-                </Breadcrumb.Item>
-
-                <Breadcrumb.Item active='false' style={styleItem}>
-                    <Link  style={{ textDecoration: 'none' }} to={"/"}>Editar proyecto</Link>
-                </Breadcrumb.Item>
-
-                <Breadcrumb.Item active='false' style={styleItem}>
-                    <Link  style={{ textDecoration: 'none' }} to={"/CargarEstudiante"}>Cargar estudiante</Link>
-                </Breadcrumb.Item>
-                
-                </Breadcrumb>
-            {/* <div className="menuOpciones">
-                    <Dropdown>
-                                <Dropdown.Toggle style={ {}} id="menu">
-                                    Boton
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                
-                                    
-                                    <Dropdown.Item href="#/action-1">
-                                        <Link 
-                                    style={{ textDecoration: 'none' }} to={"/"}>Ver perfil</Link>
-                                    </Dropdown.Item>
-        
-                                    <Dropdown.Item href="#/action-1">
-                                        <Link 
-                                    style={{ textDecoration: 'none' }} to={"/"}>Editar perfil</Link>
-                                    </Dropdown.Item>
-        
-                                    <Dropdown.Item href="#/action-1">
-                                        <Link 
-                                    style={{ textDecoration: 'none' }} to={"/NuevoProyecto"}>Crear proyecto</Link>
-                                    </Dropdown.Item>
-        
-                                    <Dropdown.Item href="#/action-1">
-                                        <Link 
-                                    style={{ textDecoration: 'none' }} to={"/"}>Editar proyecto</Link>
-                                    </Dropdown.Item>
-        
-                                    <Dropdown.Item href="#/action-1">
-                                        <Link 
-                                    style={{ textDecoration: 'none' }} to={"/CargarEstudiante"}>Cargar estudiante</Link>
-                                    </Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                    </div>
-                     */}
                     <div style={{ display:'flex',justifyContent:'center'}}>
-                    <Table style={tablaEstilo} striped bordered hover size="sm">
+                    <Table style={styles.tablaEstilo} striped bordered hover size="sm">
                         <thead >
                             <tr >
                                 <th>Id</th>
                                 <th>Nombre de proyecto</th>
-                                <th></th>
+                                <th>Fecha fin</th>
                             </tr>
                         </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Proyecto ESIC</td>
-                                </tr> 
-                                <tr>
-                                    <td>2</td>
-                                    <td>Proyecto ISS</td>
-                                </tr>  
+                                {proyectos.map((proyecto)=>
+                                    <tr>
+                                        <td>{proyecto.id}</td>
+                                        <td>{proyecto.nombre}</td>
+                                        <td>{proyecto.fechaFin}</td>
+                                    </tr> 
+                                )}
+                                
+                          
                             </tbody>
                         </Table>
+                        <MenuProyecto/>
                     </div>
+                  
         
         </div>
         )
 
 }
-
-
 
 export default InicioTutor;
