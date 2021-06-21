@@ -4,10 +4,8 @@ import HeaderUsuario from '../HeaderUsuario'
 const Estudiante= ()=> {
     return (
         <Fragment>
-            <HeaderUsuario/>
-            
-        </Fragment>
-       
+            <HeaderUsuario/>   
+        </Fragment> 
     )
 }
 

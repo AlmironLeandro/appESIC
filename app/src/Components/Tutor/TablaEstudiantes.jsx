@@ -1,18 +1,9 @@
-import React, {Fragment, useEffect, useState} from 'react'
+import React, {Fragment} from 'react'
 import { Col, Container, Row} from 'react-bootstrap'
 import { BsPencil, BsFillTrashFill } from "react-icons/bs";
-import {traerUsuarios, eliminarUsuario} from '../../Servicios/UsuariosServicio'
 
-const TablaEstudiantes= () => {
-   
-    const [estudiantes, setEstudiantes]= useState([])
-    //Use effect para traer los estudiantes de la base y guardarlo en el useState
-    
-    useEffect(() => {
-        traerUsuarios().then(res => setEstudiantes(res) )
-    }, [])  
-    
- 
+
+const TablaEstudiantes= ({estudiantes}) => {   
 
     return (
     <Fragment >

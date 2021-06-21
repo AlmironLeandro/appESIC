@@ -5,14 +5,18 @@ import {traerCarreras} from '../../Servicios/Carrera'
 import {insertarUsuario} from '../../Servicios/UsuariosServicio'
 
 
-const FormularioEstudiante = () =>{
+const FormularioEstudiante = (props) =>{
     
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     const [error, setError] = useState(false);
     const [estudiante, setEstudiante]=useState({})
     const [carreras, setCarreras] = useState([])
+
+    const handleShow = () => {
+        setShow(true);
+        props.avisoCallBack(false)
+    }
     
     //useEffect para traer las carreras y las guarda 
     useEffect(() => {
@@ -78,6 +82,7 @@ const FormularioEstudiante = () =>{
 
         //Función para cerrar el modal
         setShow(false)
+        props.avisoCallBack(true)
     };
 
 
