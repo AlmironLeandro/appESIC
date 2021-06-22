@@ -28,7 +28,6 @@ const InicioTutor = () =>
                             <tr >
                                 <th>Id</th>
                                 <th>Nombre de proyecto</th>
-                                <th>Fecha fin</th>
                             </tr>
                         </thead>
                             <tbody>
@@ -36,11 +35,8 @@ const InicioTutor = () =>
                                     <tr>
                                         <td>{proyecto.id}</td>
                                         <td>{proyecto.nombre}</td>
-                                        <td>{proyecto.fechaFin}</td>
                                     </tr> 
                                 )}
-                                
-                          
                             </tbody>
                         </Table>
                         <MenuProyecto/>
