@@ -10,7 +10,12 @@ const FormularioEstudiante = (props) =>{
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const [error, setError] = useState(false);
-    const [estudiante, setEstudiante]=useState({})
+    const [estudiante, setEstudiante]=useState({
+        nombre:"",
+        apellido:"",
+        dni:"",
+        mail:"",  
+    })
     const [carreras, setCarreras] = useState([])
 
     const handleShow = () => {

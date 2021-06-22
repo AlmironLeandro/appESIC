@@ -7,7 +7,7 @@ import {traerUsuarios, eliminarUsuario} from '../../Servicios/UsuariosServicio'
 
 const CargarEstudiante=()=> {
 
-    const[cargaEstudiante, setCargaEstudiante]=useState(false)
+    const [cargaEstudiante, setCargaEstudiante]=useState(false)
     const [estudiantes, setEstudiantes]= useState([])
     
     useEffect(() => {
