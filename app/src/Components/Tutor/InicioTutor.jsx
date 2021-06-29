@@ -9,39 +9,34 @@ import NavDeUsuarios from '../HeaderUsuario'
 import MenuProyecto from './MenuProyecto'
 // Import servicios
 import {traerProyectos} from '../../Servicios/ProyectoServicio'
+import {traerMaterias} from '../../Servicios/Materia'
 //Import styles css
 import {styles} from '../../styles/inicioTutor'
 
 const InicioTutor = () =>
 {
     const [proyectos,setProyectos]=useState([])
+    const [materias,setMaterias]=useState([])
+ 
     useEffect(() => {
         traerProyectos().then(res => setProyectos(res))
-        console.log(proyectos)
+        traerMaterias().then(res => setMaterias(res))      
     }, [])
-    // const useStyles = makeStyles((theme) => ({
-    //     margin: {
-    //       margin: theme.spacing(1),
-          
-    //     },
-    //     extendedIcon: {
-    //       marginRight: theme.spacing(1),
-    //     },
-    //   }));
-    //   const classes = useStyles();
-
 
     const popover =(props)=> (
         <Popover id="popover-basic">
-          <Popover.Title as="h3">Detalle</Popover.Title>
+            {/* Materia:  */}
+          <Popover.Title as="h3">{props.mat} </Popover.Title>
             <Popover.Content >
-                {props.detalle}
+            {/* <p>Descripcion:</p> */}
+             {props.detalle}
+            
             </Popover.Content>
         </Popover>)
 
-        const Example = (detalle) => (
-            <OverlayTrigger trigger="hover" placement="right" overlay={popover(detalle)}>
-              <Button variant="light">Ver detalle</Button>
+        const Example = (detalle,mat) => (
+            <OverlayTrigger trigger="hover" placement="bottom-end" overlay={popover(detalle, mat)}>
+              <Button  variant="light">Ver mas</Button>
             </OverlayTrigger>
           );
 
@@ -49,7 +44,7 @@ const InicioTutor = () =>
     return(
         <div >
           
-            <NavDeUsuarios>  
+            <NavDeUsuarios >  
             </NavDeUsuarios>
                     <div style={{ display:'flex',justifyContent:'center'}}>
                     <Table style={styles.tablaEstilo} striped bordered hover>
@@ -61,13 +56,16 @@ const InicioTutor = () =>
                             <tbody>
                                 <div >
                                 {proyectos.map((proyecto,i)=>
-                                    <tr>  
+                                    <tr>
+                                       
                                         <td style={{width:'100%'}}>{proyecto.nombre}</td>
-                                        <Example detalle={proyecto.descripcion} />
+                                        
+                                        <Example detalle={proyecto.descripcion} mat={materias.filter((x)=> x.id === proyecto.idMateria)[0].nombre}/>
                                     </tr> 
-                                    
+                                  
 
                                 )}
+                                 
                                 </div>
                             </tbody>
                         </Table>

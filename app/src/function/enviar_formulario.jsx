@@ -15,8 +15,8 @@ export const formulario =  (proyecto,actualizarError,actualizarProyecto,listaAlu
         insertarProyecto(
             proyecto.nombre,
             proyecto.detalle,
-            2,
             materia,
+            2,
             fecha.toISOString(),
             listaAlumnoAgregado.map((alumno)=>({ "idAlumno" : alumno.id}) )
         )
