@@ -26,7 +26,7 @@ const InicioTutor = () =>
     const popover =(props)=> (
         <Popover id="popover-basic">
             {/* Materia:  */}
-          <Popover.Title as="h3">{props.mat} </Popover.Title>
+          <Popover.Title as="h3"></Popover.Title>
             <Popover.Content >
             {/* <p>Descripcion:</p> */}
              {props.detalle}
@@ -60,7 +60,7 @@ const InicioTutor = () =>
                                        
                                         <td style={{width:'100%'}}>{proyecto.nombre}</td>
                                         
-                                        <Example detalle={proyecto.descripcion} mat={materias.filter((x)=> x.id === proyecto.idMateria)[0].nombre}/>
+                                        <Example detalle={proyecto.descripcion} mat={materias.filter((x)=> x.id === proyecto.idMateria)}/>
                                     </tr> 
                                   
 
