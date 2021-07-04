@@ -15,7 +15,7 @@ const nuevoCliente = () => {
 export const traerUsuarios = async()=>{
     const cliente = nuevoCliente();
 
-    return await  cliente.get('http://localhost:3001/api/usuarios')
+    return await  cliente.get('/usuarios')
     .then(response => {
         const alumnosTodas = response.data.data
         return alumnosTodas  

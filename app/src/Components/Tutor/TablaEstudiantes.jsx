@@ -7,6 +7,7 @@ const TablaEstudiantes= ({estudiantes}) => {
 
     return (
     <Fragment >
+         {estudiantes === undefined  ? '' :
         <Container fluid="sm">
             <Row >
                 <Col align="left" >
@@ -25,7 +26,7 @@ const TablaEstudiantes= ({estudiantes}) => {
                     
                 </Col>
             </Row>                                          
-            
+           
             {estudiantes.map(estudiante=> 
             <Row>
                 <Col>
@@ -54,7 +55,8 @@ const TablaEstudiantes= ({estudiantes}) => {
             
             </Row>
             )}   
-        </Container>                
+        </Container>  
+}              
     </Fragment>
     )
 }

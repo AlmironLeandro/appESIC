@@ -111,7 +111,7 @@ const FormularioEstudiante = (props) =>{
                     <Modal.Body>
                     {error 
                     ? <p style={{color:"red"}}>Complete todos los campos</p>: <p></p>}
-                      
+                       {carreras === undefined  ? '' :
                         <Form  onSubmit={submitForm}>
                                
                             <InputGroup size="sm" className="mb-3">
@@ -185,7 +185,8 @@ const FormularioEstudiante = (props) =>{
                                     </Button>
                                 </Col>
                             </Row>
-                        </Form>                         
+                        </Form>      
+                        }                   
                     </Modal.Body>                   
                 </Modal>
             </Container>

@@ -80,7 +80,9 @@ const submitProyecto =  e => {
 
 return(
     <Fragment>
+         
    <CabezaTitulo texto={"Datos del proyecto nuevo"}/>
+  
     <div style={style.contenedor}>
         <div style={style.contenido}>
         { error ? <p style={{color:'red',textAlign:'center',fontSize:'15px'}}> Tenés que completar todos los campos </p> : null }
@@ -104,6 +106,7 @@ return(
                     </div>
                 </div> 
     </div>
+
 </Fragment>)}
 
 export default FormularioProyecto;
