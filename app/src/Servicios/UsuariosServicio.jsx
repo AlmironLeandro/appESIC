@@ -72,3 +72,15 @@ export const editarUsuario = async (ID, nombre, apellido, dni, email, pass, idRo
             }
         }).catch((e) => { throw new Error('No se pudo modificar el usuario'); });
 };
+
+export const buscarUsuario = async (id) => {
+    const cliente = nuevoCliente();
+    return await cliente.get(`/usuarios/${id}`) 
+        .then(response => {
+            if (response.status === 200) {
+                return response.data;
+            } else {
+                throw new Error('No se pudo listar el usuario');
+            }
+        }).catch((e) => { throw new Error('No se pudo listar usuario'); });
+};

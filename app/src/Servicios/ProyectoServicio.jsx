@@ -46,3 +46,46 @@ export const insertarProyecto =
         }
     }).catch((e) => { console.log(e); throw new Error('No se pudo crear el proyecto'); });
 }
+
+export const eliminarProyecto = async (id) => {
+    const cliente = nuevoCliente();
+
+    return await cliente.delete(`/proyectos/${id}`, {
+       
+    })
+        .then(response => {
+            if (response.status === 200) {
+                return;
+            } else {
+                throw new Error('No se pudo eliminar el proyecto');
+            }
+        }).catch((e) => { throw new Error('No se pudo eliminar el proyecto'); });
+};
+
+export const editarUsuario = async (ID, nombre,descripcion, idMateria,idTutor,fechaInicio,alumnos) => {
+    const cliente = nuevoCliente();
+
+    return await cliente.put(`/proyectos/${ID}`, {
+        nombre,descripcion, idMateria,idTutor,fechaInicio,alumnos
+    })
+        .then(response => {
+            if (response.status === 200) {
+                console.log(response.data);
+                return response.data.data;
+            } else {
+                throw new Error('No se pudo modificar el proyecto');
+            }
+        }).catch((e) => { throw new Error('No se pudo modificar el proyecto'); });
+};
+
+export const buscarUsuario = async (id) => {
+    const cliente = nuevoCliente();
+    return await cliente.get(`/usuarios/${id}`) 
+        .then(response => {
+            if (response.status === 200) {
+                return response.data;
+            } else {
+                throw new Error('No se pudo listar el usuario');
+            }
+        }).catch((e) => { throw new Error('No se pudo listar usuario'); });
+};
