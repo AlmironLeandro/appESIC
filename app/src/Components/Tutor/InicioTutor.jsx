@@ -1,46 +1,29 @@
 //Import react
 import {useState,useEffect} from 'react'
-import {Table, Popover, OverlayTrigger,Button} from 'react-bootstrap'
-// import { makeStyles } from '@material-ui/core/styles';
-// Import componentes
-// import IconButton from '@material-ui/core/IconButton';
-// import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import {Table} from 'react-bootstrap'
 import NavDeUsuarios from '../HeaderUsuario'
 import MenuProyecto from './MenuProyecto'
+import MostrarProyectos from './MostrarProyectos'
 // Import servicios
 import {traerProyectos} from '../../Servicios/ProyectoServicio'
-import {traerMaterias} from '../../Servicios/Materia'
+import {buscarUsuario} from '../../Servicios/ProyectoServicio'
+
 //Import styles css
 import {styles} from '../../styles/inicioTutor'
 
 const InicioTutor = () =>
 {
     const [proyectos,setProyectos]=useState([])
-    const [materias,setMaterias]=useState([])
- 
+    const [proyectosPorId, setProyectosPorId]=useState([])
+    //Trampa que se me ocurrio
+    const numero = proyectos.length
+    
     useEffect(() => {
-        traerProyectos().then(res => setProyectos(res))
-        traerMaterias().then(res => setMaterias(res))      
-    }, [])
-
-    const popover =(props)=> (
-        <Popover id="popover-basic">
-            {/* Materia:  */}
-            {props.mat === undefined ? '' : <Popover.Title as="h3">{props.mat.nombre}</Popover.Title> }
-         
-            <Popover.Content >
-            {/* <p>Descripcion:</p> */}
-             {props.detalle}
+            traerProyectos().then(res =>  setProyectos(res)) 
+            proyectos.map((x)=> 
+            buscarUsuario(x.id).then(res =>  setProyectosPorId(proyectosPorId => [...proyectosPorId,res ])) )
             
-            </Popover.Content>
-        </Popover>)
-
-        const Example = (detalle,mat) => (
-            <OverlayTrigger trigger="hover" placement="bottom-end" overlay={popover(detalle, mat)}>
-              <Button  variant="light">Ver mas</Button>
-            </OverlayTrigger>
-          );
-
+    }, [numero])
 
     return(
         <div >
@@ -55,20 +38,16 @@ const InicioTutor = () =>
                             </tr>
                         </thead>
                             <tbody> 
-                                {proyectos === undefined  ? '' :
+                                 {proyectosPorId === undefined  ? '' :
                                 <div >
-                                 {proyectos.map((proyecto,i)=>
+                                 {proyectosPorId.map((proyecto,i)=>
                                     <tr>
-                                       
-                                        <td style={{width:'100%'}}>{proyecto.nombre}</td>
-                                        
-                                        <Example detalle={proyecto.descripcion} mat={materias.filter((x)=> x.id === proyecto.idMateria)[0]}/>
+                                        <td style={{width:'100%'}}>{proyecto.proyecto.nombre}</td>
+                                        <MostrarProyectos proyecto={proyecto}></MostrarProyectos>
                                     </tr> 
-                                  
-
                                 )}
                                  
-                                </div>}
+                                </div>} 
 
                                  
                             </tbody>

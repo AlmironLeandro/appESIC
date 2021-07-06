@@ -8,7 +8,7 @@ const nuevoCliente = ()=> {
         timeout:config.timeout,
         headers:{
             'Content-Type': 'application/json',
-        'Accept': 'application/json'
+            'Accept': 'application/json'
     }
     })
 }
@@ -80,12 +80,12 @@ export const editarUsuario = async (ID, nombre,descripcion, idMateria,idTutor,fe
 
 export const buscarUsuario = async (id) => {
     const cliente = nuevoCliente();
-    return await cliente.get(`/usuarios/${id}`) 
+    return await cliente.get(`/proyectos/${id}`) 
         .then(response => {
             if (response.status === 200) {
                 return response.data;
             } else {
-                throw new Error('No se pudo listar el usuario');
+                throw new Error('No se pudo listar el proyecto');
             }
-        }).catch((e) => { throw new Error('No se pudo listar usuario'); });
+        }).catch((e) => { throw new Error('No se pudo listar proyecto'); });
 };

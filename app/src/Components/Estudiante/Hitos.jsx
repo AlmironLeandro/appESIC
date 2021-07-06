@@ -49,14 +49,16 @@ export default function CustomizedTimeline() {
               
             </Typography>
             <Typography>Descripción ..........................................</Typography>
-            <Typography><EntregarHito>Entregar</EntregarHito></Typography>
+              <Typography>
+                <EntregarHito>Entregar</EntregarHito>
+              </Typography>
           </Paper>
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            10:00 am
+            20/06/2021
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
