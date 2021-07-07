@@ -43,7 +43,7 @@ const InicioTutor = () =>
                                  {proyectosPorId.map((proyecto,i)=>
                                     <tr>
                                         <td style={{width:'100%'}}>{proyecto.proyecto.nombre}</td>
-                                        <MostrarProyectos proyecto={proyecto}></MostrarProyectos>
+                                        <td >   <MostrarProyectos proyecto={proyecto}></MostrarProyectos> </td>
                                     </tr> 
                                 )}
                                  

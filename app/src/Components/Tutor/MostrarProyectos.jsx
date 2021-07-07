@@ -1,45 +1,56 @@
+import { Modal,Button}from 'react-bootstrap'
+import EditIcon from '@material-ui/icons/Edit';
+import React from 'react'
 
-import { Popover, OverlayTrigger,Button} from 'react-bootstrap'
 
-  const MostrarProyectos =  (props)=>
-{
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          
+        <h5>{props.materia}</h5>
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <h4 style={{display:'inline-block'}}>Alumnos:  </h4>
+        {props.alumnos.map((est)=> <p >{""+est.nombre+"  "}{"  "+est.apellido+"  "}{"  "+est.dni+"  "}</p>)}
+        <h4>Descripción</h4>
+        <p>
+          {props.descripcion}
+        </p>
+      </Modal.Body>
+      <Modal.Footer style={{display:'flex',justifyContent:'center'}}>
+        <Button variant="primary"  onClick={props.onHide}>Entrar</Button>
+        <Button variant="secondary" onClick={props.onHide}>Editar</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
 
-    const popover = (
-      <Popover id="popover-basic">
-   
-        <Popover.Title as="h3">
-          {props.proyecto.materia.nombre}
+const MostrarProyectos = (props)=> {
+  const [modalShow, setModalShow] = React.useState(false);
 
-        </Popover.Title>
-
-        <Popover.Content >
-       
-        <h6>Alumnos:  </h6>
-          {props.proyecto.alumnos.map((est)=>
-          (
-          <p>{est.nombre+" "} {est.apellido+" "} {est.dni+" "}</p>
-          )
-          )}
-
-{props.proyecto.proyecto.descripcion}
-
-        </Popover.Content>
-         
-      </Popover>)
-
-      const Example = () => (
-          <OverlayTrigger trigger="hover" placement="auto" overlay={popover}>
-            <Button  variant="light">Ver mas</Button>
-          </OverlayTrigger>
-        );
-return(
-
-  <div>
-<Example></Example>
-    
-  </div>
-  
-        )
+  return (
+    <>
+      <Button variant="light" onClick={() => setModalShow(true)}>
+        +info
+      </Button>
+      
+      <MyVerticallyCenteredModal
+        materia={props.proyecto.materia.nombre}
+        descripcion={props.proyecto.proyecto.descripcion}
+        alumnos={props.proyecto.alumnos}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+    </>
+  );
 }
 
 export default MostrarProyectos;
