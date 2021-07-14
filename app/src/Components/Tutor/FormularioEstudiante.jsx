@@ -86,8 +86,9 @@ const FormularioEstudiante = (props) =>{
         
 
         //Función para cerrar el modal
-        setShow(false)
         props.avisoCallBack(true)
+        setShow(false)
+       
     };
 
 

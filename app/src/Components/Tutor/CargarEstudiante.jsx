@@ -9,9 +9,13 @@ const CargarEstudiante=()=> {
 
     const [cargaEstudiante, setCargaEstudiante]=useState(false)
     const [estudiantes, setEstudiantes]= useState([])
-    
+     
+     const numero = estudiantes.length
+
+
     useEffect(() => {
         traerUsuarios().then(res => setEstudiantes(res) )
+        console.log("PASO POR ACA")
     }, [cargaEstudiante]) 
     
     return (

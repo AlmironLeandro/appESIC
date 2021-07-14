@@ -1,8 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import PasarABase64 from '../PasarABase64'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,9 +27,9 @@ export default function UploadButtons() {
         type="file"
       />
       <label htmlFor="contained-button-file">
-        <Button variant="contained" color="primary" component="span">
-          Entregar hito
-        </Button>
+        <PasarABase64 >
+          
+        </PasarABase64>
       </label>
       <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
       <label htmlFor="icon-button-file">
