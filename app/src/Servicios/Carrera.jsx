@@ -30,6 +30,24 @@ const nuevoCliente = () => {
 }
 )}
 
+export  const traerCarrera= async(id)=>
+{
+   const cliente = nuevoCliente();
+  return await  cliente.get(`/carreras/${id}`)
+     .then(response => {
+        if (response.status === 200) {
+        const carrerasTodas = response.data.data
+        return carrerasTodas
+        } else {
+        throw new Error('No se pudo listar la carrera');
+        }
+       
+     })
+     .catch(error => {
+         console.log(error)
+
+}
+)}
 
 
 

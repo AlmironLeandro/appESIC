@@ -5,11 +5,18 @@ import {validarAlumno} from '../../../function/funcionesAlumno'
 const NombreDetalleBuscar = (props)=>
 {
     
-    const compararInputAlumConLista = (list,alum)=> { const alumSplit = alum.split(" ");  list.map((estudiante)=> 
-    {if (estudiante.nombre == alumSplit[0] && estudiante.dni == alumSplit[1] && !validarAlumno(props.alumnoPorAgregar,estudiante)){
-            props.setAlumnoPorAgregar([...props.alumnoPorAgregar, estudiante])   
-    }}
-    )}
+    const compararInputAlumConLista = (list,alum)=> {
+        if(alum === undefined || alum === ''){
+            alert("Necesitas un estudiante")
+        }
+        else{
+            const alumSplit = alum.split(" ");  list.map((estudiante)=> 
+            {if (estudiante.nombre == alumSplit[0] && estudiante.dni == alumSplit[1] && !validarAlumno(props.alumnoPorAgregar,estudiante)){
+                    props.setAlumnoPorAgregar([...props.alumnoPorAgregar, estudiante])   
+            }}
+            )
+        }
+       }
 
     const onClickAlumno = e => {
         e.preventDefault();
@@ -20,10 +27,12 @@ return(
     <div>
 
         
-            <div style={{marginBottom:'3%'}}>
-                <p style={style.nombre}>Nombre:</p>
+            <div style={{marginBottom:'3%', display:'flex', width:'100%'}}>
+                <div style={style.nombre}  >Nombre:</div>
+                <div style={{width:'100%'}}>
                 <input style={style.nombreInput} type='text' placeholder=" Asignar nombre" 
-                value={props.proyecto.nombre} name="nombre" onChange={props.handleChange}/>   
+                value={props.proyecto.nombre} name="nombre" onChange={props.handleChange}/> 
+                </div>  
              </div>
 
             <div style={{marginBottom:'3%'}}>

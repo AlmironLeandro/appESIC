@@ -3,19 +3,22 @@ import { Link } from 'react-router-dom'
 import {Button} from 'react-bootstrap'
 
 const style= {
-    background:'#ffffff',
     display:'flex',
-    left: '20px',
-    bottom: '20px'
+    justifyContent:'end',
+    marginRight:'5%'
 }
 
 function VolverMenuTutor() {
     return (
-        <Button style={style} >
-            <Link 
-            style={{ textDecoration: 'none' }} to={"/InicioTutor"}>Volver
-            </Link>
-        </Button>
+        <div style={style}>
+            <div>
+                <Button style={{  background:'#ffffff'}} >
+                    <Link 
+                    style={{ textDecoration: 'none' }} to={"/InicioTutor"}>Volver
+                    </Link>
+                </Button>
+            </div>
+        </div>
     )
 }
 

@@ -1,9 +1,8 @@
-import { Image, Dropdown} from 'react-bootstrap'
-// import {useState} from 'react'
+import {  Dropdown,Button} from 'react-bootstrap'
 import Logo from '../Images/imgg.png'
-// import foto_tutor from '../Images/foto_tutor.JPG'
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import Avatar from '@material-ui/core/Avatar';
 
 
 const NavDeUsuarios = () =>
@@ -22,15 +21,10 @@ const NavDeUsuarios = () =>
 
     const foto = 
     {   
-        display:'inline-flex',
         width:'70px',
         height:'65px'
         
         
-    }
-    const estiloNombre={
-        backgroundColor:'transparent',
-        border:'none'
     }
          
 return(
@@ -41,30 +35,32 @@ return(
                     <h2 style={{display:'inline', fontSize:'25px'}} > ESIC</h2> 
                 </div>
 
-                <div style={{display:'inline'}}> 
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}> 
                
-                    <Dropdown style={{display:'inline'}}>
-                        <Dropdown.Toggle style={estiloNombre} id="dropdown-basic">
-                          <h6 style={{display:'inline-flex'}} > {nombre}</h6> 
+                    <Dropdown  >
+                        <Dropdown.Toggle  bsPrefix='dropdown' as="Button" id="dropdown-basic">
+                        {nombre}
                         </Dropdown.Toggle>
 
-                        <Dropdown.Menu>
+                        <Dropdown.Menu >
                             {/* TODO: COMPLETAR LA PANTALLA DE PERFIL... */}    
                             <Dropdown.Item href="#/action-1">
-                            <Link style={{ textDecoration: 'none' }} to={"/InicioTutor"}>Ver perfil</Link>
+                                <Link style={{ textDecoration: 'none' }} to={"/InicioTutor"}>Ver perfil</Link>
                             </Dropdown.Item>
 
                             <Dropdown.Item href="#/action-2">
-                            <Link  style={{ textDecoration: 'none' }} to={"/InicioTutor"}>Editar perfil</Link>
+                                <Link  style={{ textDecoration: 'none' }} to={"/InicioTutor"}>Editar perfil</Link>
                             </Dropdown.Item>
                             
                             <Dropdown.Item href="#/action-2">
-                            <Link style={{ textDecoration: 'none'}} to={"/"}>Cerrar sesion</Link>
+                                <Link style={{ textDecoration: 'none'}} to={"/"}>Cerrar sesion</Link>
                             </Dropdown.Item>
 
                         </Dropdown.Menu>
                     </Dropdown>
-                    <Image src={`https://media-exp1.licdn.com/dms/image/C4E03AQGxC-lbgJGdIQ/profile-displayphoto-shrink_800_800/0/1542669185152?e=1625702400&v=beta&t=GTgAaS2bZSwuo4du39COtWYtTSsMQzXjhr82zrfSRTI`} style={foto}  roundedCircle />  
+                    <div>
+                    <Avatar style={foto}>{nombre[0]+nombre[6]}</Avatar>
+                    </div>
                 </div>   
             </div>
             

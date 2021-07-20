@@ -91,9 +91,13 @@ return(
                     <NombreDetalleBuscar
                     proyecto={proyecto} handleChange={handleChange} handleChangeAlumno={handleChangeAlumno} setInputAlumno={setInputAlumno}  lista={listaPorCarrera}
                     inputAlumno={inputAlumno}  alumnoPorAgregar={listaAlumnoAgregado} setAlumnoPorAgregar={setAlumnoAgregado}/>
-                    <Selector name={"carreras"} values={carreras} value={carrera} onclick={cambiarCarrera} />
-                    <Selector name={"materias"} values={materias} value={materia} onclick={cambiarMateria}  />
-                        <div style={{display:'flex',justifyContent:'center',margin:'3%'}}>
+                    <div style={{display:'flex', justifyContent:'space-between'}}>
+                        <div ><Selector name={"carreras"} values={carreras} value={carrera} onclick={cambiarCarrera} /></div>
+                        <div ><Selector name={"materias"} values={materias} value={materia} onclick={cambiarMateria}  /></div>
+                        
+                        
+                    </div>
+                        <div style={{display:'flex',justifyContent:'center', alignItems:'center', height:'10vh'}}>
                             <Button  type="sumbit" style={{background:'#6c757d',border:'none'}}>Guardar</Button>
                         </div>
                     </form>    

@@ -14,7 +14,7 @@ function MyVerticallyCenteredModal(props) {
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           
-        <h5>{props.materia}</h5>
+        <h5>{props.materia +" - "+ props.nombreProyecto}</h5>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -35,7 +35,7 @@ function MyVerticallyCenteredModal(props) {
 
 const MostrarProyectos = (props)=> {
   const [modalShow, setModalShow] = React.useState(false);
-
+console.log(props.proyecto)
   return (
     <>
       <Button variant="light" onClick={() => setModalShow(true)}>
@@ -46,6 +46,7 @@ const MostrarProyectos = (props)=> {
         materia={props.proyecto.materia.nombre}
         descripcion={props.proyecto.proyecto.descripcion}
         alumnos={props.proyecto.alumnos}
+        nombreProyecto={props.proyecto.proyecto.nombre}
         show={modalShow}
         onHide={() => setModalShow(false)}
       />

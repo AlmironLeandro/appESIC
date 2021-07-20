@@ -97,34 +97,51 @@ input[type="number"] {
 }
 
 
+.dropdown
+{
+  background-color: transparent;
+  color: #e0f6f6;
+  border: none;
+}
 
 
-/* .logoYH2 {
+
+
+/* Tabla estudiantes */
+
+.contenedorTablaDeAlumnos
+{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+ 
+}
+
+.contenedorTablaDeAlumnos > div 
+{
+  width: 19%;
+  
+}
+.iconosBorrarMod
+{
   display: flex;
-  margin-left: 1%;
-} 
- .header img
-{
-  display: inline-block; 
- }
-
-.header h2
-{
-   display: inline-block; 
-}  */
-/* .desplegable
-{
+  justify-content:center;
   
-display: inline-block;
-
-  
-
-} */
-/* .droplook
+}
+.containerTablaEstudiantes
 {
- 
-  background-color: #4db6ad;
-  border:none;
- 
+  margin: auto;
+  width: 75%;
   
-} */
+}
+
+@media (max-width: 850px) {
+  .containerTablaEstudiantes
+  {
+    margin: auto;
+    width: 100%;
+    
+  }
+
+}
+

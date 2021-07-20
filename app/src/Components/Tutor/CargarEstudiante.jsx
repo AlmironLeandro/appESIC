@@ -9,9 +9,6 @@ const CargarEstudiante=()=> {
 
     const [cargaEstudiante, setCargaEstudiante]=useState(false)
     const [estudiantes, setEstudiantes]= useState([])
-     
-     const numero = estudiantes.length
-
 
     useEffect(() => {
         traerUsuarios().then(res => setEstudiantes(res) )
@@ -21,14 +18,16 @@ const CargarEstudiante=()=> {
     return (
         <Fragment>
             <HeaderUsuario/>
+            
             <br/> 
+            <VolverMenu/> 
             <FormularioEstudiante
             avisoCallBack={setCargaEstudiante}
             />       
             <TablaEstudiantes
             estudiantes={estudiantes}
             />
-            <VolverMenu/>      
+                 
         </Fragment>
        
     )

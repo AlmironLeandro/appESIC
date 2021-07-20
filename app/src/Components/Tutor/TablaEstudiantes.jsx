@@ -1,61 +1,68 @@
-import React, {Fragment} from 'react'
+
+import React, {Fragment, useState, useEffect} from 'react'
 import { Col, Container, Row} from 'react-bootstrap'
 import { BsPencil, BsFillTrashFill } from "react-icons/bs";
 
-
 const TablaEstudiantes= ({estudiantes}) => {   
+ 
 
     return (
     <Fragment >
-         {estudiantes === undefined  ? '' :
-        <Container fluid="sm">
-            <Row >
-                <Col align="left" >
+        {console.log(estudiantes)}
+         {estudiantes === undefined || estudiantes.length === 0 ? '' :
+        <div className='containerTablaEstudiantes'>
+            <div className="contenedorTablaDeAlumnos">
+                <div  >
                     <p>Nombre</p>
-                </Col>
-                <Col align="left">
+                </div>
+                <div >
                     <p>Apellido</p>
-                </Col>
-                <Col align="left">
+                </div>
+                <div >
                     <p>DNI</p>
-                </Col>
-                <Col align="left"> 
+                </div>
+                <div > 
                     <p>Mail</p>
-                </Col>
-                <Col>
-                    
-                </Col>
-            </Row>                                          
+                </div>
+                <div >
+                   
+                </div>
+            </div>       
            
             {estudiantes.map(estudiante=> 
-            <Row>
-                <Col>
+            <div  className="contenedorTablaDeAlumnos">
+                <div >
                     {estudiante.nombre}
-                </Col>
-                <Col>
+                </div>
+                <div >
                     {estudiante.apellido}
-                </Col>
-                <Col>
+                </div>
+                <div >
                     {estudiante.dni}
-                </Col>
-                <Col>
+                </div>
+                <div >
                     {estudiante.email}
-                </Col>
-                <Col>
-                <BsPencil
-                style={{float: 'left', marginRight: '8%'}}
-                onClick={()=>alert(estudiante.apellido)}
-                />
-                {console.log(estudiante.id)}
-                <BsFillTrashFill
-                onClick={()=>alert("Está seguro de eliminar a "+ (estudiante.nombre) + " " + (estudiante.apellido))}
-                //onClick={()=>eliminarUsuario(estudiante.id)} para cuando esté implementado
-                />
-                </Col>
-            
-            </Row>
+                </div>
+                <div className='iconosBorrarMod'>
+                    <div style={{display:'flex', width:'20%', justifyContent:'space-between'}}>
+                        <div>
+                        <BsPencil
+                        
+                        onClick={()=>alert(estudiante.apellido)}
+                        />
+                        </div>
+                        {console.log(estudiante.id)}
+                        <div>
+                        <BsFillTrashFill
+                        onClick={()=>alert("Está seguro de eliminar a "+ (estudiante.nombre) + " " + (estudiante.apellido))}
+                        //onClick={()=>eliminarUsuario(estudiante.id)} para cuando esté implementado
+                        />
+                        </div>
+                   </div>
+                </div>
+            </div>
             )}   
-        </Container>  
+        </div>  
 }              
     </Fragment>
     )
