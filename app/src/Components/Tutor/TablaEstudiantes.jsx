@@ -1,11 +1,11 @@
 
 import React, {Fragment, useState, useEffect} from 'react'
-import { Col, Container, Row} from 'react-bootstrap'
 import { BsPencil, BsFillTrashFill } from "react-icons/bs";
+import { editarUsuario } from '../../function/editarUsuario';
 
-const TablaEstudiantes= ({estudiantes}) => {   
+
+const TablaEstudiantes= ({estudiantes}) => {  
  
-
     return (
     <Fragment >
         {console.log(estudiantes)}
@@ -48,7 +48,8 @@ const TablaEstudiantes= ({estudiantes}) => {
                         <div>
                         <BsPencil
                         
-                        onClick={()=>alert(estudiante.apellido)}
+                        onClick={()=>editarUsuario(estudiante)}
+                        
                         />
                         </div>
                         {console.log(estudiante.id)}
