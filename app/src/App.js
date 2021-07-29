@@ -6,7 +6,7 @@ import HeaderLogin from './Components/Login/HeaderLogin'
 import Login from './Components/Login/Login'
 import './App.css';
 import InicioTutor from './Components/Tutor/InicioTutor';
-
+import PantallaDeProyecto from './Components/Tutor/Proyecto/PantallaDeProyecto';
 import FormularioProyecto from './Components/Tutor/Proyecto/FormularioProyecto';
 import CargarEstudiante from './Components/Tutor/CargarEstudiante';
 import Estudiante from './Components/Estudiante/Estudiante';
@@ -39,6 +39,10 @@ function App() {
 
    <Route path="/Estudiante">
       <Estudiante/>
+    </Route>
+    
+    <Route path="/Proyecto">
+      <PantallaDeProyecto />
     </Route>
 
   </Switch>

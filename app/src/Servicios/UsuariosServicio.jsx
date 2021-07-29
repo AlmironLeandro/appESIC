@@ -78,8 +78,10 @@ export const buscarUsuario = async (id) => {
     return await cliente.get(`/usuarios/${id}`) 
         .then(response => {
             if (response.status === 200) {
-                return response.data.data;
+                // console.log((response.data))
+                return response.data;
             } else {
+                
                 throw new Error('No se pudo listar el usuario');
             }
         }).catch((e) => { throw new Error('No se pudo listar usuario'); });

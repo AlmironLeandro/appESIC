@@ -2,6 +2,7 @@
 import React, {Fragment, useState, useEffect} from 'react'
 import { BsPencil, BsFillTrashFill } from "react-icons/bs";
 import { editarUsuario } from '../../function/editarUsuario';
+import { buscarUsuario } from '../../Servicios/UsuariosServicio';
 
 
 const TablaEstudiantes= ({estudiantes}) => {  
@@ -48,7 +49,7 @@ const TablaEstudiantes= ({estudiantes}) => {
                         <div>
                         <BsPencil
                         
-                        onClick={()=>editarUsuario(estudiante)}
+                        onClick={()=> editarUsuario(estudiante.id)}
                         
                         />
                         </div>
