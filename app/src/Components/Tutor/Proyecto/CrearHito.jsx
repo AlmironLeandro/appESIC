@@ -66,7 +66,7 @@ const CrearHito = (props) => {
         //Lamada a la función post con los atributos
         insertarHito(
 
-            1,//FALTA ID PROYECTO
+            2,//FALTA ID PROYECTO
             hito.idTipo,
             hito.descripcion,
             hito.fechaEntrega,
@@ -118,7 +118,7 @@ const CrearHito = (props) => {
 
                             <InputGroup size="sm" className="mb-3">
                                 <select name="idTipo" value={idTipo} onChange={handleChange}>
-                                    <option >Seleccionar carrera</option>
+                                    <option >Seleccionar hito</option>
                                     {props.tiposHito.map((tiposHito) => <option key={tiposHito.id} value={tiposHito.id}>   {tiposHito.nombre}</option>)}
                                 </select>
                             </InputGroup>

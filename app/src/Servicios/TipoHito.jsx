@@ -19,7 +19,6 @@ const nuevoCliente = () => {
   return await  cliente.get('/tiposhito/')
      .then(response => {
         const tiposDeHito = response.data.data
-        console.log(tiposDeHito)
         return tiposDeHito
      })
      .catch(error => {
