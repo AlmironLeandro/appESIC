@@ -16,7 +16,8 @@ function MyVerticallyCenteredModal(props) {
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
 
-          <h5>{props.materia + " - " + props.nombreProyecto}</h5>
+          <h5>{"Materia: "+ props.materia }</h5>
+          <h5>{"Nombre del proyecto: "+ props.nombreProyecto}</h5>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
