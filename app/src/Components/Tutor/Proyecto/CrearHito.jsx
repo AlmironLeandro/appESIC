@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Modal, Button, Col, Row, Form, InputGroup, FormControl } from 'react-bootstrap'
 import { BsPlusCircle } from 'react-icons/bs'
-import { traerCarreras } from '../../../Servicios/Carrera'
-import { insertarUsuario } from '../../../Servicios/UsuariosServicio'
-import Calendar from 'react-calendar';
+import { insertarHito } from '../../../Servicios/Hito'
+
 
 const CrearHito = (props) => {
     const [show, setShow] = useState(false);
@@ -17,20 +16,14 @@ const CrearHito = (props) => {
         entregado: "",
 
     })
-    const [carreras, setCarreras] = useState([])
 
     const handleShow = () => {
         setShow(true);
 
     }
 
-    //useEffect para traer las carreras y las guarda 
-    useEffect(() => {
-        traerCarreras().then(res => setCarreras(res))
-    }, [])
-
     //desestructuro hito
-    const { idProyecto, idTipo, descripcion, fechaEntrega, tipoDeHito } = hito;
+    const { idProyecto, idTipo, descripcion, fechaEntrega } = hito;
 
     //función para setear el valor a cada atributo de hito
     const handleChange = (e) => {
@@ -58,7 +51,10 @@ const CrearHito = (props) => {
         e.preventDefault();
 
         // Validar el formulario
-        if (idProyecto.trim() === '' || idTipo.trim() === '' || descripcion.trim() === '' || fechaEntrega.trim() === '') {
+        if (idTipo.trim() === '' || descripcion.trim() === '' || fechaEntrega.trim() === '') {
+            console.log(idTipo)
+            console.log(descripcion)
+            console.log(fechaEntrega)
             setError(true);
             return;
         }
@@ -68,14 +64,14 @@ const CrearHito = (props) => {
 
 
         //Lamada a la función post con los atributos
-        insertarUsuario(
-            hito.idProyecto,
+        insertarHito(
+
+            1,//FALTA ID PROYECTO
             hito.idTipo,
             hito.descripcion,
             hito.fechaEntrega,
             hito.descripcion,
-            1,
-            hito.idCarrera)
+            hito.entregado = false)
 
         //Limpiar el form
         sethito({
@@ -117,11 +113,11 @@ const CrearHito = (props) => {
                 <Modal.Body>
                     {error
                         ? <p style={{ color: "red" }}>Complete todos los campos</p> : <p></p>}
-                    {carreras === undefined ? '' :
+                    {hito === undefined ? '' :
                         <Form onSubmit={submitForm}>
 
                             <InputGroup size="sm" className="mb-3">
-                                <select name="tiposHito" value={tipoDeHito} onChange={handleChange}>
+                                <select name="idTipo" value={idTipo} onChange={handleChange}>
                                     <option >Seleccionar carrera</option>
                                     {props.tiposHito.map((tiposHito) => <option key={tiposHito.id} value={tiposHito.id}>   {tiposHito.nombre}</option>)}
                                 </select>
@@ -143,13 +139,23 @@ const CrearHito = (props) => {
                             </InputGroup>
 
                             <InputGroup size="sm" className="mb-3">
-
-                                {/* <InputGroup.Text id="inputGroup-sizing-sm">Fecha de entrega:</InputGroup.Text> */}
-                                <Calendar onChange={actualizarFecha} value={fecha} />
-                                <p>{fecha.toString()}</p>
-
-
+                                <InputGroup.Prepend>
+                                    <InputGroup.Text id="inputGroup-sizing-sm">Fecha de entrega:</InputGroup.Text>
+                                </InputGroup.Prepend>
+                                <FormControl 
+                                    type="date"
+                                    name="fechaEntrega"
+                                    onChange={handleChange}
+                                    value={fechaEntrega}
+                                />
                             </InputGroup>
+                            
+
+                            {/* <InputGroup.Text id="inputGroup-sizing-sm">Fecha de entrega:</InputGroup.Text> */}
+
+
+
+
 
                             <Row>
                                 <Col>

@@ -47,11 +47,11 @@ export  const traerHito= async(id)=>
 }
 )}
 
-export const insertarHito = async (idTipo, idProyecto,descripcion,fechaEntrega,entregado) => {
+export const insertarHito = async (idProyecto,idTipo,descripcion,fechaEntrega,entregado) => {
     const cliente = nuevoCliente();
 
     return await cliente.post(`/hitos`, {
-    idTipo, idProyecto,descripcion,fechaEntrega,entregado
+    idProyecto,idTipo,descripcion,fechaEntrega,entregado
   })
       .then(response => {
           if (response.status === 200) {
