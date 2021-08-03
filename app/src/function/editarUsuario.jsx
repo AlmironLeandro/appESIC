@@ -4,4 +4,5 @@ export const editarUsuario = (id)=>{
     const alumno =  buscarUsuario(id)
     alumno.then(res=> {
         return res  })  
+        console.log(alumno)
 }
