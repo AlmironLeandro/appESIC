@@ -38,6 +38,8 @@ const CargarEstudiante = () => {
             {estudiante == null ? '' :
                 <EditarEstudiante
                     estudiante={estudiante}
+                    setEstudiante={setEstudiante}
+                    
                 />
             }
 
