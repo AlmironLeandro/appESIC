@@ -66,9 +66,10 @@ export const editarUsuario = async (ID, nombre, apellido, dni, email, pass, idRo
         .then(response => {
             if (response.status === 200) {
                 
-                console.log(response.data);
+                // console.log(response.data);
                 return response.data.data;
             } else {
+                
                 
                 throw new Error('No se pudo modificar el usuario');
             }

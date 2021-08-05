@@ -7,20 +7,28 @@ const EditarEstudiante = ({ estudiante, setEstudiante }) => {
     const handleClose = () => setShow(false);
     const handleOpen = () => setShow(true);
 
+const [alumno, setAlumno] = useState({
+    nombre : estudiante.usuario.nombre,
+    apellido : estudiante.usuario.apellido,
+    dni : estudiante.usuario.dni,
+    mail : estudiante.usuario.email
+})
+    
 
-const {nombre, apellido, dni, mail, Carrera} = estudiante;
+const {nombre, apellido, dni, mail} = alumno;
     
 const submitForm = () => {
     setEstudiante(null)
     editarUsuario(
+        
         estudiante.usuario.id,
         nombre, 
         apellido, 
         dni, 
         mail, 
-      //  estudiante.usuario.pass, 
-      //  estudiante.usuario.idRol, 
-      //  estudiante.usuario.idCarrera
+        estudiante.usuario.pass, 
+        estudiante.usuario.idRol, 
+        estudiante.usuario.idCarrera
       )
     handleClose()
 } 
@@ -31,8 +39,8 @@ const cerrarModal =() => {
 } 
 
 const handleChange = (e) => {
-    setEstudiante({
-        ...estudiante,
+    setAlumno({
+        ...alumno,
         [e.target.name]: e.target.value,
     }
     )
@@ -56,7 +64,7 @@ const handleChange = (e) => {
                                 </InputGroup.Prepend>
                                 <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" 
                                     type="text" 
-                                    defaultValue = {estudiante.usuario.nombre}
+                                    defaultValue = {nombre}
                                     name="nombre" 
                                     onChange={handleChange}
                                     value={nombre}
@@ -68,7 +76,7 @@ const handleChange = (e) => {
                                 </InputGroup.Prepend>
                                 <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" 
                                     type="text" 
-                                    defaultValue = {estudiante.usuario.apellido}
+                                    defaultValue = {apellido}
                                     name="apellido" 
                                     onChange={handleChange}
                                     value={apellido}
@@ -80,7 +88,7 @@ const handleChange = (e) => {
                                 </InputGroup.Prepend>
                                 <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" 
                                     type="text" 
-                                    defaultValue = {estudiante.usuario.dni}
+                                    defaultValue = {dni}
                                     name="dni" 
                                     onChange={handleChange}
                                     value={dni}
@@ -92,7 +100,7 @@ const handleChange = (e) => {
                                 </InputGroup.Prepend>
                                 <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" 
                                     type="text" 
-                                    defaultValue = {estudiante.usuario.email}
+                                    defaultValue = {mail}
                                     name="mail" 
                                     onChange={handleChange}
                                     value={mail}
