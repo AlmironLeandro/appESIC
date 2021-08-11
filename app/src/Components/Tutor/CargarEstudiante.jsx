@@ -5,6 +5,7 @@ import FormularioEstudiante from './FormularioEstudiante';
 import TablaEstudiantes from './TablaEstudiantes';
 import { traerUsuarios, eliminarUsuario } from '../../Servicios/UsuariosServicio'
 import EditarEstudiante from './EditarEstudiante';
+//ToDo: Cambiar editar usuario por traer estudiante.
 import { editarUsuario } from '../../function/editarUsuario';
 
 const CargarEstudiante = () => {
@@ -18,8 +19,12 @@ const CargarEstudiante = () => {
         setEstudiante(estudiante)
     }
     useEffect(() => {
-        traerUsuarios().then(res => setEstudiantes(res))
-        console.log("PASO POR ACA")
+        traerUsuarios().then(res => {
+            setEstudiantes(res)
+            console.log("PASO POR ACA")
+        })
+
+
     }, [cargaEstudiante])
 
     return (
@@ -37,9 +42,10 @@ const CargarEstudiante = () => {
             />
             {estudiante == null ? '' :
                 <EditarEstudiante
+                    avisoCallBack={setCargaEstudiante}
                     estudiante={estudiante}
                     setEstudiante={setEstudiante}
-                    
+
                 />
             }
 

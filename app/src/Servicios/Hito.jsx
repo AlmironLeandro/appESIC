@@ -27,13 +27,13 @@ export const traerHitos = async () => {
         )
 }
 
-export const traerHitosPorProyecto = async (idProyecto) => {
+export const traerHitosPorProyecto = async (proyectoId) => {
     const cliente = nuevoCliente();
     return await cliente.get('/hitos/')
         .then(response => {
             const hitoTodos = response.data.data
-            const hitosDeProyecto = hitoTodos.filter((hito) => hito.idProyecto === idProyecto)
-            console.log(hitosDeProyecto)
+            const hitosDeProyecto = ()=> hitoTodos.filter((hito) =>
+                hito.idProyecto == proyectoId)
             return hitosDeProyecto
         })
         .catch(error => {

@@ -1,5 +1,5 @@
 {
-    "baseURL": "https://desaappunahur2021.herokuapp.com/api/",
+    "baseURL": "process.env.REACT_APP_API_URL",
     "timeout": 180000 
 } 
  

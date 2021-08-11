@@ -78,7 +78,7 @@ export const editarUsuario = async (ID, nombre,descripcion, idMateria,idTutor,fe
         }).catch((e) => { throw new Error('No se pudo modificar el proyecto'); });
 };
 
-export const buscarUsuario = async (id) => {
+export const buscarProyecto = async (id) => {
     const cliente = nuevoCliente();
     return await cliente.get(`/proyectos/${id}`) 
         .then(response => {

@@ -53,7 +53,7 @@ const FormularioEstudiante = (props) =>{
     }
 
     //Función para enviar al back el estudiante
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
         e.preventDefault();
     
         // Validar el formulario
@@ -67,7 +67,7 @@ const FormularioEstudiante = (props) =>{
     
 
         //Lamada a la función post con los atributos
-        insertarUsuario(
+      await  insertarUsuario(
             estudiante.nombre,
             estudiante.apellido,
             estudiante.dni,
@@ -88,7 +88,9 @@ const FormularioEstudiante = (props) =>{
         //Función para cerrar el modal
         props.avisoCallBack(true)
         setShow(false)
-       
+
+        // setTimeout(function(){ window.location.reload(); }, 200);
+        
     };
 
 

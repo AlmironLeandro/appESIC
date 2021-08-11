@@ -66,7 +66,7 @@ const CrearHito = (props) => {
         //Lamada a la función post con los atributos
         insertarHito(
 
-            2,//FALTA ID PROYECTO
+            props.proyectoId,
             hito.idTipo,
             hito.descripcion,
             hito.fechaEntrega,

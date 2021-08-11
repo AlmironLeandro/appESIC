@@ -17,9 +17,9 @@ const [alumno, setAlumno] = useState({
 
 const {nombre, apellido, dni, mail} = alumno;
     
-const submitForm = () => {
+const submitForm = async () => {
     setEstudiante(null)
-    editarUsuario(
+  await  editarUsuario(
         
         estudiante.usuario.id,
         nombre, 
@@ -31,6 +31,7 @@ const submitForm = () => {
         estudiante.usuario.idCarrera
       )
     handleClose()
+   
 } 
 
 const cerrarModal =() => {

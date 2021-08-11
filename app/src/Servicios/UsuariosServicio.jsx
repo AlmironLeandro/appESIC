@@ -24,11 +24,13 @@ export const traerUsuarios = async()=>{
         console.log(error)
 }
 )}
+// const response = await post(...)
+// if (response.status !== 200) { ... }
+// Try catch --- async && await || then()
 
-export const insertarUsuario = async (nombre, apellido, dni, email, pass, idRol, idCarrera) => {
+export const insertarUsuario =  (nombre, apellido, dni, email, pass, idRol, idCarrera) => {
     const cliente = nuevoCliente();
-
-    return await cliente.post(`/usuarios`, {
+    return  cliente.post(`/usuarios`, {
     nombre, apellido, dni, email, pass, idRol, idCarrera
   })
       .then(response => {
@@ -37,7 +39,6 @@ export const insertarUsuario = async (nombre, apellido, dni, email, pass, idRol,
           } else {
               console.log('error');
               throw new Error('No se pudo agregar el usuario');
-
           }
       }).catch((e) => { console.log(e); throw new Error('No se pudo agregar el usuario'); });
 };
@@ -68,6 +69,7 @@ export const editarUsuario = async (ID, nombre, apellido, dni, email, pass, idRo
                 
                 // console.log(response.data);
                 return response.data.data;
+                
             } else {
                 
                 

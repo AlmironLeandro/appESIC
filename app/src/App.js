@@ -41,8 +41,9 @@ function App() {
       <Estudiante/>
     </Route>
     
-    <Route path="/Proyecto">
+    <Route path="/Proyecto/:id">
       <PantallaDeProyecto />
+      
     </Route>
 
   </Switch>

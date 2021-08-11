@@ -7,11 +7,19 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import {traerHitos} from '../../../Servicios/Hito'
+
+import { traerHitosPorProyecto } from '../../../Servicios/Hito'
+import { useEffect ,useState} from 'react';
 
 const TablaDeHitos =(props)=> {
 
+  const [hitosDeProyecto, setHitosDeProyecto] = useState([])
+  useEffect(() => {
+    traerHitosPorProyecto(props.id).then(res => setHitosDeProyecto(res))
+   
+}, [])
 
+  
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -35,7 +43,7 @@ const useStyles = makeStyles({
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.hitosDeProyecto.map((hito) => (
+          {hitosDeProyecto.map((hito) => (
             <TableRow >
               <TableCell >
              
