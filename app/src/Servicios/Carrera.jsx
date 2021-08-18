@@ -50,7 +50,20 @@ export  const traerCarrera= async(id)=>
 )}
 
 
-
+export const insertarCarrera =  (nombre) => {
+    const cliente = nuevoCliente();
+    return  cliente.post(`/carreras`, {
+    nombre
+  })
+      .then(response => {
+          if (response.status === 200) {
+              return response.data.data;
+          } else {
+              console.log('error');
+              throw new Error('No se pudo agregar el usuario');
+          }
+      }).catch((e) => { console.log(e); throw new Error('No se pudo agregar el usuario'); });
+};
 
 
 

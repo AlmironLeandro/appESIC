@@ -91,3 +91,19 @@ export const buscarUsuario = async (id) => {
             }
         }).catch((e) => { throw new Error('No se pudo listar usuario'); });
 };
+
+export const login = async (email, pass) => {
+    const cliente = nuevoCliente();
+    return  cliente.post(`/usuarios`, {
+       email, pass
+      })
+          .then(response => {
+              if (response.status === 200) {
+                  return response.data.data;
+              } else {
+                  console.log('error');
+                  throw new Error('No se pudo agregar el usuario');
+              }
+          }).catch((e) => { console.log(e); throw new Error('No se pudo agregar el usuario'); });
+    };
+    

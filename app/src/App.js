@@ -10,6 +10,7 @@ import PantallaDeProyecto from './Components/Tutor/Proyecto/PantallaDeProyecto';
 import FormularioProyecto from './Components/Tutor/Proyecto/FormularioProyecto';
 import CargarEstudiante from './Components/Tutor/CargarEstudiante';
 import Estudiante from './Components/Estudiante/Estudiante';
+import InicioCoordinador from './Components/Coordinador/InicioCoordinador'
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
       <Login/>
     </Route>
 
-    <Route path="/InicioTutor"  >
+    <Route path="/Usuario/2"  >
       <InicioTutor/>
     </Route>
 
@@ -37,12 +38,18 @@ function App() {
       <FormularioProyecto/>
     </Route>
 
-   <Route path="/Estudiante">
+   <Route path="/Usuario/1">
       <Estudiante/>
     </Route>
     
+    
     <Route path="/Proyecto/:id">
       <PantallaDeProyecto />
+      
+    </Route>
+
+    <Route path="/Coordinador">
+      <InicioCoordinador />
       
     </Route>
 

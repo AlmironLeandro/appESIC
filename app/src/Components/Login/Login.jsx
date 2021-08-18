@@ -10,6 +10,7 @@ const Login = () =>
     alignItems:'center',
     height:'90vh'
   }
+  const ruta = (id) =>{}
 
  return (
   <div style={estilo} > 
@@ -28,7 +29,7 @@ const Login = () =>
                   <Form.Control  type="password" placeholder="Ingresar contraseña" />
                 </Form.Group>
               </Row >
-              <Link style={{textDecoration: 'none'}} to={"/InicioTutor"}>
+              <Link style={{textDecoration: 'none'}} to={"/Usuario/2"}>
                 <Row className="d-flex justify-content-center rowLogin">
                   <Button className=" btn btn-success buttonSeccion " type="submit"   > 
                       Iniciar sesion
