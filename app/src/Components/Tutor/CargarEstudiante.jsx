@@ -41,8 +41,9 @@ const CargarEstudiante = () => {
                 traerUsuario={traerUsuario}
             />
             {estudiante == null ? '' :
+               
                 <EditarEstudiante
-                    avisoCallBack={setCargaEstudiante}
+                    setCargaEstudiante={setCargaEstudiante}
                     estudiante={estudiante}
                     setEstudiante={setEstudiante}
 

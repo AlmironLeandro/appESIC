@@ -2,10 +2,14 @@ import React, { useState } from 'react'
 import { Container, Modal, Row, Col, Button, InputGroup, FormControl } from 'react-bootstrap'
 import { editarUsuario } from '../../Servicios/UsuariosServicio';
 
-const EditarEstudiante = ({ estudiante, setEstudiante }) => {
+const EditarEstudiante = ({ estudiante, setEstudiante, setCargaEstudiante }) => {
     const [show, setShow] = useState(true);
-    const handleClose = () => setShow(false);
-    const handleOpen = () => setShow(true);
+    const handleClose = () => {
+        setShow(false);
+        setCargaEstudiante(false)
+    }
+    const handleOpen =  () => setShow(true);
+    
 
 const [alumno, setAlumno] = useState({
     nombre : estudiante.usuario.nombre,
@@ -30,6 +34,7 @@ const submitForm = async () => {
         estudiante.usuario.idRol, 
         estudiante.usuario.idCarrera
       )
+    setCargaEstudiante(true)
     handleClose()
    
 } 
@@ -48,9 +53,10 @@ const handleChange = (e) => {
 };
 
     return (
-
+        
         <Container>
             
+           
            
             <Modal size="sm" show={show} >
                 <Modal.Header>
