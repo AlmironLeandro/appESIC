@@ -16,10 +16,10 @@ const TablaDeHitos =(props)=> {
   const [hitosDeProyecto, setHitosDeProyecto] = useState([])
   useEffect(() => {
     traerHitosPorProyecto(props.id).then(res => setHitosDeProyecto(res))
-   
+    console.log(hitosDeProyecto)
+    console.log(hitosDeProyecto)
 }, [])
 
-  
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -42,19 +42,19 @@ const useStyles = makeStyles({
             {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
           </TableRow>
         </TableHead>
-        <TableBody>
+       {/* <TableBody>
           {hitosDeProyecto.map((hito) => (
             <TableRow >
               <TableCell >
              
               </TableCell>
-              <TableCell > {hito.descripcion}</TableCell>
-              <TableCell >{hito.fechaEntrega}</TableCell>
+              <TableCell > {hito}</TableCell>
+              <TableCell >{hito}</TableCell>
               <TableCell></TableCell>
-              {/* <TableCell align="right">{row.protein}</TableCell> */}
+               <TableCell align="right">{row.protein}</TableCell> 
             </TableRow>
           ))}
-        </TableBody>
+        </TableBody>*/}
       </Table>
     </TableContainer>
   );

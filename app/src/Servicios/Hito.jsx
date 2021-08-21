@@ -29,12 +29,10 @@ export const traerHitos = async () => {
 
 export const traerHitosPorProyecto = async (proyectoId) => {
     const cliente = nuevoCliente();
-    return await cliente.get('/hitos/')
+    return await cliente.get(`/hitos/ListByProyecto/${proyectoId}`)
         .then(response => {
-            const hitoTodos = response.data.data
-            const hitosDeProyecto = ()=> hitoTodos.filter((hito) =>
-                hito.idProyecto == proyectoId)
-            return hitosDeProyecto
+            const hitoTodos = response.data.hitos
+            return hitoTodos
         })
         .catch(error => {
             console.log(error)

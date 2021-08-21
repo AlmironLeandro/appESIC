@@ -12,6 +12,33 @@ const nuevoCliente = () => {
     });
 }
 
+const newSecureClient = () => {
+    return axios.create({
+        baseURL: config.baseURL,
+        timeout: config.timeout,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('akeron-token')}`,
+        }
+    });
+}
+
+export const login =  async (dni, pass) => {
+    const cliente  = nuevoCliente();
+    return  cliente.post(`/usuarios/login`, {
+     dni ,pass
+  })
+      .then(response => {
+          if (response.status === 200) {
+              return response.data.data;
+          } else {
+              console.log('error');
+              throw new Error('Usuario y/o contraseña incorrecta');
+          }
+      }).catch((e) => { console.log(e); throw new Error('Usuario y/o contraseña incorrecta'); });
+};
+
 export const traerUsuarios = async()=>{
     const cliente = nuevoCliente();
 
@@ -29,7 +56,7 @@ export const traerUsuarios = async()=>{
 // Try catch --- async && await || then()
 
 export const insertarUsuario =  (nombre, apellido, dni, email, pass, idRol, idCarrera) => {
-    const cliente = nuevoCliente();
+    const cliente  = newSecureClient();
     return  cliente.post(`/usuarios`, {
     nombre, apellido, dni, email, pass, idRol, idCarrera
   })
@@ -92,18 +119,5 @@ export const buscarUsuario = async (id) => {
         }).catch((e) => { throw new Error('No se pudo listar usuario'); });
 };
 
-export const login = async (email, pass) => {
-    const cliente = nuevoCliente();
-    return  cliente.post(`/usuarios`, {
-       email, pass
-      })
-          .then(response => {
-              if (response.status === 200) {
-                  return response.data.data;
-              } else {
-                  console.log('error');
-                  throw new Error('No se pudo agregar el usuario');
-              }
-          }).catch((e) => { console.log(e); throw new Error('No se pudo agregar el usuario'); });
-    };
+
     
