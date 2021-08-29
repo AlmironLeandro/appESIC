@@ -12,6 +12,17 @@ const nuevoCliente = ()=> {
     }
     })
 }
+const newSecureClient = () => {
+    return axios.create({
+        baseURL: config.baseURL,
+        timeout: config.timeout,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+    });
+}
 export const traerProyectos = async ()=> 
 {
     const cliente =nuevoCliente();

@@ -11,11 +11,22 @@ const nuevoCliente = () => {
         }
     });
 }
+const newSecureClient = () => {
+    return axios.create({
+        baseURL: config.baseURL,
+        timeout: config.timeout,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+    });
+}
 
 
  export  const traerTiposDeHito= async()=>
 {
-   const cliente = nuevoCliente();
+   const cliente = newSecureClient();
   return await  cliente.get('/tiposhito/')
      .then(response => {
         const tiposDeHito = response.data.data
@@ -29,7 +40,7 @@ const nuevoCliente = () => {
 
 export  const traerTipoDeHito= async(id)=>
 {
-   const cliente = nuevoCliente();
+   const cliente = newSecureClient();
   return await  cliente.get(`/tiposhito/${id}`)
      .then(response => {
         if (response.status === 200) {

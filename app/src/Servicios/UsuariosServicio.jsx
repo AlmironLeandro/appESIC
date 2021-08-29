@@ -19,13 +19,13 @@ const newSecureClient = () => {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('akeron-token')}`,
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
     });
 }
 
-export const login =  async (dni, pass) => {
-    const cliente  = nuevoCliente();
+export const serviceLogin =  async (dni, pass) => {
+    const cliente = newSecureClient();
     return  cliente.post(`/usuarios/login`, {
      dni ,pass
   })
@@ -40,7 +40,7 @@ export const login =  async (dni, pass) => {
 };
 
 export const traerUsuarios = async()=>{
-    const cliente = nuevoCliente();
+    const cliente = newSecureClient();
 
     return await  cliente.get('/usuarios')
     .then(response => {
@@ -71,7 +71,7 @@ export const insertarUsuario =  (nombre, apellido, dni, email, pass, idRol, idCa
 };
 
 export const eliminarUsuario = async (id) => {
-    const cliente = nuevoCliente();
+    const cliente = newSecureClient();
 
     return await cliente.delete(`/usuarios/${id}`, {
        
@@ -86,7 +86,7 @@ export const eliminarUsuario = async (id) => {
 };
 
 export const editarUsuario = async (ID, nombre, apellido, dni, email, pass, idRol, idCarrera) => {
-    const cliente = nuevoCliente();
+    const cliente = newSecureClient();
 
     return await cliente.put(`/usuarios/${ID}`, {
         nombre, apellido, dni, email, pass, idRol, idCarrera
@@ -106,7 +106,7 @@ export const editarUsuario = async (ID, nombre, apellido, dni, email, pass, idRo
 };
 
 export const buscarUsuario = async (id) => {
-    const cliente = nuevoCliente();
+    const cliente = newSecureClient();
     return await cliente.get(`/usuarios/${id}`) 
         .then(response => {
             if (response.status === 200) {

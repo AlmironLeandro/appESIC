@@ -72,11 +72,11 @@ export const traerHito = async (id) => {
         )
 }
 
-export const insertarHito = async (idProyecto, idTipo, descripcion, fechaEntrega, entregado) => {
+export const subirDocumento = async (idHito, entrega, documento) => {
     const cliente = newSecureClient();
 
-    return await cliente.post(`/hitos`, {
-        idProyecto, idTipo, descripcion, fechaEntrega, entregado
+    return await cliente.post(`/entregableshito`, {
+        idHito, entrega, documento
     })
         .then(response => {
             if (response.status === 200) {

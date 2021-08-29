@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { subirDocumento } from '../../Servicios/Entregables';
+import {Button} from 'react-bootstrap'
 import PasarABase64 from '../PasarABase64'
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +17,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UploadButtons() {
   const classes = useStyles();
+  const guardarDocumento = async()=>{
+   await subirDocumento(
+      1,
+      "Relevamiento",
+      localStorage.getItem("baseUrl")
+      
+      )
+    // localStorage.removeItem("baseUrl")
 
+  }
   return (
     <div className={classes.root}>
       <input
@@ -33,8 +43,9 @@ export default function UploadButtons() {
       </label>
       <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
       <label htmlFor="icon-button-file">
-    
+      <Button onClick={guardarDocumento}>Guardar</Button>
       </label>
+      
     </div>
   );
 }

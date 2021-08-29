@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 const PasarABase64 = () => {
   const [file, setFile] = useState(null);
   const [base64URL, setBase64URL] = useState("");
+  
 
   const getBase64 = (file) => {
     return new Promise((resolve) => {
@@ -20,23 +21,24 @@ const PasarABase64 = () => {
       // on reader load something...
       reader.onload = () => {
         // Make a fileInfo Object
-        console.log("Called", reader);
+
         baseURL = reader.result;
-        console.log(baseURL);
+
         resolve(baseURL);
+        localStorage.setItem("baseUrl", baseURL )
       };
-      console.log(fileInfo);
+
     });
   };
 
   const handleFileInputChange = (e) => {
-    console.log(e.target.files[0]);
+
     const file = e.target.files[0];
 
     getBase64(file)
       .then((result) => {
         file["base64"] = result;
-        console.log("File Is", file);
+  
         this.setState({
           base64URL: result,
           file

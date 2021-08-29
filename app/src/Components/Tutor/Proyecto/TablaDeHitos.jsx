@@ -7,30 +7,31 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
 import { traerHitosPorProyecto } from '../../../Servicios/Hito'
-import { useEffect ,useState} from 'react';
+import { useEffect, useState } from 'react';
 
-const TablaDeHitos =(props)=> {
+const TablaDeHitos = (props) => {
 
   const [hitosDeProyecto, setHitosDeProyecto] = useState([])
-  useEffect(() => {
-    traerHitosPorProyecto(props.id).then(res => setHitosDeProyecto(res))
-    console.log(hitosDeProyecto)
-    console.log(hitosDeProyecto)
-}, [])
+  useEffect(async () => {
+    await traerHitosPorProyecto(props.id).then(
+      res => setHitosDeProyecto(res))
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
-  },
-});
+
+  }, [])
+
+  const useStyles = makeStyles({
+    table: {
+      minWidth: 650,
+    },
+  });
 
 
   const classes = useStyles();
- 
+
 
   return (
+
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -39,22 +40,20 @@ const useStyles = makeStyles({
             <TableCell >Descripción</TableCell>
             <TableCell >Fecha de entrega</TableCell>
             <TableCell >Entregado</TableCell>
-            {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
           </TableRow>
         </TableHead>
-       {/* <TableBody>
+        <TableBody>
           {hitosDeProyecto.map((hito) => (
             <TableRow >
               <TableCell >
-             
+                {hito.tipoHito.nombre}
               </TableCell>
-              <TableCell > {hito}</TableCell>
-              <TableCell >{hito}</TableCell>
-              <TableCell></TableCell>
-               <TableCell align="right">{row.protein}</TableCell> 
+              <TableCell >{hito.descripcion} </TableCell>
+              <TableCell >{hito.fechaEntrega}</TableCell>
+              <TableCell>{hito.entregado}</TableCell>
             </TableRow>
           ))}
-        </TableBody>*/}
+        </TableBody>
       </Table>
     </TableContainer>
   );

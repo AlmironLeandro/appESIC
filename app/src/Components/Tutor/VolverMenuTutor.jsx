@@ -14,7 +14,7 @@ function VolverMenuTutor() {
             <div>
                 <Button style={{  background:'#ffffff'}} >
                     <Link 
-                    style={{ textDecoration: 'none' }} to={"/InicioTutor"}>Volver
+                    style={{ textDecoration: 'none' }} to={"/Usuario/2"}>Volver
                     </Link>
                 </Button>
             </div>

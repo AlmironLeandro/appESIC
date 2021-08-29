@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
@@ -51,6 +52,7 @@ export default function CustomizedTimeline() {
             <Typography>Descripción ..........................................</Typography>
               <Typography>
                 <EntregarHito>Entregar</EntregarHito>
+                
               </Typography>
           </Paper>
         </TimelineContent>

@@ -1,7 +1,9 @@
 import React,{useState,useEffect} from 'react';
 import {Form, Button,Col,Row} from 'react-bootstrap'
-import { Link } from 'react-router-dom';
-import {login} from '../../Servicios/UsuariosServicio'
+import Box from '@material-ui/core/Box';
+import { Link, Redirect,Route,useHistory } from 'react-router-dom';
+import {login,getUsuario} from '../../function/pantallaLogin'
+import {serviceLogin} from '../../Servicios/UsuariosServicio'
 
 
 const Login = () =>
@@ -12,26 +14,18 @@ const Login = () =>
     alignItems:'center',
     height:'90vh'
   }
-
   const [usuario,setUsuario]=useState({dni:'',pass:''})
-  const {dni,pass}=usuario
-  const validarIngreso = async ()=>
+  const history = useHistory();
+  
+  const validarIngreso = async  (e)=>
   {
-    const lean = await login(dni,pass)
-    if(lean !== undefined){
-      logout(lean.token,lean.nombre,lean.id,lean.idRol)
-    
-      console.log("es valido")
-    }
-    else
-    {
-      console.log("No es valido")
-    }
+    e.preventDefault();
+    await serviceLogin(usuario.dni,usuario.pass).then(res =>
+    login(res.token,res.idRol,res.id,res.nombre))
+    history.push(`/Usuario/${localStorage.getItem('idRol')}`)  
     
   }
  
-
-  
   const handleChange = (e) => {
     setUsuario({
         ...usuario,
@@ -39,12 +33,7 @@ const Login = () =>
     }
     )
 };
-  const logout = (token,idRol,id,nombre) => {
-    localStorage.setItem('token', token)
-    localStorage.setItem('nombre',nombre);
-    localStorage.setItem('id',id);
-    localStorage.setItem('idRol',idRol);
-  }
+  
 
  return (
   <div style={estilo} > 
@@ -64,14 +53,15 @@ const Login = () =>
                   <Form.Control onChange={handleChange} name="pass" value={usuario.pass} type="password" placeholder="Ingresar contraseña" />
                 </Form.Group>
               </Row >
-              <Link style={{textDecoration: 'none'}} to={"/Usuario/2"}>
+              {/* <Link style={{textDecoration: 'none'}} to={"/Usuario/2"}> */}
                   <Row className="d-flex justify-content-center rowLogin">
                     <Button className=" btn btn-success buttonSeccion " 
-                    type="submit"  onClick={validarIngreso}  > 
+                      type="submit"  onClick={validarIngreso}  > 
                         Iniciar sesion
                     </Button>
+              
                   </Row>
-                </Link> 
+                {/* </Link>  */}
                 
               
                  
