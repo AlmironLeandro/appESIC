@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import { Container, Modal, Button, Col, Row, Form, InputGroup, FormControl } from 'react-bootstrap'
 import { BsPlusCircle } from 'react-icons/bs'
 import { insertarHito } from '../../../Servicios/Hito'
@@ -23,7 +23,7 @@ const CrearHito = (props) => {
     }
 
     //desestructuro hito
-    const { idProyecto, idTipo, descripcion, fechaEntrega } = hito;
+    const {  idTipo, descripcion, fechaEntrega } = hito;
 
     //función para setear el valor a cada atributo de hito
     const handleChange = (e) => {
@@ -88,10 +88,7 @@ const CrearHito = (props) => {
 
     };
 
-    const [fecha, setFecha] = useState(new Date());
-    const actualizarFecha = (fecha) => {
-        setFecha(fecha);
-    };
+  
 
     return (
         <Container>

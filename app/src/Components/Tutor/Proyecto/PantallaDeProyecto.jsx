@@ -1,5 +1,5 @@
 import React from 'react'
-import { Fragment, useState, useEffect, useLocation } from 'react';
+import { Fragment, useState, useEffect} from 'react';
 import HeaderUsuario from '../../HeaderUsuario'
 import CrearHito from './CrearHito';
 import TablaDeHitos from './TablaDeHitos';
@@ -10,7 +10,7 @@ import { useParams } from 'react-router';
 import { buscarProyecto } from '../../../Servicios/ProyectoServicio';
 const PantallaDeProyecto = () => {
 
-    let { id } = useParams()
+    const { id } = useParams()
     const [tiposHito, setTiposHito] = useState([])
 
     const [proyecto, setProyecto]=useState()

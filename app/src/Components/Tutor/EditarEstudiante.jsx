@@ -7,9 +7,7 @@ const EditarEstudiante = ({ estudiante, setEstudiante, setCargaEstudiante }) => 
     const handleClose = () => {
         setShow(false);
         setCargaEstudiante(false)
-    }
-    const handleOpen =  () => setShow(true);
-    
+    }    
 
 const [alumno, setAlumno] = useState({
     nombre : estudiante.usuario.nombre,

@@ -13,11 +13,9 @@ import { useEffect, useState } from 'react';
 const TablaDeHitos = (props) => {
 
   const [hitosDeProyecto, setHitosDeProyecto] = useState([])
-  useEffect(async () => {
-    await traerHitosPorProyecto(props.id).then(
+  useEffect( () => {
+     traerHitosPorProyecto(props.id).then(
       res => setHitosDeProyecto(res))
-
-
   }, [])
 
   const useStyles = makeStyles({

@@ -1,16 +1,6 @@
 import axios from 'axios';
 import config from './Config/config.json'
 
-const nuevoCliente = () => {
-    return axios.create({
-        baseURL: config.baseURL,
-        timeout: config.timeout,
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-    });
-}
 
 const newSecureClient = () => {
     return axios.create({
@@ -94,7 +84,6 @@ export const editarUsuario = async (ID, nombre, apellido, dni, email, pass, idRo
         .then(response => {
             if (response.status === 200) {
                 
-                // console.log(response.data);
                 return response.data.data;
                 
             } else {

@@ -1,8 +1,6 @@
 import { Modal, Button } from 'react-bootstrap'
-import EditIcon from '@material-ui/icons/Edit';
 import React from 'react'
 import { Link } from 'react-router-dom';
-import TablaDeHitos from './Proyecto/TablaDeHitos';
 
 
 function MyVerticallyCenteredModal(props) {

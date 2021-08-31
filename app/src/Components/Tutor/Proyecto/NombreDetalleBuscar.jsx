@@ -11,7 +11,7 @@ const NombreDetalleBuscar = (props)=>
         }
         else{
             const alumSplit = alum.split(" ");  list.map((estudiante)=> 
-            {if (estudiante.nombre == alumSplit[0] && estudiante.dni == alumSplit[1] && !validarAlumno(props.alumnoPorAgregar,estudiante)){
+            {if (estudiante.nombre === alumSplit[0] && estudiante.dni === alumSplit[1] && !validarAlumno(props.alumnoPorAgregar,estudiante)){
                     props.setAlumnoPorAgregar([...props.alumnoPorAgregar, estudiante])   
             }}
             )

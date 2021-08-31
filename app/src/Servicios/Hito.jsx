@@ -12,16 +12,6 @@ const newSecureClient = () => {
         }
     });
 }
-const nuevoCliente = () => {
-    return axios.create({
-        baseURL: config.baseURL,
-        timeout: config.timeout,
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-    });
-}
 
 
 export const traerHitos = async () => {

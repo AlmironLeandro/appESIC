@@ -1,5 +1,5 @@
 //Imports de react
-import {Col,Button,Modal} from 'react-bootstrap'
+import {Col,Button} from 'react-bootstrap'
 import {useState,useEffect} from 'react'
 import { Fragment } from 'react'
 
@@ -52,12 +52,12 @@ const FormularioProyecto = () =>
     //Actualiza el buscador por carrera.
     useEffect(() => {
         traerCarreras().then(res => setCarreras(res) )
-        setListaPorCarrera(buscarAlumno(getAlumnos, inputAlumno).filter((alum)=> alum.idCarrera == carrera));
+        setListaPorCarrera(buscarAlumno(getAlumnos, inputAlumno).filter((alum)=> alum.idCarrera === carrera));
     }, [carrera])
 
     useEffect(() => {
         traerMaterias().then(res => 
-        setMaterias(res.filter(  mat => mat.idCarrera == carrera )) )
+        setMaterias(res.filter(  mat => mat.idCarrera === carrera )) )
     }, [carrera])
    
     const [proyecto, actualizarProyecto]=useState({
@@ -105,7 +105,7 @@ return(
         </div>   
                 <div style={{width:'67%', margin:'1%'}}>
                     <div style={{display:'flex',justifyContent:'start', flexWrap: 'wrap', itemAlign:'center'}}>
-                        {listaAlumnoAgregado.length == 0  ?   '' : listaAlumnoAgregado.map((estudiante)=> 
+                        {listaAlumnoAgregado.length === 0  ?   '' : listaAlumnoAgregado.map((estudiante)=> 
                         < AgregarAlumno     estudiante={estudiante} lista={listaAlumnoAgregado} setAlumnoPorAgregar={setAlumnoAgregado}  />  ) }    
                     </div>
                 </div> 

@@ -1,8 +1,7 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import {Form, Button,Col,Row} from 'react-bootstrap'
-import Box from '@material-ui/core/Box';
-import { Link, Redirect,Route,useHistory } from 'react-router-dom';
-import {login,getUsuario} from '../../function/pantallaLogin'
+import {useHistory } from 'react-router-dom';
+import {login} from '../../function/pantallaLogin'
 import {serviceLogin} from '../../Servicios/UsuariosServicio'
 
 

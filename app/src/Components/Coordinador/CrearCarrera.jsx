@@ -5,7 +5,6 @@ const CrearCarrera = () => {
     const [show, setShow] = useState(true);
     const [carrera,setCarrera]=useState({nombre:""})
     const handleClose = () => setShow(false);
-    const handleOpen = () => setShow(true);
     const submitForm = async () => {
       await  insertarCarrera(
             

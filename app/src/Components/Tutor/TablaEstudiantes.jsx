@@ -1,5 +1,3 @@
-import React, { Fragment, useState, useEffect } from 'react'
-import { Modal, Button} from 'react-bootstrap'
 import { BsPencil, BsFillTrashFill } from "react-icons/bs";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -45,7 +43,6 @@ const TablaEstudiantes = ({ estudiantes, traerUsuario }) => {
                                     <BsPencil
                                         onClick={() => traerUsuario(estudiante.id)}
                                     />
-                                    {console.log(estudiante.id)}
                                     <BsFillTrashFill
                                         onClick={() => alert("Está seguro de eliminar a " + (estudiante.nombre) + " " + (estudiante.apellido))}
                                     //onClick={()=>eliminarUsuario(estudiante.id)} para cuando esté implementado
