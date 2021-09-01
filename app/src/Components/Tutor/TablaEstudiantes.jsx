@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
+import {eliminarUsuario} from '../../Servicios/UsuariosServicio'
 
 const TablaEstudiantes = ({ estudiantes, traerUsuario }) => {
   
@@ -17,6 +17,7 @@ const TablaEstudiantes = ({ estudiantes, traerUsuario }) => {
         },
     });
     const classes = useStyles();
+
     return (
 
         <TableContainer component={Paper}>
@@ -43,9 +44,8 @@ const TablaEstudiantes = ({ estudiantes, traerUsuario }) => {
                                     <BsPencil
                                         onClick={() => traerUsuario(estudiante.id)}
                                     />
-                                    <BsFillTrashFill
-                                        onClick={() => alert("Está seguro de eliminar a " + (estudiante.nombre) + " " + (estudiante.apellido))}
-                                    //onClick={()=>eliminarUsuario(estudiante.id)} para cuando esté implementado
+                                    <BsFillTrashFill 
+                                        onClick={()=>eliminarUsuario(estudiante.id)}
                                     />
                                 </TableCell>
                             </TableRow>

@@ -1,4 +1,4 @@
-
+import {newSecureClient} from '../Servicios/Config/utils'
 import axios from 'axios';
 import config from './Config/config.json'
 
@@ -20,6 +20,7 @@ const nuevoCliente = () => {
   return await  cliente.get('/carreras/')
      .then(response => {
         const carrerasTodas = response.data.data
+        newSecureClient()
         return carrerasTodas
      
        

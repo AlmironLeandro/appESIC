@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CustomizedTimeline() {
+export default function CustomizedTimeline({hitos}) {
   const classes = useStyles();
 
   return (
@@ -46,10 +46,10 @@ export default function CustomizedTimeline() {
         <TimelineContent>
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
-              Relevamiento
+              {hitos[0].tipoHito.nombre}
               
             </Typography>
-            <Typography>Descripción ..........................................</Typography>
+            <Typography>Descripción: {hitos[0].descripcion}</Typography>
               <Typography>
                 <EntregarHito>Entregar</EntregarHito>
                 

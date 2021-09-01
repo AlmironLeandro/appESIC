@@ -52,12 +52,12 @@ const FormularioProyecto = () =>
     //Actualiza el buscador por carrera.
     useEffect(() => {
         traerCarreras().then(res => setCarreras(res) )
-        setListaPorCarrera(buscarAlumno(getAlumnos, inputAlumno).filter((alum)=> alum.idCarrera === carrera));
+        setListaPorCarrera(buscarAlumno(getAlumnos, inputAlumno).filter((alum)=> parseInt(alum.idCarrera) ===  parseInt(carrera)));
     }, [carrera])
 
     useEffect(() => {
         traerMaterias().then(res => 
-        setMaterias(res.filter(  mat => mat.idCarrera === carrera )) )
+        setMaterias(res.filter(  mat => parseInt(mat.idCarrera) === parseInt(carrera ))) )
     }, [carrera])
    
     const [proyecto, actualizarProyecto]=useState({
