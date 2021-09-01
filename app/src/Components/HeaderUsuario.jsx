@@ -26,6 +26,8 @@ const NavDeUsuarios = () =>
         
         
     }
+    const cerrarSesion = () => localStorage.clear();
+    
          
 return(
         <Fragment>
@@ -53,7 +55,7 @@ return(
                             </Dropdown.Item>
                             
                             <Dropdown.Item href="#/action-2">
-                                <Link style={{ textDecoration: 'none'}} to={"/"}>Cerrar sesion</Link>
+                                <Link style={{ textDecoration: 'none'}} onClick={cerrarSesion()} to={"/"}>Cerrar sesion </Link>
                             </Dropdown.Item>
 
                         </Dropdown.Menu>
