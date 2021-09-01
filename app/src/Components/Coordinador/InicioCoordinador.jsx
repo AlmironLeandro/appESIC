@@ -96,12 +96,14 @@ const useStyles = makeStyles((theme) => ({
     setOpen(false);
   };
 
- 
+ const [carrera, setCarrera] = useState(false);
+
+ const agregarCarrera = ()=>{ setCarrera(true)
+ }
 
 
 
-  
-    return(
+      return(
     <Fragment>
         <HeaderUsuario></HeaderUsuario>
         <div className={classes.root}>
@@ -132,7 +134,7 @@ const useStyles = makeStyles((theme) => ({
       
         <List>
           
-            <ListItem button  onClick={()=> CrearCarrera}>
+            <ListItem button  onClick={()=> agregarCarrera()}>
               <ListItemIcon><SchoolIcon/></ListItemIcon>
               <ListItemText primary={"Crear carrera"} />
             </ListItem>
@@ -163,7 +165,9 @@ const useStyles = makeStyles((theme) => ({
           </IconButton>
           
         </Toolbar>
-        <CrearCarrera />
+        {carrera?
+        <CrearCarrera avisoCalback={setCarrera}/>:''
+        }
     </Fragment>)
 }
 
