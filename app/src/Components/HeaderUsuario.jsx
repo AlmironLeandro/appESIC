@@ -26,7 +26,7 @@ const NavDeUsuarios = () =>
         
         
     }
-    //const cerrarSesion = () => localStorage.clear();
+    
     
          
 return(
@@ -51,7 +51,7 @@ return(
                             </Dropdown.Item>
 
                             <Dropdown.Item href="#/action-2">
-                                <Link  style={{ textDecoration: 'none' }} to={"/EditarPeril"}>Editar perfil</Link>
+                                <Link  style={{ textDecoration: 'none' }} to={"/InicioTutor"}>Editar perfil</Link>
                             </Dropdown.Item>
                             
                             <Dropdown.Item href="#/action-2">
