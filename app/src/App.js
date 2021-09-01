@@ -11,6 +11,7 @@ import FormularioProyecto from './Components/Tutor/Proyecto/FormularioProyecto';
 import CargarEstudiante from './Components/Tutor/CargarEstudiante';
 import Estudiante from './Components/Estudiante/Estudiante';
 import InicioCoordinador from './Components/Coordinador/InicioCoordinador'
+import EditarPerfil from './Servicios/Config/EditarPerfil';
 
 function App() {
   return (
@@ -51,6 +52,10 @@ function App() {
     <Route path="/Coordinador">
       <InicioCoordinador />
       
+    </Route>
+
+    <Route path="/EditarPeril">
+      <EditarPerfil />
     </Route>
 
   </Switch>
