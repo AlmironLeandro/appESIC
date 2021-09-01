@@ -11,6 +11,7 @@ import TimelineDot from '@material-ui/lab/TimelineDot';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import EntregarHito from './EntregarHito';
+
 //Íconos
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import BuildIcon from '@material-ui/icons/Build';

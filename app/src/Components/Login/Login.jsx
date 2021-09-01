@@ -15,7 +15,7 @@ const Login = () =>
   }
   const [usuario,setUsuario]=useState({dni:'',pass:''})
   const history = useHistory();
-  
+
   const validarIngreso = async  (e)=>
   {
     e.preventDefault();

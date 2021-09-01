@@ -11,6 +11,7 @@ import FormularioProyecto from './Components/Tutor/Proyecto/FormularioProyecto';
 import CargarEstudiante from './Components/Tutor/CargarEstudiante';
 import Estudiante from './Components/Estudiante/Estudiante';
 import InicioCoordinador from './Components/Coordinador/InicioCoordinador'
+import PrivateRoute from './Router/PrivateRoute'
 
 function App() {
   return (
@@ -21,38 +22,16 @@ function App() {
 
 <Router>
   <Switch>
-    <Route path="/" exact >
+    <Route path="/login" exact >
       <HeaderLogin/>
       <Login/>
     </Route>
-
-    <Route path="/Usuario/2"  >
-      <InicioTutor/>
-    </Route>
-
-    <Route path="/CargarEstudiante"  >
-      <CargarEstudiante/>
-    </Route>
-    
-    <Route path="/NuevoProyecto">
-      <FormularioProyecto/>
-    </Route>
-
-   <Route path="/Usuario/1">
-      <Estudiante/>
-    </Route>
-    
-    
-    <Route path="/Proyecto/:id">
-      <PantallaDeProyecto />
-      
-    </Route>
-
-    <Route path="/Coordinador">
-      <InicioCoordinador />
-      
-    </Route>
-
+    <PrivateRoute exact path="/Usuario/2" rol={2} component={InicioTutor} />
+    <PrivateRoute exact path="/CargarEstudiante" rol={2} component={CargarEstudiante} />
+    <PrivateRoute exact path="/NuevoProyecto" component={FormularioProyecto} rol={2}/>
+    <PrivateRoute exact path="/Usuario/1" component={Estudiante} rol={1}/>
+    <PrivateRoute exact path="/Proyecto/:id" component={PantallaDeProyecto} rol={2}/>
+    <PrivateRoute exact path="/Usuario/3" component={InicioCoordinador} rol={3}/>
   </Switch>
 </Router>
     
