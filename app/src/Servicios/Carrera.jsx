@@ -69,3 +69,17 @@ export const insertarCarrera =  (nombre) => {
 
 
 
+export const eliminarCarrera = async (id) => {
+    const cliente = newSecureClient();
+
+    return await cliente.delete(`/carreras/${id}`, {
+       
+    })
+        .then(response => {
+            if (response.status === 200) {
+                return;
+            } else {
+                throw new Error('No se pudo eliminar la carrera');
+            }
+        }).catch((e) => { throw new Error('No se pudo eliminar la carrera'); });
+};

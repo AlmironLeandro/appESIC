@@ -39,3 +39,18 @@ const nuevoCliente = () => {
 
 }
 )}
+
+export const insertarMateria =  (nombre) => {
+    const cliente = nuevoCliente();
+    return  cliente.post(`/materias`, {
+    nombre
+  })
+      .then(response => {
+          if (response.status === 200) {
+              return response.data.data;
+          } else {
+              console.log('error');
+              throw new Error('No se pudo agregar la materia');
+          }
+      }).catch((e) => { console.log(e); throw new Error('No se pudo agregar la materia'); });
+};

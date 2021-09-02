@@ -1,8 +1,9 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Form, Button,Col,Row} from 'react-bootstrap'
 import {useHistory } from 'react-router-dom';
 import {login} from '../../function/pantallaLogin'
 import {serviceLogin} from '../../Servicios/UsuariosServicio'
+import {traerDoc} from '../../Servicios/Entregables'
 
 
 const Login = () =>
@@ -13,6 +14,11 @@ const Login = () =>
     alignItems:'center',
     height:'90vh'
   }
+  useEffect(() => {
+    traerDoc()
+      
+    
+  }, [])
   const [usuario,setUsuario]=useState({dni:'',pass:''})
   const history = useHistory();
 

@@ -16,6 +16,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import CrearCarrera from './CrearCarrera'
+import CrearMateria from './CrearMateria'
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import SchoolIcon from '@material-ui/icons/School';
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
@@ -97,8 +98,11 @@ const useStyles = makeStyles((theme) => ({
   };
 
  const [carrera, setCarrera] = useState(false);
+ const [materia, setMateria] = useState(false);
 
  const agregarCarrera = ()=>{ setCarrera(true)
+ }
+ const agregarMateria = ()=>{ setMateria(true)
  }
 
 
@@ -139,7 +143,7 @@ const useStyles = makeStyles((theme) => ({
               <ListItemText primary={"Crear carrera"} />
             </ListItem>
            
-            <ListItem button  onClick={()=> alert("Crear materia")}>
+            <ListItem button  onClick={()=> agregarMateria()}>
               <ListItemIcon> <ImportContactsIcon/>  </ListItemIcon>
               <ListItemText primary={"Crear materia"} />
             </ListItem>
@@ -168,6 +172,9 @@ const useStyles = makeStyles((theme) => ({
         
         {carrera?
         <CrearCarrera avisoCalback={setCarrera}/>:''
+        }
+        {materia?
+        <CrearMateria avisoCalback={setMateria}/>:''
         }
     </Fragment>)
 }

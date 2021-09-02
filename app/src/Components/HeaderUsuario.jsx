@@ -54,7 +54,7 @@ const NavDeUsuarios = () => {
                             </Dropdown.Item>
 
                             <Dropdown.Item href="#/action-2">
-                                <Link style={{ textDecoration: 'none' }} to={"/InicioTutor"}>Editar perfil</Link>
+                                <Link style={{ textDecoration: 'none' }} to={"/EditarPerfil"}>Editar perfil</Link>
                             </Dropdown.Item>
 
                             <Dropdown.Item onClick={ redirigir}>

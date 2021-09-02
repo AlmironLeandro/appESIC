@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route,useLocation} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Fragment } from 'react';
 import HeaderLogin from './Components/Login/HeaderLogin'
@@ -11,13 +11,23 @@ import FormularioProyecto from './Components/Tutor/Proyecto/FormularioProyecto';
 import CargarEstudiante from './Components/Tutor/CargarEstudiante';
 import Estudiante from './Components/Estudiante/Estudiante';
 import InicioCoordinador from './Components/Coordinador/InicioCoordinador'
-<<<<<<< HEAD
 import PrivateRoute from './Router/PrivateRoute'
-=======
-import EditarPerfil from './Servicios/Config/EditarPerfil';
->>>>>>> 389c59ca3e8e27e579fbdf168cf913b9b16ae104
+import EditarPerfil from './Components/EditarPerfil';
+
 
 function App() {
+  function NoMatch() {
+    let location = useLocation();
+  
+    return (
+      <div>
+        <h3>
+          Error 404, no se encontro la ruta
+           <code>{location.pathname}</code>
+        </h3>
+      </div>
+    );
+  }
   return (
 
 
@@ -30,47 +40,15 @@ function App() {
       <HeaderLogin/>
       <Login/>
     </Route>
-<<<<<<< HEAD
+    <Route exact path="/EditarPerfil"  component={EditarPerfil} />
     <PrivateRoute exact path="/Usuario/2" rol={2} component={InicioTutor} />
     <PrivateRoute exact path="/CargarEstudiante" rol={2} component={CargarEstudiante} />
     <PrivateRoute exact path="/NuevoProyecto" component={FormularioProyecto} rol={2}/>
     <PrivateRoute exact path="/Usuario/1" component={Estudiante} rol={1}/>
+    {/* Buscar como no poder acceder a cualquier id(id que no exista) */}
     <PrivateRoute exact path="/Proyecto/:id" component={PantallaDeProyecto} rol={2}/>
     <PrivateRoute exact path="/Usuario/3" component={InicioCoordinador} rol={3}/>
-=======
-
-    <Route path="/Usuario/2"  >
-      <InicioTutor/>
-    </Route>
-
-    <Route path="/CargarEstudiante"  >
-      <CargarEstudiante/>
-    </Route>
-    
-    <Route path="/NuevoProyecto">
-      <FormularioProyecto/>
-    </Route>
-
-   <Route path="/Usuario/1">
-      <Estudiante/>
-    </Route>
-    
-    
-    <Route path="/Proyecto/:id">
-      <PantallaDeProyecto />
-      
-    </Route>
-
-    <Route path="/Coordinador">
-      <InicioCoordinador />
-      
-    </Route>
-
-    <Route path="/EditarPeril">
-      <EditarPerfil />
-    </Route>
-
->>>>>>> 389c59ca3e8e27e579fbdf168cf913b9b16ae104
+    <Route path="*"                       component={NoMatch}/>
   </Switch>
 </Router>
     

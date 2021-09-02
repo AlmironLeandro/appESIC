@@ -19,8 +19,8 @@ export default function UploadButtons() {
   const classes = useStyles();
   const guardarDocumento = async()=>{
    await subirDocumento(
-      1,
-      "Relevamiento",
+      2,
+      "Mejora",
       localStorage.getItem("baseUrl")
       
       )

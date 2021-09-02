@@ -89,6 +89,24 @@ export const subirDocumento = async (idHito, entrega, documento) => {
         }).catch((e) => { console.log(e); throw new Error('No se pudo agregar el hito'); });
 };
 
+export const traerDoc = async (idH) => {
+    const cliente = newSecureClient();
+
+    return await cliente.get(`/entregableshito`)
+        .then(response => {
+            if (response.status === 200) {
+                console.log(response.data.data.filter((x)=> x.idHito === 2))
+                return response.data.data;
+            } else {
+                console.log('error');
+                throw new Error('No se pudo agregar el hito');
+
+            }
+        }).catch((e) => { console.log(e); throw new Error('No se pudo agregar el hito'); });
+};
+
+//Endpoi
+
 
 
 
