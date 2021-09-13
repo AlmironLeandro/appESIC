@@ -13,7 +13,7 @@ const [alumno, setAlumno] = useState({
     nombre : estudiante.usuario.nombre,
     apellido : estudiante.usuario.apellido,
     dni : estudiante.usuario.dni,
-    mail : estudiante.usuario.email
+    mail : estudiante.usuario.email,
 })
     
 
@@ -21,17 +21,14 @@ const {nombre, apellido, dni, mail} = alumno;
     
 const submitForm =  () => {
     setEstudiante(null)
-    console.log("submit de put")
-   // console.log(alumno)
-   // console.log(estudiante.usuario)
      editarUsuario(
-        
         estudiante.usuario.id,
         nombre, 
         apellido, 
         dni, 
         mail, 
-        //estudiante.usuario.pass, 
+        // estudiante.usuario.pass, 
+        estudiante.usuario.idRol,
         estudiante.usuario.idCarrera
       )
     setCargaEstudiante(true)
@@ -52,19 +49,13 @@ const handleChange = (e) => {
     )
 };
 
-    return (
-        
+    return (     
         <Container>
-            
-           
-           
             <Modal size="sm" show={show} >
                 <Modal.Header>
                     <p>Editar usuario</p>
                 </Modal.Header>
-                <Modal.Body>
-                
-                    
+                <Modal.Body> 
                     <InputGroup size="sm" className="mb-3">
                                 <InputGroup.Prepend>
                                 <InputGroup.Text id="inputGroup-sizing-sm">Nombre/s:</InputGroup.Text>
@@ -113,9 +104,6 @@ const handleChange = (e) => {
                                     value={mail}
                                 />
                     </InputGroup> 
-
-                    
-
                     <Row>
                                 <Col>
                                     <Button size="sm" className="guardar" variant="secondary" type="submit" onClick={submitForm}>
