@@ -16,8 +16,6 @@ const Login = () =>
   }
   useEffect(() => {
     traerDoc()
-      
-    
   }, [])
   const [usuario,setUsuario]=useState({dni:'',pass:''})
   const history = useHistory();
@@ -30,7 +28,7 @@ const Login = () =>
     history.push(`/Usuario/${localStorage.getItem('idRol')}`)  
     
   }
- 
+ //HOLAAAAAAAAAAAAAAA
   const handleChange = (e) => {
     setUsuario({
         ...usuario,
