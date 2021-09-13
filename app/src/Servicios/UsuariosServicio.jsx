@@ -115,7 +115,7 @@ export const editarUsuario = async (ID, nombre, apellido, dni, email, pass, idRo
     })
         .then(response => {
             if (response.status === 200) {
-                //console.log("llega al put")
+                
                 return response.data.data;
                 
             } else{               
@@ -129,7 +129,7 @@ export const buscarUsuario = async (id) => {
     return await cliente.get(`/usuarios/${id}`) 
     .then(response => {
         if (response.status === 200) {
-            // console.log((response.data))
+            
           
             return response.data;
             } else {
