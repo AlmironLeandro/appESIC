@@ -22,7 +22,7 @@ function App() {
     return (
       <div>
         <h3>
-          Error 404, no se encontro la ruta
+          Error 404, no se encontró la ruta
            <code>{location.pathname}</code>
         </h3>
       </div>

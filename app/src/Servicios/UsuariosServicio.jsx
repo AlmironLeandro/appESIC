@@ -25,7 +25,7 @@ const nuevoCliente = () => {
 }
 
 export const serviceLogin =  async (dni, pass) => {
-    const cliente = newSecureClient();
+    const cliente = nuevoCliente();
     return  cliente.post(`/usuarios/login`, {
      dni ,pass
   })
@@ -70,10 +70,10 @@ export const insertarUsuario =  (nombre, apellido, dni, email, pass, idRol, idCa
       }).catch((e) => { console.log(e); throw new Error('No se pudo agregar el usuario'); });
 };
 
-export const eliminarUsuario = async (id) => {
+export const eliminarUsuario =  (id) => {
     const cliente = newSecureClient();
-
-    return await cliente.delete(`/usuarios/${id}`, {
+    console.log(`es para el id: ${id}`)
+    return cliente.delete(`/usuarios/${id}`, {
        
     })
         .then(response => {
@@ -85,32 +85,33 @@ export const eliminarUsuario = async (id) => {
         }).catch((e) => { throw new Error('No se pudo eliminar el usuario'); });
 };
 
-export const editarUsuario = async (ID, nombre, apellido, dni, email, pass, idRol, idCarrera) => {
-    const cliente = newSecureClient();
 
-    return await cliente.put(`/usuarios/${ID}`, {
-        nombre, apellido, dni, email, pass, idRol, idCarrera
+
+export const editarUsuario =  (ID, nombre, apellido, dni, email, pass, idRol, idCarrera) => {
+    const cliente = newSecureClient();
+    
+    return  cliente.put(`/usuarios/${ID}`, {
+       nombre, apellido, dni, email, pass, idRol, idCarrera
     })
         .then(response => {
             if (response.status === 200) {
-                
+                //console.log("llega al put")
                 return response.data.data;
                 
-            } else {
-                
-                
+            } else{               
                 throw new Error('No se pudo modificar el usuario');
             }
-        }).catch((e) => { throw new Error('No se pudo modificar el usuario'); });
+        }).catch((e) => { throw new Error('No se pudo mod el usuario'); });
 };
 
 export const buscarUsuario = async (id) => {
     const cliente = newSecureClient();
     return await cliente.get(`/usuarios/${id}`) 
-        .then(response => {
-            if (response.status === 200) {
-                // console.log((response.data))
-                return response.data;
+    .then(response => {
+        if (response.status === 200) {
+            // console.log((response.data))
+          
+            return response.data;
             } else {
                 
                 throw new Error('No se pudo listar el usuario');
