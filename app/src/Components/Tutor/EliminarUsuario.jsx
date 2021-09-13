@@ -4,11 +4,12 @@ import { Modal, Row, Col, Container, Button} from 'react-bootstrap'
 import { eliminarUsuario } from '../../Servicios/UsuariosServicio';
 
 
-const EliminarUsuario = ({setCargaEstudiante, alumnoAEliminar, setEliminar})=>{
+const EliminarUsuario = ({setCargaEstudiante, alumnoAEliminar, setAlumnoAEliminar})=>{
     const [show, setShow] = useState(true);
     const  handleClose = () => {
-        setEliminar(null)
+        setAlumnoAEliminar(null)
         setShow(false);
+        setCargaEstudiante(false)
     }
     
 
@@ -16,7 +17,7 @@ const EliminarUsuario = ({setCargaEstudiante, alumnoAEliminar, setEliminar})=>{
         eliminarUsuario(alumnoAEliminar.usuario.id)
         console.log( alumnoAEliminar.usuario.apellido)
         console.log( alumnoAEliminar.usuario.id)
-        //setCargaEstudiante(true)
+        setCargaEstudiante(true)
         handleClose()
 
     }

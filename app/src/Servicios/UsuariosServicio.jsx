@@ -2,8 +2,8 @@ import axios from 'axios';
 import config from './Config/config.json'
 
 
-const newSecureClient = () => {
-    return axios.create({
+const newSecureClient = async () => {
+    return await axios.create({
         baseURL: config.baseURL,
         timeout: config.timeout,
         headers: {
@@ -40,24 +40,23 @@ export const serviceLogin =  async (dni, pass) => {
 };
 
 export const traerUsuarios = async()=>{
-    const cliente = newSecureClient();
+    const cliente = await newSecureClient();
 
     return await  cliente.get('/usuarios')
     .then(response => {
         const alumnosTodas = response.data.data
+        
         return alumnosTodas  
     })
     .catch(error => {
         console.log(error)
 }
 )}
-// const response = await post(...)
-// if (response.status !== 200) { ... }
-// Try catch --- async && await || then()
 
-export const insertarUsuario =  (nombre, apellido, dni, email, pass, idRol, idCarrera) => {
-    const cliente  = newSecureClient();
-    return  cliente.post(`/usuarios`, {
+
+export const insertarUsuario = async (nombre, apellido, dni, email, pass, idRol, idCarrera) => {
+    const cliente  = await newSecureClient();
+    return await cliente.post(`/usuarios`, {
     nombre, apellido, dni, email, pass, idRol, idCarrera
   })
       .then(response => {
@@ -70,10 +69,28 @@ export const insertarUsuario =  (nombre, apellido, dni, email, pass, idRol, idCa
       }).catch((e) => { console.log(e); throw new Error('No se pudo agregar el usuario'); });
 };
 
-export const eliminarUsuario =  (id) => {
-    const cliente = newSecureClient();
+// const response = await post(...)
+// if (response.status !== 200) { ... }
+// Try catch --- async && await || then()
+/*
+export const eliminarUsuario = async (id) => {
+    const cliente = await newSecureClient();
     console.log(`es para el id: ${id}`)
-    return cliente.delete(`/usuarios/${id}`, {
+   
+    const response = await cliente.delete(`/usuarios/${id}`)
+       
+    if (response === 200) {
+            return;
+        } else {
+            throw new Error('No se pudo eliminar el usuario');
+        }        
+};*/
+
+export const eliminarUsuario = async (id) => {
+    const cliente = await newSecureClient();
+    console.log(`es para eliminar el id: ${id}`)
+   
+    return await cliente.delete(`/usuarios/${id}`, {
        
     })
         .then(response => {
@@ -87,11 +104,14 @@ export const eliminarUsuario =  (id) => {
 
 
 
-export const editarUsuario =  (ID, nombre, apellido, dni, email, pass, idRol, idCarrera) => {
-    const cliente = newSecureClient();
+
+
+export const editarUsuario = async (ID, nombre, apellido, dni, email, pass, idRol, idCarrera) => {
+    const cliente =await newSecureClient();
+    console.log(`es para editar el id: ${ID}`)
     
-    return  cliente.put(`/usuarios/${ID}`, {
-       nombre, apellido, dni, email, pass, idRol, idCarrera
+    return await cliente.put(`/usuarios/${ID}`, {
+       nombre, apellido, dni, email,pass,  idRol, idCarrera
     })
         .then(response => {
             if (response.status === 200) {
@@ -101,11 +121,11 @@ export const editarUsuario =  (ID, nombre, apellido, dni, email, pass, idRol, id
             } else{               
                 throw new Error('No se pudo modificar el usuario');
             }
-        }).catch((e) => { throw new Error('No se pudo mod el usuario'); });
+        }).catch((e) => { throw new Error('No se pudo modificar el usuario'); });
 };
 
 export const buscarUsuario = async (id) => {
-    const cliente = newSecureClient();
+    const cliente =await newSecureClient();
     return await cliente.get(`/usuarios/${id}`) 
     .then(response => {
         if (response.status === 200) {

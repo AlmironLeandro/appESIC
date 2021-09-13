@@ -8,9 +8,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { traerUsuarios } from "../../Servicios/UsuariosServicio";
 
-const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminarUsuario }) => {
+
+const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminaUsuario }) => {
   
     const useStyles = makeStyles({
         table: {
@@ -47,7 +47,7 @@ const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminarUsuario }) => {
                                         onClick={() => traerUsuario(estudiante.id)}
                                     />
                                     <BsFillTrashFill 
-                                        onClick={() => eliminarUsuario(estudiante.id)}
+                                        onClick={() => eliminaUsuario(estudiante.id)}
                                     />
                                 </TableCell>
                             </TableRow>

@@ -31,7 +31,7 @@ const submitForm =  () => {
         apellido, 
         dni, 
         mail, 
-        estudiante.usuario.pass, 
+        //estudiante.usuario.pass, 
         estudiante.usuario.idCarrera
       )
     setCargaEstudiante(true)

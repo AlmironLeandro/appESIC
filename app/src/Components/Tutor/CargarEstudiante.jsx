@@ -14,17 +14,22 @@ const CargarEstudiante = () => {
     const [cargaEstudiante, setCargaEstudiante] = useState(false)
     const [estudiantes, setEstudiantes] = useState([])
     const [estudiante, setEstudiante] = useState(null)
-    const [alumnoAEliminar, setEliminar] = useState(null)
+    const [alumnoAEliminar, setAlumnoAEliminar] = useState(null)
 
+    //Función para traer el usuario para el edit
     const traerUsuario = async (idestudiante) => {
         const estudiante = await editarUsuario(idestudiante)
         setEstudiante(estudiante)
        
     }
-    const eliminarUsuario = async (id) => {
+
+
+    const eliminaUsuario = async (id) => {
         const res = await editarUsuario(id)
-        setEliminar(res)
+        setAlumnoAEliminar(res)
     }
+
+
 
     useEffect(() => {
         traerUsuarios().then(res => {
@@ -47,23 +52,23 @@ const CargarEstudiante = () => {
             <TablaEstudiantes
                 estudiantes={estudiantes}
                 traerUsuario={traerUsuario}
-                eliminarUsuario={eliminarUsuario}
+                eliminaUsuario={eliminaUsuario}
             />
+
+
             {estudiante == null ? '' :
-               
                 <EditarEstudiante
                     setCargaEstudiante={setCargaEstudiante}
                     estudiante={estudiante}
                     setEstudiante={setEstudiante}
-
                 />
-
             }
+
             {alumnoAEliminar == null ? '' :
                <EliminarUsuario
                 setCargaEstudiante={setCargaEstudiante}
                 alumnoAEliminar={alumnoAEliminar}
-                setEliminar={setEliminar}
+                setAlumnoAEliminar={setAlumnoAEliminar}
                 
                />
 
