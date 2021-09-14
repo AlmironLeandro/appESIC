@@ -27,8 +27,13 @@ function MyVerticallyCenteredModal(props) {
         </p>
       </Modal.Body>
       <Modal.Footer style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button variant="primary" onClick={props.onHide}>Entrar</Button>
+        <Button variant="primary" onClick={props.onHide}>
+          <Link style={{ textDecoration: 'none', color: 'white' }} to={{
+            pathname: `/Proyecto/${props.idProyecto}`
+          }} >Entrar</Link></Button>
+
         <Button variant="secondary" onClick={props.onHide}>Editar</Button>
+        <Button variant="danger" onClick={props.onHide}>Eliminar</Button>
       </Modal.Footer>
     </Modal>
   );
@@ -40,9 +45,7 @@ const MostrarProyectos = (props) => {
   return (
     <>
       {/* BUSCAR COMO PASAR PROYECTO */}
-      <Link to={{
-        pathname: `/Proyecto/${props.proyecto.proyecto.id}`
-      }} >Entrar</Link>
+
 
       <Button variant="light" onClick={() => setModalShow(true)}>
         +info
@@ -54,6 +57,7 @@ const MostrarProyectos = (props) => {
         descripcion={props.proyecto.proyecto.descripcion}
         alumnos={props.proyecto.alumnos}
         nombreProyecto={props.proyecto.proyecto.nombre}
+        idProyecto={props.proyecto.proyecto.id}
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
