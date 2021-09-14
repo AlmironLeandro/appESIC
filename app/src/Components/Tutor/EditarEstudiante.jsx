@@ -19,9 +19,8 @@ const [alumno, setAlumno] = useState({
 
 const {nombre, apellido, dni, mail} = alumno;
     
-const submitForm =  () => {
-    setEstudiante(null)
-     editarUsuario(
+const submitForm = async () => {
+    await editarUsuario(
         estudiante.usuario.id,
         nombre, 
         apellido, 
@@ -30,9 +29,10 @@ const submitForm =  () => {
         // estudiante.usuario.pass, 
         estudiante.usuario.idRol,
         estudiante.usuario.idCarrera
-      )
-    setCargaEstudiante(true)
-    handleClose()
+        )
+        setCargaEstudiante(true)
+        handleClose()
+        setEstudiante(null)
    
 } 
 

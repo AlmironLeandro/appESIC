@@ -13,8 +13,8 @@ const EliminarUsuario = ({setCargaEstudiante, alumnoAEliminar, setAlumnoAElimina
     }
     
 
-    const eliminar =   () => {
-        eliminarUsuario(alumnoAEliminar.usuario.id)
+    const eliminar =  async () => {
+        await eliminarUsuario(alumnoAEliminar.usuario.id)
         console.log( alumnoAEliminar.usuario.apellido)
         console.log( alumnoAEliminar.usuario.id)
         setCargaEstudiante(true)
