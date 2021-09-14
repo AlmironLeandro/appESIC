@@ -68,9 +68,9 @@ export default function LongMenu() {
             <Link  style={{ textDecoration: 'none' }} to={"/CargarEstudiante"}>Cargar estudiante</Link>
             </MenuItem>
 
-            <MenuItem>
+            {/* <MenuItem>
             <Link  style={{ textDecoration: 'none' }} to={"/"}>Editar proyecto</Link>
-            </MenuItem>
+            </MenuItem> */}
       </Menu>
     </div>
   );

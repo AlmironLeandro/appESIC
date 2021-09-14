@@ -19,11 +19,11 @@ const InicioTutor = () => {
     //Trampa que se me ocurrio
     const numero = proyectos.length
 
-    useEffect(() => {
-        traerProyectos().then(res => setProyectos(res))
+    useEffect(async () => {
+        const res = await traerProyectos()
+        setProyectos(res)
         proyectos.map((x) =>
-        buscarProyecto(x.id).then(res => setProyectosPorId(proyectosPorId => [...proyectosPorId, res])))
-
+            buscarProyecto(x.id).then(res => setProyectosPorId(proyectosPorId => [...proyectosPorId, res])))
     }, [numero])
 
     return (
@@ -39,6 +39,7 @@ const InicioTutor = () => {
                         </tr>
                     </thead>
                     <tbody>
+
                         {proyectosPorId === undefined ? '' :
                             <div >
                                 {proyectosPorId.map((proyecto, i) =>

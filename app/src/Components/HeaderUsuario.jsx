@@ -28,12 +28,8 @@ const NavDeUsuarios = () => {
     const [apellido, setApellido] = useState()
     useEffect(async () => {
         const res = await buscarUsuario(localStorage.getItem("id"))
-        console.log(res)
-        console.log(res)
         setNombre(res.usuario.nombre)
         setApellido(res.usuario.apellido)
-        console.log(nombre)
-        console.log(apellido)
     }, [])
     const history = useHistory();
     const redirigir = async () => {

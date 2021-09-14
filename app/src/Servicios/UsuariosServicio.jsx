@@ -35,6 +35,7 @@ export const serviceLogin = async (dni, pass) => {
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     catch (error) {
         console.error(error);
 =======
@@ -42,16 +43,24 @@ export const serviceLogin = async (dni, pass) => {
         console.log('error');
         // alert('Usuario y/o contraseña incorrecta');
 >>>>>>> af9483d (Servicio de login mejorado,manejo de error, navbar con su respectivo usuario)
+=======
+    catch (error) {
+        console.error(error);
+>>>>>>> 813ae32 (Login terminado)
     }
 };
 
 export const traerUsuarios = async () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 813ae32 (Login terminado)
     try {
         const cliente = newSecureClient();
         const response = await cliente.get('/usuarios')
         if (response.status === 200) {
             return response.data.data
+<<<<<<< HEAD
         }
     }
     catch (error) {
@@ -84,33 +93,17 @@ export const insertarUsuario = async (nombre, apellido, dni, email, pass, idRol,
         })
         .catch(error => {
             console.log(error)
+=======
+>>>>>>> 813ae32 (Login terminado)
         }
-        )
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
-// const response = await post(...)
-// if (response.status !== 200) { ... }
-// Try catch --- async && await || then()
 
-export const insertarUsuario = (nombre, apellido, dni, email, pass, idRol, idCarrera) => {
-    const cliente = newSecureClient();
-    return cliente.post(`/usuarios`, {
-        nombre, apellido, dni, email, pass, idRol, idCarrera
-    })
-        .then(response => {
-            if (response.status === 200) {
-                return response.data.data;
-            } else {
-                console.log('error');
-                throw new Error('No se pudo agregar el usuario');
-            }
-        }).catch((e) => { console.log(e); throw new Error('No se pudo agregar el usuario'); });
-};
 
-export const eliminarUsuario = (id) => {
-    const cliente = newSecureClient();
-    console.log(`es para el id: ${id}`)
-    return cliente.delete(`/usuarios/${id}`, {
-
+<<<<<<< HEAD
     })
         .then(response => {
             if (response.status === 200) {
@@ -120,6 +113,22 @@ export const eliminarUsuario = (id) => {
             }
         }).catch((e) => { throw new Error('No se pudo eliminar el usuario'); });
 >>>>>>> af9483d (Servicio de login mejorado,manejo de error, navbar con su respectivo usuario)
+=======
+export const insertarUsuario = async (nombre, apellido, dni, email, pass, idRol, idCarrera) => {
+    try {
+        const cliente = newSecureClient();
+        const response = await cliente.post(`/usuarios`, {
+            nombre, apellido, dni, email, pass, idRol, idCarrera
+        })
+        if (response.status === 200) {
+            alert('El usuario fue creado satisfactoriamente')
+            return response.data.data;
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
+>>>>>>> 813ae32 (Login terminado)
 };
 
 export const eliminarUsuario = async (id) => {
@@ -129,6 +138,9 @@ export const eliminarUsuario = async (id) => {
         })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 813ae32 (Login terminado)
         if (response.status === 200) {
             return;
         }
@@ -136,6 +148,7 @@ export const eliminarUsuario = async (id) => {
     catch (error) {
         console.error(error);
     }
+<<<<<<< HEAD
 =======
 
 export const editarUsuario = (ID, nombre, apellido, dni, email, pass, idRol, idCarrera) => {
@@ -154,6 +167,8 @@ export const editarUsuario = (ID, nombre, apellido, dni, email, pass, idRol, idC
             }
         }).catch((e) => { throw new Error('No se pudo mod el usuario'); });
 >>>>>>> af9483d (Servicio de login mejorado,manejo de error, navbar con su respectivo usuario)
+=======
+>>>>>>> 813ae32 (Login terminado)
 };
 
 export const editarUsuario = async (ID, nombre, apellido, dni, email, idRol, idCarrera) => {
@@ -181,6 +196,7 @@ export const buscarUsuario = async (id) => {
     }
     catch (error) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         console.error(error);
     }
 
@@ -191,4 +207,9 @@ export const buscarUsuario = async (id) => {
     }
 }
 >>>>>>> af9483d (Servicio de login mejorado,manejo de error, navbar con su respectivo usuario)
+=======
+        console.error(error);
+    }
+>>>>>>> 813ae32 (Login terminado)
 
+};
