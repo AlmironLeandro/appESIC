@@ -69,16 +69,8 @@ const CargarEstudiante = () => {
                 setCargaEstudiante={setCargaEstudiante}
                 alumnoAEliminar={alumnoAEliminar}
                 setAlumnoAEliminar={setAlumnoAEliminar}
-                
-               />
-
-              
-
+               /> 
            }
-
-
-
-
 
         </Fragment>
 

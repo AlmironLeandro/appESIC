@@ -23,7 +23,7 @@ const newSecureClient = () => {
     });
 }
 
-
+/*
  export  const traerTiposDeHito= async()=>
 {
    const cliente = newSecureClient();
@@ -36,8 +36,21 @@ const newSecureClient = () => {
          console.log(error)
 
 }
-)}
+)}*/
 
+export const traerTiposDeHito = async () => {
+    try {
+        const cliente = newSecureClient();
+        const response = await cliente.get('/tiposhito/')
+        if (response.status === 200) {
+            return response.data.data
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+/*
 export  const traerTipoDeHito= async(id)=>
 {
    const cliente = newSecureClient();
@@ -55,7 +68,20 @@ export  const traerTipoDeHito= async(id)=>
          console.log(error)
 
 }
-)}
+)}*/
+
+export  const traerTipoDeHito= async(id)=> {
+    try{
+        const cliente = newSecureClient();
+        const response = await  cliente.get(`/tiposhito/${id}`)
+        if (response.status === 200) {
+            return response.data.data
+        }
+    }
+    catch (error) {
+    console.error(error);
+    }
+}
 
 
 

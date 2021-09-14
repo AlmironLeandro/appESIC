@@ -60,6 +60,7 @@ export const insertarUsuario = async (nombre, apellido, dni, email, pass, idRol,
             nombre, apellido, dni, email, pass, idRol, idCarrera
         })
         if (response.status === 200) {
+            alert('El usuario fue creado satisfactoriamente')
             return response.data.data;
         }
     }
