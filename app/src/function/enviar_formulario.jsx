@@ -16,7 +16,7 @@ export const formulario =  (proyecto,actualizarError,actualizarProyecto,listaAlu
             proyecto.nombre,
             proyecto.detalle,
             materia,
-            2,
+            localStorage.getItem("id"),
             fecha.toISOString(),
             listaAlumnoAgregado.map((alumno)=>({ "idAlumno" : alumno.id}) )
         )

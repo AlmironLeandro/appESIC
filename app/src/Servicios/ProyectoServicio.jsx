@@ -132,7 +132,7 @@ export const editarUsuario = async (ID, nombre, descripcion, idMateria, idTutor,
         }).catch((e) => { throw new Error('No se pudo modificar el proyecto'); });
 };
 */
-export const editarUsuario = async (ID, nombre, descripcion, idMateria, idTutor, fechaInicio, alumnos) => {
+export const editarProyecto = async (ID, nombre, descripcion, idMateria, idTutor, fechaInicio, alumnos) => {
     try {
         const cliente = newSecureClient();
         const response = await cliente.put(`/proyectos/${ID}`, {
@@ -163,10 +163,25 @@ export const buscarProyecto = async (id) => {
 */
 export const buscarProyecto = async (id) => {
     try {
-        const cliente = nuevoCliente();
+        const cliente = newSecureClient();
         const response = await cliente.get(`/proyectos/${id}`)
         if (response.status === 200) {
             return response.data;
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
+
+
+};
+
+export const traerProyectosPorTutor = async (id) => {
+    try {
+        const cliente = newSecureClient();
+        const response = await cliente.get(`/proyectos/ListByTutor/${id}`)
+        if (response.status === 200) {
+            return response.data.proyects;
         }
     }
     catch (error) {

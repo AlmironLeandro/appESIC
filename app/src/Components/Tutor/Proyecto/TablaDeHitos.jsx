@@ -26,8 +26,7 @@ const TablaDeHitos = (props) => {
 
 
   const classes = useStyles();
-
-
+ 
   return (
 
     <TableContainer component={Paper}>

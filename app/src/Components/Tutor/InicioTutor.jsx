@@ -9,6 +9,8 @@ import MostrarProyectos from './MostrarProyectos'
 // Import servicios
 import { traerProyectos } from '../../Servicios/ProyectoServicio'
 import { buscarProyecto } from '../../Servicios/ProyectoServicio'
+import { traerProyectosPorTutor } from '../../Servicios/ProyectoServicio'
+
 
 //Import styles css
 import { styles } from '../../styles/inicioTutor'
@@ -20,10 +22,12 @@ const InicioTutor = () => {
     const numero = proyectos.length
 
     useEffect(async () => {
-        const res = await traerProyectos()
+        const res = await traerProyectosPorTutor(localStorage.getItem("id"))
+        console.log(res)
         setProyectos(res)
-        proyectos.map((x) =>
+        await proyectos.map((x) =>
             buscarProyecto(x.id).then(res => setProyectosPorId(proyectosPorId => [...proyectosPorId, res])))
+         
     }, [numero])
 
     return (

@@ -5,20 +5,19 @@ import { Link } from 'react-router-dom';
 
 function MyVerticallyCenteredModal(props) {
   return (
-    <Modal
+    <Modal 
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-
-          <h5>{"Materia: " + props.materia}</h5>
-          <h5>{"Nombre del proyecto: " + props.nombreProyecto}</h5>
-        </Modal.Title>
+      <Modal.Header closeButton >
+        {/* <Modal.Title id="contained-modal-title-vcenter">
+        </Modal.Title> */}
       </Modal.Header>
       <Modal.Body>
+      <h5>{"Materia: " + props.materia}</h5>
+        <h5>{"Nombre del proyecto: " + props.nombreProyecto}</h5>
         <h4 style={{ display: 'inline-block' }}>Alumnos:  </h4>
         {props.alumnos.map((est) => <p >{"" + est.nombre + "  "}{"  " + est.apellido + "  "}{"  " + est.dni + "  "}</p>)}
         <h4>Descripción</h4>
