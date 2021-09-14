@@ -55,9 +55,10 @@ const FormularioEstudiante = (props) =>{
     //Función para enviar al back el estudiante
     const submitForm = async (e) => {
         e.preventDefault();
+        console.log(idCarrera)
     
         // Validar el formulario
-        if (nombre.trim() === '' || apellido.trim() === '' || dni.trim() === ''|| mail.trim()===''){
+        if (nombre.trim() === '' || apellido.trim() === '' || dni.trim() === ''|| mail.trim()===''||idCarrera===undefined){
             setError(true);
             return;
         }
@@ -68,13 +69,13 @@ const FormularioEstudiante = (props) =>{
 
         //Lamada a la función post con los atributos
       await  insertarUsuario(
-            estudiante.nombre,
-            estudiante.apellido,
-            estudiante.dni,
-            estudiante.mail,
-            estudiante.dni,
+            nombre,
+            apellido,
+            dni,
+            mail,
+            dni,
             1,
-            estudiante.idCarrera)
+            idCarrera)
     
         //Limpiar el form
        setEstudiante({
