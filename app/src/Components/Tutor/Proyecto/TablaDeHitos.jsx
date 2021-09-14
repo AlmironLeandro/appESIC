@@ -37,6 +37,7 @@ const TablaDeHitos = (props) => {
             <TableCell >Descripción</TableCell>
             <TableCell >Fecha de entrega</TableCell>
             <TableCell >Entregado</TableCell>
+            <TableCell >Pdf</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -46,8 +47,10 @@ const TablaDeHitos = (props) => {
                 {hito.tipoHito.nombre}
               </TableCell>
               <TableCell >{hito.descripcion} </TableCell>
-              <TableCell >{hito.fechaEntrega}</TableCell>
+              <TableCell >{`${new Date(hito.fechaEntrega).getDate()} / ${new Date(hito.fechaEntrega).getDay()} / ${new Date(hito.fechaEntrega).getFullYear()}`
+              }</TableCell>
               <TableCell>{hito.entregado}</TableCell>
+              <TableCell ></TableCell>
             </TableRow>
           ))}
         </TableBody>
