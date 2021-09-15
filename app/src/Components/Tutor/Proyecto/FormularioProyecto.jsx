@@ -24,13 +24,13 @@ const FormularioProyecto = () =>
 {
     // Aca comienza todo sobre carrera/s
     const [carrera, setCarrera]=useState([]) 
-    const cambiarCarrera= e=> {e.preventDefault(); setCarrera(e.target.value); console.log(e.target.value)}
+    const cambiarCarrera= e=> {e.preventDefault(); setCarrera(e.target.value)}
     const [carreras, setCarreras]=useState([]) 
    
 
     // Aca comienza todo sobre materia/s
     const [materia, setMateria]=useState() 
-    const cambiarMateria= e=> {e.preventDefault(); setMateria(e.target.value); console.log(e.target.value)}
+    const cambiarMateria= e=> {e.preventDefault(); setMateria(e.target.value)}
     const [materias, setMaterias]=useState([])  
 
 

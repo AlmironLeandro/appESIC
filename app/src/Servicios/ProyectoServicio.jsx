@@ -132,11 +132,11 @@ export const editarUsuario = async (ID, nombre, descripcion, idMateria, idTutor,
         }).catch((e) => { throw new Error('No se pudo modificar el proyecto'); });
 };
 */
-export const editarProyecto = async (ID, nombre, descripcion, idMateria, idTutor, fechaInicio, alumnos) => {
+export const editarProyecto = async (ID, nombre, descripcion, idMateria, alumnos) => {
     try {
         const cliente = newSecureClient();
         const response = await cliente.put(`/proyectos/${ID}`, {
-            nombre, descripcion, idMateria, idTutor, fechaInicio, alumnos
+            nombre, descripcion, idMateria, alumnos
         })
         if (response.status === 200) {
             console.log(response.data);
