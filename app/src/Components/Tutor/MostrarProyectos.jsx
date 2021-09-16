@@ -1,16 +1,53 @@
 import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap'
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Selector from './Proyecto/Selector';
 import { Link } from 'react-router-dom';
-function Editar(props) {
-      // Aca comienza todo sobre materia/s
-      const [materia, setMateria]=useState() 
-      const cambiarMateria= e=> {e.preventDefault(); setMateria(e.target.value)}
-      const [materias, setMaterias]=useState([]) 
-          // Aca comienza todo sobre carrera/s
-    const [carrera, setCarrera]=useState([]) 
-    const cambiarCarrera= e=> {e.preventDefault(); setCarrera(e.target.value)}
-    const [carreras, setCarreras]=useState([]) 
+import { eliminarProyecto, editarProyecto } from '../../Servicios/ProyectoServicio'
+
+const Editar = (props)=> {
+
+  const [proyecto, setProyecto] = useState({
+    nombre : props.nombreProyecto,
+    descripcion:props.descripcion
+})
+  const handleChange = (e) => {
+    setProyecto({
+      ...proyecto,
+      [e.target.name]: e.target.value,
+    }
+    )
+    
+
+  };
+  const {nombre, descripcion} = proyecto;
+
+  
+  const submitForm = async (e) => {
+  
+    e.preventDefault()
+    await editarProyecto(
+      props.idProyecto,
+      nombre,
+      descripcion,
+      props.idMateria,
+      props.idTutor,
+      props.fechaInicio,
+      props.fechaFin,
+      props.alumnos
+    )
+     
+    
+    
+    
+  }
+    
+  
+    
+    
+    
+   
+
+
   return (
     <Modal
       {...props}
@@ -26,25 +63,27 @@ function Editar(props) {
 
         <InputGroup size="sm" className="mb-3">
           <InputGroup.Text id="inputGroup-sizing-sm">Nombre del proyecto:</InputGroup.Text>
-          <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" defaultValue ={props.nombreProyecto} />
+          <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+            name="nombre"
+            onChange={handleChange}
+            value={nombre}
+            defaultValue={nombre} />
         </InputGroup>
 
         <InputGroup size="sm" className="mb-3">
           <InputGroup.Text id="inputGroup-sizing-sm">Descripción:</InputGroup.Text>
-          <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" defaultValue={props.descripcion} />
+          <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+            name="descripcion"
+            onChange={handleChange}
+            value={descripcion}
+            defaultValue={descripcion} />
         </InputGroup>
-
-        {/* <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div ><Selector name={"carreras"} values={carreras} value={carrera} onclick={cambiarCarrera} />
-        </div>
-        <div ><Selector name={"materias"} values={materias} value={materia} onclick={cambiarMateria}  />
-        </div>
-        </div> */}
 
       </Modal.Body>
       <Modal.Footer style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button variant="primary" onClick={props.onHide}> Guardar</Button>
-
+        <Button variant="primary" onClick={(e)=>[submitForm(e),props.onHide(),
+          props.setCallBack(true),
+          props.setCallBack(props.callBack === true ? false : true)]}> Guardar</Button>
       </Modal.Footer>
     </Modal>
   );
@@ -76,10 +115,10 @@ function MyVerticallyCenteredModal(props) {
         <Button variant="primary" onClick={props.onHide}>
           <Link style={{ textDecoration: 'none', color: 'white' }} to={{
             pathname: `/Proyecto/${props.idProyecto}`
-          }} >Entrar</Link></Button>
+          }} >Hitos</Link></Button>
 
-        <Button variant="secondary" onClick={props.editar}>Editar</Button>
-        <Button variant="danger" onClick={props.onHide}>Eliminar</Button>
+        <Button variant="secondary" onClick={props.edit}>Editar proyecto</Button>
+        <Button variant="danger" onClick={props.onHide}>Eliminar proyecto</Button>
       </Modal.Footer>
     </Modal>
   );
@@ -88,7 +127,7 @@ function MyVerticallyCenteredModal(props) {
 const MostrarProyectos = (props) => {
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShowEditar, setModalShowEditar] = React.useState(false);
-  const editar = () => (setModalShowEditar(true), setModalShow(false))
+  const edit = () => (setModalShowEditar(true), setModalShow(false))
 
 
 
@@ -110,18 +149,22 @@ const MostrarProyectos = (props) => {
         nombreProyecto={props.proyecto.proyecto.nombre}
         idProyecto={props.proyecto.proyecto.id}
         show={modalShow}
-        editar={editar}
+        edit={edit}
         onHide={() => setModalShow(false)}
       />
       <Editar
-        materia={props.proyecto.materia.nombre}
-        descripcion={props.proyecto.proyecto.descripcion}
-        alumnos={props.proyecto.alumnos}
         nombreProyecto={props.proyecto.proyecto.nombre}
+        descripcion={props.proyecto.proyecto.descripcion}
+        idMateria={props.proyecto.materia.id}
+        idTutor={props.proyecto.tutor.id}
+        fechaInicio={props.proyecto.proyecto.fechaInicio}
+        fechaFin={props.proyecto.proyecto.fechaFin}
         idProyecto={props.proyecto.proyecto.id}
+        alumnos={props.proyecto.alumnos}
         show={modalShowEditar}
-        editar={editar}
+        setCallBack={props.setCallBack}
         onHide={() => setModalShowEditar(false)}
+        callBack={props.callBack}
       />
     </>
   );

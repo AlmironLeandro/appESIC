@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 import config from './Config/config.json'
 
 
@@ -11,7 +11,7 @@ const newSecureClient = () => {
             'Accept': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
-    });
+    })
 }
 const nuevoCliente = () => {
     return axios.create({
@@ -21,7 +21,7 @@ const nuevoCliente = () => {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         }
-    });
+    })
 }
 
 export const serviceLogin = async (dni, pass) => {
@@ -37,7 +37,7 @@ export const serviceLogin = async (dni, pass) => {
     catch (error) {
         console.error(error);
     }
-};
+}
 
 export const traerUsuarios = async () => {
     try {

@@ -103,21 +103,21 @@ const InicioTutor = () => {
 
     const [proyectos, setProyectos] = useState([])
     const [proyectosPorId, setProyectosPorId] = useState([])
+    const [callBack,setCallBack]=useState(false)
     //Trampa que se me ocurrio
     const numero = proyectos.length
 
     useEffect(async () => {
         const res = await traerProyectosPorTutor(localStorage.getItem("id"))
-        console.log(res)
         setProyectos(res)
+        setProyectosPorId([])
         await proyectos.map((x) =>
             buscarProyecto(x.id).then(res => setProyectosPorId(proyectosPorId => [...proyectosPorId, res])))
          
-    }, [numero])
+    }, [callBack,numero])
 
     return (
         <div >
-
             <NavDeUsuarios >
             </NavDeUsuarios>
             <div className={classes.root}>
@@ -192,7 +192,7 @@ const InicioTutor = () => {
                                 {proyectosPorId.map((proyecto, i) =>
                                     <tr>
                                         <td style={{ width: '100%' }}>{proyecto.proyecto.nombre}</td>
-                                        <td >   <MostrarProyectos proyecto={proyecto}></MostrarProyectos> </td>
+                                        <td >   <MostrarProyectos proyecto={proyecto} setCallBack={setCallBack} callBack={callBack}></MostrarProyectos> </td>
                                     </tr>
                                 )}
 

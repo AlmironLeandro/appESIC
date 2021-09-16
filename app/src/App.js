@@ -45,7 +45,6 @@ function App() {
     <PrivateRoute exact path="/CargarEstudiante" rol={2} component={CargarEstudiante} />
     <PrivateRoute exact path="/NuevoProyecto" component={FormularioProyecto} rol={2}/>
     <PrivateRoute exact path="/Usuario/1" component={Estudiante} rol={1}/>
-    {/* Buscar como no poder acceder a cualquier id(id que no exista) */}
     <PrivateRoute exact path="/Proyecto/:id" component={PantallaDeProyecto} rol={2}/>
     <PrivateRoute exact path="/Usuario/3" component={InicioCoordinador} rol={3}/>
     <Route path="*"                       component={NoMatch}/>
