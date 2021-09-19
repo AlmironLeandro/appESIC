@@ -181,6 +181,7 @@ const MostrarProyectos = (props) => {
       <ModalEstaSeguro
         onHide={() => setModalShowEliminar(false)}
         show={modalShowEliminar}
+        setCallBack={props.setCallBack}
         nombreProyecto={props.proyecto.proyecto.nombre}
         idProyecto={props.proyecto.proyecto.id} />
           

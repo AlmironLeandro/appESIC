@@ -112,6 +112,7 @@ const InicioTutor = () => {
     try {
       setProyectosPorId([])
       traerProyectoXTutor({ setProyectosPorId })
+      console.log(callBack)
     }
     catch (error) {
       console.error(error)
