@@ -145,7 +145,7 @@ const MostrarProyectos = (props) => {
     <Fragment>
       {/* BUSCAR COMO PASAR PROYECTO */}
 
-
+    {console.log(props.proyecto)}
       <Button variant="light" onClick={() => setModalShow(true)}>
         +info
       </Button>

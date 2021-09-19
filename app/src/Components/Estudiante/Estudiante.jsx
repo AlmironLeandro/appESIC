@@ -6,23 +6,26 @@ import {buscarProyecto} from '../../Servicios/ProyectoServicio'
 import {traerHitosPorProyecto} from '../../Servicios/Hito'
 
 const Estudiante= ()=> {
-  const [alumno,setEstudiante] =useState ({})
   const [proyecto, setProyecto]=useState()
   const [hitos, setHitos]=useState()
   
     useEffect(async () => {
-    await  traerProyectoPorEstudiante(localStorage.getItem("id")).then(res => setEstudiante(res))
+        try
+        {
+            const res = await  traerProyectoPorEstudiante(localStorage.getItem("id"))
+            await buscarProyecto(res.proyects[0].id).then(res => setProyecto(res))
+            await traerHitosPorProyecto(res.proyects[0].id).then(res => setHitos(res))
+        }
+        catch(error)
+        {
+            console.log(error)
+        }
     
-    await buscarProyecto(8).then(res => setProyecto(res))
-    await traerHitosPorProyecto(8).then(res => setHitos(res))
+   
+    
 
 
     }, [])
-    const traerproyecto= async ()=> {
-        
-        await buscarProyecto(alumno.proyects[0].id).then(res => setProyecto(res))
-     }
-
     return (
         <Fragment>
             <HeaderUsuario/>
@@ -33,7 +36,8 @@ const Estudiante= ()=> {
             </>
         }
             <br />
-            {hitos == null ? '' : <Hitos hitos={hitos}> </Hitos> }
+            {hitos === null || hitos === undefined   || hitos.length === 0 ? <h1 style={{textAlign:'center'}}>
+                <code>Todavía no hay hitos </code></h1> : <Hitos hitos={hitos}> </Hitos> }
              
         </Fragment> 
     )

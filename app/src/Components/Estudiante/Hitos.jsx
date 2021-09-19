@@ -27,20 +27,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CustomizedTimeline({hitos}) {
+export default function CustomizedTimeline({ hitos }) {
   const classes = useStyles();
 
   return (
     <Timeline align="alternate">
+      {/* Hito 1 */}
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            20/07/2021
+            {hitos[0].fechaEntrega}
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot color="#9c9c9c">
-            < HowToRegIcon   style={{color:'black'}} />
+            < HowToRegIcon style={{ color: 'black' }} />
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
@@ -48,80 +49,105 @@ export default function CustomizedTimeline({hitos}) {
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
               {hitos[0].tipoHito.nombre}
-              
+
             </Typography>
             <Typography>Descripción: {hitos[0].descripcion}</Typography>
-              <Typography>
-                <EntregarHito>Entregar</EntregarHito>
-                
+            <Typography><EntregarHito id={hitos[0].id} entrega={hitos[0].tipoHito.nombre}
+              >Entregar</EntregarHito></Typography>
+          </Paper>
+        </TimelineContent>
+      </TimelineItem>
+
+      {/* Hito 2 */}
+      {hitos[1] === undefined ? '' :
+
+        <TimelineItem>
+          <TimelineOppositeContent>
+            <Typography variant="body2" color="textSecondary">
+              {hitos[1].fechaEntrega}
+            </Typography>
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot color="#9c9c9c">
+              <BuildIcon style={{ color: 'black' }} />
+            </TimelineDot>
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>
+
+            <Paper elevation={3} className={classes.paper}>
+              <Typography variant="h6" component="h1">
+                {hitos[1].tipoHito.nombre}
+
+
               </Typography>
-          </Paper>
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent>
-          <Typography variant="body2" color="textSecondary">
-            20/06/2021
-          </Typography>
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot color="#9c9c9c">
-            <BuildIcon style={{color:'black'}} />
-          </TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>
 
-          <Paper elevation={3} className={classes.paper}>
-          <Typography variant="h6" component="h1">
-              Mejora
-              
+              <Typography>Descripción: {hitos[1].descripcion}</Typography>
+              <Typography><EntregarHito id={hitos[1].id} entrega={hitos[1].tipoHito.nombre}
+              >Entregar</EntregarHito></Typography>
+            </Paper>
+
+          </TimelineContent>
+        </TimelineItem>
+      }
+      {/* Hito 3 */}
+
+      {hitos[2] === undefined ? '' :
+        <TimelineItem>
+          <TimelineOppositeContent>
+            <Typography variant="body2" color="textSecondary">
+              {hitos[2].fechaEntrega}
             </Typography>
-            <Typography>Descripción ..........................................</Typography>
-            <Typography><EntregarHito>Entregar</EntregarHito></Typography>
-          </Paper>
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot color="#9c9c9c">
+              <AssignmentTurnedInIcon style={{ color: 'black' }} />
+            </TimelineDot>
 
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>
+            <Paper elevation={3} className={classes.paper}>
+              <Typography variant="h6" component="h1">
+                {hitos[2].tipoHito.nombre}
 
-        <TimelineDot color="#9c9c9c">
-            <AssignmentTurnedInIcon  style={{color:'black'}} />
-          </TimelineDot>
+              </Typography>
+              <Typography>Descripción: {hitos[2].descripcion}</Typography>
+              <Typography><EntregarHito id={hitos[2].id} entrega={hitos[2].tipoHito.nombre}
+              >Entregar</EntregarHito></Typography>
+            </Paper>
+          </TimelineContent>
+        </TimelineItem>
+      }
+      {/* Hito 4 */}
 
-          <TimelineConnector/>
-        </TimelineSeparator>
-        <TimelineContent>
-          <Paper elevation={3} className={classes.paper}>
-          <Typography variant="h6" component="h1">
-              Evaluación
-              
+      {hitos[3] === undefined ? '' :
+        <TimelineItem>
+          <TimelineOppositeContent>
+            <Typography variant="body2" color="textSecondary">
+              {hitos[3].fechaEntrega}
             </Typography>
-            <Typography>Descripción ..........................................</Typography>
-            <Typography><EntregarHito>Entregar</EntregarHito></Typography>
-          </Paper>
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot color="#9c9c9c">
+              <AccountBalanceIcon style={{ color: 'black' }} />
+            </TimelineDot>
 
-           <TimelineDot color="#9c9c9c">
-            <AccountBalanceIcon  style={{color:'black'}} />
-          </TimelineDot>
+          </TimelineSeparator>
+          <TimelineContent>
+            <Paper elevation={3} className={classes.paper}>
+              <Typography variant="h6" component="h1">
+                {hitos[3].tipoHito.nombre}
 
-        </TimelineSeparator>
-        <TimelineContent>
-          <Paper elevation={3} className={classes.paper}>
-          <Typography variant="h6" component="h1">
-              Entrega final
-              
-            </Typography>
-            <Typography>Descripción ..........................................</Typography>
-            <Typography><EntregarHito>Entregar</EntregarHito></Typography>
-          </Paper>
-        </TimelineContent>
-      </TimelineItem>
+              </Typography>
+              <Typography>Descripción: {hitos[3].descripcion}</Typography>
+              <Typography>
+                <EntregarHito id={hitos[3].id} entrega={hitos[3].tipoHito.nombre}
+              >Entregar</EntregarHito></Typography>
+            </Paper>
+          </TimelineContent>
+        </TimelineItem>
+      }
     </Timeline>
   );
 }

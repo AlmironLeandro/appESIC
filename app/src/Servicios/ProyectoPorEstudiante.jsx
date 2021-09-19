@@ -22,7 +22,6 @@ export const traerProyectoPorEstudiante = async (idEstudiante) => {
         })
         .catch(error => {
             console.log(error)
-
         }
         )
 }

@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { traerHitosPorProyecto } from '../../../Servicios/Hito'
 import { useEffect, useState } from 'react';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 const TablaDeHitos = (props) => {
 
@@ -49,8 +50,10 @@ const TablaDeHitos = (props) => {
               <TableCell >{hito.descripcion} </TableCell>
               <TableCell >{`${new Date(hito.fechaEntrega).getDate()} / ${new Date(hito.fechaEntrega).getDay()} / ${new Date(hito.fechaEntrega).getFullYear()}`
               }</TableCell>
-              <TableCell>{hito.entregado}</TableCell>
-              <TableCell ></TableCell>
+              <TableCell>{console.log(hito.entregado)}</TableCell>
+              <TableCell >
+                <PictureAsPdfIcon/>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

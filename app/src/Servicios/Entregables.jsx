@@ -80,6 +80,7 @@ export const subirDocumento = async (idHito, entrega, documento) => {
     })
         .then(response => {
             if (response.status === 200) {
+                alert("Se subió correctamente el pdf.")
                 return response.data.data;
             } else {
                 console.log('error');
