@@ -1,13 +1,14 @@
 //Import react
-import { useState, useEffect } from 'react'
+import {useState, useEffect, Fragment } from 'react'
 import {Link} from 'react-router-dom';
-import { Table } from 'react-bootstrap'
+import {Table} from 'react-bootstrap'
+
+//Import components
 import NavDeUsuarios from '../HeaderUsuario'
 import MostrarProyectos from './MostrarProyectos'
 
 // Import servicios
-import { buscarProyecto } from '../../Servicios/ProyectoServicio'
-import { traerProyectosPorTutor,eliminarProyecto } from '../../Servicios/ProyectoServicio'
+import { traerProyectoXTutor } from '../../function/traerProyectoXTutor'
 
 //Import styles css
 import { styles } from '../../styles/inicioTutor'
@@ -30,8 +31,12 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import SchoolIcon from '@material-ui/icons/School';
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 
+
+
 const InicioTutor = () => {
-    const drawerWidth = 240;
+
+
+  const drawerWidth = 240;
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -100,27 +105,26 @@ const InicioTutor = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const [proyectosPorId, setProyectosPorId] = useState([])
+  const [callBack, setCallBack] = useState(false)
 
-    const [proyectos, setProyectos] = useState([])
-    const [proyectosPorId, setProyectosPorId] = useState([])
-    const [callBack,setCallBack]=useState(false)
-    //Trampa que se me ocurrio
-    const numero = proyectos.length
+  useEffect(async () => {
+    try {
+      setProyectosPorId([])
+      traerProyectoXTutor({ setProyectosPorId })
+      console.log(callBack)
+    }
+    catch (error) {
+      console.error(error)
+    }
 
-    useEffect(async () => {
-        const res = await traerProyectosPorTutor(localStorage.getItem("id"))
-        setProyectos(res)
-        setProyectosPorId([])
-        await proyectos.map((x) =>
-            buscarProyecto(x.id).then(res => setProyectosPorId(proyectosPorId => [...proyectosPorId, res])))
-         
-    }, [callBack,numero])
+  }, [callBack])
 
-    return (
-        <div >
-            <NavDeUsuarios >
-            </NavDeUsuarios>
-            <div className={classes.root}>
+  return (
+    <Fragment>
+      <NavDeUsuarios >
+      </NavDeUsuarios>
+      <div className={classes.root}>
         <CssBaseline />
         <AppBar
           position="fixed"
@@ -146,22 +150,22 @@ const InicioTutor = () => {
           </div>
           <Divider />
 
-          
-        
-       
-            <List>
-              <ListItem button  >
-              
-                <ListItemIcon><SchoolIcon /></ListItemIcon>
-                <Link  style={{ textDecoration: 'none' }}  to={"/NuevoProyecto"}>Crear proyecto</Link>
-              </ListItem>
 
-              <ListItem button >
-                <ListItemIcon> <ImportContactsIcon />  </ListItemIcon>
-                <Link  style={{ textDecoration: 'none' }} to={"/CargarEstudiante"}>Cargar estudiante</Link>
-              </ListItem>
 
-            </List>
+
+          <List>
+            <ListItem button  >
+
+              <ListItemIcon><SchoolIcon /></ListItemIcon>
+              <Link style={{ textDecoration: 'none' }} to={"/NuevoProyecto"}>Crear proyecto</Link>
+            </ListItem>
+
+            <ListItem button >
+              <ListItemIcon> <ImportContactsIcon />  </ListItemIcon>
+              <Link style={{ textDecoration: 'none' }} to={"/CargarEstudiante"}>Cargar estudiante</Link>
+            </ListItem>
+
+          </List>
 
         </Drawer>
 
@@ -178,34 +182,34 @@ const InicioTutor = () => {
         </IconButton>
 
       </Toolbar>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Table style={styles.tablaEstilo} striped bordered hover>
-                    <thead >
-                        <tr >
-                            <th style={{ textAlign: 'center' }}>Proyectos</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Table style={styles.tablaEstilo} striped bordered hover>
+          <thead >
+            <tr >
+              <th style={{ textAlign: 'center' }}>Proyectos</th>
+            </tr>
+          </thead>
+          <tbody>
 
-                        {proyectosPorId === undefined ? '' :
-                            <div >
-                                {proyectosPorId.map((proyecto, i) =>
-                                    <tr>
-                                        <td style={{ width: '100%' }}>{proyecto.proyecto.nombre}</td>
-                                        <td >   <MostrarProyectos proyecto={proyecto} setCallBack={setCallBack} callBack={callBack}></MostrarProyectos> </td>
-                                    </tr>
-                                )}
+            {proyectosPorId === undefined && proyectosPorId === null ? '' :
+              <div >
+                {proyectosPorId.map((proyecto, i) =>
+                  <tr key={i}>
+                    <td style={{ width: '100%' }}>{proyecto.proyecto.nombre}</td>
+                    <td >   <MostrarProyectos proyecto={proyecto} setCallBack={setCallBack} callBack={callBack}></MostrarProyectos> </td>
 
-                            </div>}
+                  </tr>
+                )}
+
+              </div>}
 
 
-                    </tbody>
-                </Table>
-            </div>
- 
+          </tbody>
+        </Table>
+      </div>
 
-        </div>
-    )
+    </Fragment>
+  )
 
 }
 

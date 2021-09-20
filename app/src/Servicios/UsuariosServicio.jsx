@@ -79,8 +79,9 @@ export const eliminarUsuario = async (id) => {
             return;
         }
     }
-    catch (error) {
-        console.error(error);
+    catch (e) {
+        console.error(e.response.data.message);
+        alert(e.response.data.message)
     }
 };
 

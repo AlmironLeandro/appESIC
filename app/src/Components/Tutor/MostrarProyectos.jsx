@@ -1,29 +1,35 @@
 import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap'
-import React, { useState, useEffect } from 'react'
-import Selector from './Proyecto/Selector';
+import React, { useState, Fragment } from 'react'
 import { Link } from 'react-router-dom';
-import { eliminarProyecto, editarProyecto } from '../../Servicios/ProyectoServicio'
+import { editarProyecto } from '../../Servicios/ProyectoServicio'
+import ModalEstaSeguro from './ModalEstaSeguro'
 
-const Editar = (props)=> {
+
+
+
+
+
+
+const Editar = (props) => {
 
   const [proyecto, setProyecto] = useState({
-    nombre : props.nombreProyecto,
-    descripcion:props.descripcion
-})
+    nombre: props.nombreProyecto,
+    descripcion: props.descripcion
+  })
   const handleChange = (e) => {
     setProyecto({
       ...proyecto,
       [e.target.name]: e.target.value,
     }
     )
-    
+
 
   };
-  const {nombre, descripcion} = proyecto;
+  const { nombre, descripcion } = proyecto;
 
-  
+
   const submitForm = async (e) => {
-  
+
     e.preventDefault()
     await editarProyecto(
       props.idProyecto,
@@ -35,61 +41,61 @@ const Editar = (props)=> {
       props.fechaFin,
       props.alumnos
     )
-     
-    
-    
-    
+
+
+
+
   }
-    
-  
-    
-    
-    
-   
 
 
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton >
-        {/* <Modal.Title id="contained-modal-title-vcenter">
+    <Fragment>
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton >
+          {/* <Modal.Title id="contained-modal-title-vcenter">
         </Modal.Title> */}
-      </Modal.Header>
-      <Modal.Body>
+        </Modal.Header>
+        <Modal.Body>
 
-        <InputGroup size="sm" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-sm">Nombre del proyecto:</InputGroup.Text>
-          <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-            name="nombre"
-            onChange={handleChange}
-            value={nombre}
-            defaultValue={nombre} />
-        </InputGroup>
+          <InputGroup size="sm" className="mb-3">
+            <InputGroup.Text id="inputGroup-sizing-sm">Nombre del proyecto:</InputGroup.Text>
+            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+              name="nombre"
+              onChange={handleChange}
+              value={nombre}
+              defaultValue={nombre} />
+          </InputGroup>
 
-        <InputGroup size="sm" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-sm">Descripción:</InputGroup.Text>
-          <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-            name="descripcion"
-            onChange={handleChange}
-            value={descripcion}
-            defaultValue={descripcion} />
-        </InputGroup>
+          <InputGroup size="sm" className="mb-3">
+            <InputGroup.Text id="inputGroup-sizing-sm">Descripción:</InputGroup.Text>
+            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+              name="descripcion"
+              onChange={handleChange}
+              value={descripcion}
+              defaultValue={descripcion} />
+          </InputGroup>
 
-      </Modal.Body>
-      <Modal.Footer style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button variant="primary" onClick={(e)=>[submitForm(e),props.onHide(),
+        </Modal.Body>
+        <Modal.Footer style={{ display: 'flex', justifyContent: 'center' }}>
+          <Button variant="primary" onClick={(e) => [submitForm(e), props.onHide(),
           props.setCallBack(true),
           props.setCallBack(props.callBack === true ? false : true)]}> Guardar</Button>
-      </Modal.Footer>
-    </Modal>
+        </Modal.Footer>
+      </Modal>
+
+    </Fragment>
   );
 }
 
-function MyVerticallyCenteredModal(props) {
+
+
+function ModalMostrarProyecto(props) {
+
   return (
     <Modal
       {...props}
@@ -97,6 +103,7 @@ function MyVerticallyCenteredModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
+
       <Modal.Header closeButton >
         {/* <Modal.Title id="contained-modal-title-vcenter">
         </Modal.Title> */}
@@ -118,7 +125,7 @@ function MyVerticallyCenteredModal(props) {
           }} >Hitos</Link></Button>
 
         <Button variant="secondary" onClick={props.edit}>Editar proyecto</Button>
-        <Button variant="danger" onClick={props.onHide}>Eliminar proyecto</Button>
+        <Button variant="danger" onClick={props.eliminar}>Eliminar proyecto</Button>
       </Modal.Footer>
     </Modal>
   );
@@ -127,22 +134,24 @@ function MyVerticallyCenteredModal(props) {
 const MostrarProyectos = (props) => {
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShowEditar, setModalShowEditar] = React.useState(false);
+  const [modalShowEliminar, setModalShowEliminar] = useState(false);
   const edit = () => (setModalShowEditar(true), setModalShow(false))
+  const eliminar = () => (setModalShow(false), setModalShowEliminar(true))
 
 
 
 
   return (
-    <>
+    <Fragment>
       {/* BUSCAR COMO PASAR PROYECTO */}
 
-
+    {console.log(props.proyecto)}
       <Button variant="light" onClick={() => setModalShow(true)}>
         +info
       </Button>
 
 
-      <MyVerticallyCenteredModal
+      <ModalMostrarProyecto
         materia={props.proyecto.materia.nombre}
         descripcion={props.proyecto.proyecto.descripcion}
         alumnos={props.proyecto.alumnos}
@@ -151,6 +160,7 @@ const MostrarProyectos = (props) => {
         show={modalShow}
         edit={edit}
         onHide={() => setModalShow(false)}
+        eliminar={eliminar}
       />
       <Editar
         nombreProyecto={props.proyecto.proyecto.nombre}
@@ -165,8 +175,18 @@ const MostrarProyectos = (props) => {
         setCallBack={props.setCallBack}
         onHide={() => setModalShowEditar(false)}
         callBack={props.callBack}
+        
       />
-    </>
+
+      <ModalEstaSeguro
+        onHide={() => setModalShowEliminar(false)}
+        show={modalShowEliminar}
+        setCallBack={props.setCallBack}
+        nombreProyecto={props.proyecto.proyecto.nombre}
+        idProyecto={props.proyecto.proyecto.id} />
+          
+
+    </Fragment>
   );
 }
 

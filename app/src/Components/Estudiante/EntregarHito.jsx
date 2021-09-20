@@ -15,12 +15,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UploadButtons() {
+export default function UploadButtons( props) {
   const classes = useStyles();
   const guardarDocumento = async()=>{
    await subirDocumento(
-      2,
-      "Mejora",
+      props.id,
+      props.entrega,
       localStorage.getItem("baseUrl")
       
       )
