@@ -1,17 +1,6 @@
 import axios from 'axios';
 import config from './Config/config.json'
 
-
-const nuevoCliente = () => {
-    return axios.create({
-        baseURL: config.baseURL,
-        timeout: config.timeout,
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-    })
-}
 const newSecureClient = () => {
     return axios.create({
         baseURL: config.baseURL,
@@ -32,8 +21,8 @@ export const traerProyectos = async () => {
             return response.data.data
         }
     }
-    catch (error) {
-        console.error(error);
+    catch (e) {
+        alert(e.response.data.message)
     }
 }
 
@@ -45,16 +34,16 @@ export const insertarProyecto =
                 nombre, descripcion, idMateria, idTutor, fechaInicio, alumnos
             })
             if (response.status === 200) {
-                alert('Nuevo proyecto creado satisfactoriamente')
+                alert(`El proyecto ${nombre} fue creado con éxito`)
                 return response.data.data;
             }
         }
-        catch (error) {
-            console.error(error);
+        catch (e) {
+            alert(e.response.data.message)
         }
     }
 
-export const eliminarProyecto = async (id,nombre) => {
+export const eliminarProyecto = async (id, nombre) => {
     try {
         const cliente = newSecureClient();
         const response = await cliente.delete(`/proyectos/${id}`)
@@ -62,11 +51,8 @@ export const eliminarProyecto = async (id,nombre) => {
             alert(`Se ha eliminado el proyecto ${nombre}`)
             return;
         }
-
     }
-    catch (e) 
-    {
-        console.error(e.response.data.message);
+    catch (e) {
         alert(e.response.data.message)
     }
 };
@@ -78,12 +64,11 @@ export const editarProyecto = async (ID, nombre, descripcion, idMateria, idTutor
             nombre, descripcion, idMateria, idTutor, fechaInicio, fechaFin, alumnos
         })
         if (response.status === 200) {
-            console.log(response.data);
             return response.data.data;
         }
     }
-    catch (error) {
-        console.error(error);
+    catch (e) {
+        alert(e.response.data.message)
     }
 };
 
@@ -95,11 +80,9 @@ export const buscarProyecto = async (id) => {
             return response.data;
         }
     }
-    catch (error) {
-        console.error(error);
+    catch (e) {
+        alert(e.response.data.message)
     }
-
-
 };
 
 export const traerProyectosPorTutor = async (id) => {
@@ -110,9 +93,7 @@ export const traerProyectosPorTutor = async (id) => {
             return response.data.proyects;
         }
     }
-    catch (error) {
-        console.error(error);
+    catch (e) {
+        alert(e.response.data.message)
     }
-
-
 };

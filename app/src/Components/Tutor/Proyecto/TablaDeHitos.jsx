@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import { traerHitosPorProyecto } from '../../../Servicios/Hito'
 import { entregablesPorHito } from '../../../Servicios/Entregables'
 import { useEffect, useState } from 'react';
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+//import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 const TablaDeHitos = (props) => {
   const [hitosDeProyecto, setHitosDeProyecto] = useState([])
@@ -69,7 +69,7 @@ const TablaDeHitos = (props) => {
                 
                 </TableCell>
                 <TableCell >
-                  <PictureAsPdfIcon />
+                  {/*<PictureAsPdfIcon />*/}
                 </TableCell>
               </TableRow>
             ))}

@@ -10,7 +10,12 @@ const Estudiante= ()=> {
   const [hitos, setHitos]=useState()
   
     useEffect(async () => {
-        try
+        async function respuesta() {
+            const res = await  traerProyectoPorEstudiante(localStorage.getItem("id"))
+            await buscarProyecto(res.proyects[0].id).then(res => setProyecto(res))
+            await traerHitosPorProyecto(res.proyects[0].id).then(res => setHitos(res))
+        }
+        /*try
         {
             const res = await  traerProyectoPorEstudiante(localStorage.getItem("id"))
             await buscarProyecto(res.proyects[0].id).then(res => setProyecto(res))
@@ -19,12 +24,8 @@ const Estudiante= ()=> {
         catch(error)
         {
             console.log(error)
-        }
-    
-   
-    
-
-
+        }*/
+        respuesta()
     }, [])
     return (
         <Fragment>

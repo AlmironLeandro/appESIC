@@ -14,14 +14,14 @@ const newSecureClient = () => {
     });
 }
 export const traerProyectoPorEstudiante = async (idEstudiante) => {
-    const cliente = newSecureClient();
-    return await cliente.get(`/proyectos/ListByEstudiante/${idEstudiante}`)
-        .then(response => {
-            const proyectoXEst = response.data
-            return proyectoXEst
-        })
-        .catch(error => {
-            console.log(error)
+    try{
+        const cliente = newSecureClient();
+        const response = await cliente.get(`/proyectos/ListByEstudiante/${idEstudiante}`)
+        if (response.status === 200) {
+            return response.data.data
         }
-        )
+    }
+    catch (e) {
+        alert(e.response.data.message)
+    }    
 }

@@ -34,8 +34,8 @@ export const serviceLogin = async (dni, pass) => {
             return response.data.data;
         }
     }
-    catch (error) {
-        console.error(error);
+    catch (e) {
+        alert(e.response.data.message)
     }
 }
 
@@ -47,8 +47,8 @@ export const traerUsuarios = async () => {
             return response.data.data
         }
     }
-    catch (error) {
-        console.error(error);
+    catch (e) {
+        alert(e.response.data.message)
     }
 }
 
@@ -60,13 +60,13 @@ export const insertarUsuario = async (nombre, apellido, dni, email, pass, idRol,
             nombre, apellido, dni, email, pass, idRol, idCarrera
         })
         if (response.status === 200) {
-            alert('El usuario fue creado satisfactoriamente')
+            alert(`El usuario ${apellido} fue creado con éxito`)
             return response.data.data;
         }
     }
-    catch (error) {
-        console.error(error);
-    }
+        catch (e) {
+            alert(e.response.data.message)
+        }
 };
 
 export const eliminarUsuario = async (id) => {
@@ -76,11 +76,11 @@ export const eliminarUsuario = async (id) => {
         })
 
         if (response.status === 200) {
+            alert("El usuario fue eliminado con éxito")
             return;
         }
     }
     catch (e) {
-        console.error(e.response.data.message);
         alert(e.response.data.message)
     }
 };
@@ -95,8 +95,8 @@ export const editarUsuario = async (ID, nombre, apellido, dni, email, idRol, idC
             return response.data.data
         }
     }
-    catch (error) {
-        console.error(error);
+    catch (e) {
+        alert(e.response.data.message)
     }
 }
 
@@ -108,8 +108,8 @@ export const buscarUsuario = async (id) => {
             return response.data;
         }
     }
-    catch (error) {
-        console.error(error);
+    catch (e) {
+        alert(e.response.data.message)
     }
 
 };

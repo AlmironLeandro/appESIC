@@ -4,9 +4,8 @@ import { buscarUsuario } from '../Servicios/UsuariosServicio'
 const EditarPerfil = ()=> {
     
     const [usuario, setUsuario] =  useState(null);
-    
-    useEffect(async () => {
-        const user = await buscarUsuario(localStorage.getItem('id'))
+    useEffect( () => {
+        const user =  buscarUsuario(localStorage.getItem('id'))
         setUsuario(user)
     }, [])
 

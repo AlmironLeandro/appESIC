@@ -3,7 +3,7 @@ import HeaderUsuario from '../HeaderUsuario'
 import VolverMenu from './VolverMenuTutor';
 import FormularioEstudiante from './FormularioEstudiante';
 import TablaEstudiantes from './TablaEstudiantes';
-import { traerUsuarios,buscarUsuario, eliminarUsuario } from '../../Servicios/UsuariosServicio'
+import { traerUsuarios } from '../../Servicios/UsuariosServicio'
 import EditarEstudiante from './EditarEstudiante';
 import { editarUsuario } from '../../function/editarUsuario';
 import EliminarUsuario from './EliminarUsuario';
@@ -20,16 +20,12 @@ const CargarEstudiante = () => {
     const traerUsuario = async (idestudiante) => {
         const estudiante = await editarUsuario(idestudiante)
         setEstudiante(estudiante)
-       
     }
-
 
     const eliminaUsuario = async (id) => {
         const res = await editarUsuario(id)
         setAlumnoAEliminar(res)
     }
-
-
 
     useEffect(() => {
         traerUsuarios().then(res => {
