@@ -20,7 +20,7 @@ export default function UploadButtons( props) {
   const guardarDocumento = async()=>{
    await subirDocumento(
       props.id,
-      props.entrega,
+      "Entregado",
       localStorage.getItem("baseUrl")
       
       )

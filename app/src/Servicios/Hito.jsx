@@ -33,7 +33,6 @@ export const traerHitosPorProyecto = async (proyectoId) => {
     return await cliente.get(`/hitos/ListByProyecto/${proyectoId}`)
         .then(response => {
             const hitoTodos = response.data.hitos
-            console.log(hitoTodos)
             return hitoTodos
         })
         .catch(error => {

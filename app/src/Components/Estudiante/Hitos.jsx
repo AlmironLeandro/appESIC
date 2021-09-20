@@ -52,7 +52,7 @@ export default function CustomizedTimeline({ hitos }) {
 
             </Typography>
             <Typography>Descripción: {hitos[0].descripcion}</Typography>
-            <Typography><EntregarHito id={hitos[0].id} entrega={hitos[0].tipoHito.nombre}
+            <Typography><EntregarHito id={hitos[0].id} 
               >Entregar</EntregarHito></Typography>
           </Paper>
         </TimelineContent>
@@ -83,7 +83,7 @@ export default function CustomizedTimeline({ hitos }) {
               </Typography>
 
               <Typography>Descripción: {hitos[1].descripcion}</Typography>
-              <Typography><EntregarHito id={hitos[1].id} entrega={hitos[1].tipoHito.nombre}
+              <Typography><EntregarHito id={hitos[1].id} 
               >Entregar</EntregarHito></Typography>
             </Paper>
 
@@ -113,7 +113,7 @@ export default function CustomizedTimeline({ hitos }) {
 
               </Typography>
               <Typography>Descripción: {hitos[2].descripcion}</Typography>
-              <Typography><EntregarHito id={hitos[2].id} entrega={hitos[2].tipoHito.nombre}
+              <Typography><EntregarHito id={hitos[2].id} 
               >Entregar</EntregarHito></Typography>
             </Paper>
           </TimelineContent>
@@ -142,7 +142,7 @@ export default function CustomizedTimeline({ hitos }) {
               </Typography>
               <Typography>Descripción: {hitos[3].descripcion}</Typography>
               <Typography>
-                <EntregarHito id={hitos[3].id} entrega={hitos[3].tipoHito.nombre}
+                <EntregarHito id={hitos[3].id} 
               >Entregar</EntregarHito></Typography>
             </Paper>
           </TimelineContent>
