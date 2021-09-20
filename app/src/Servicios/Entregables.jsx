@@ -90,21 +90,22 @@ export const subirDocumento = async (idHito, entrega, documento) => {
         }).catch((e) => { console.log(e); throw new Error('No se pudo agregar el hito'); });
 };
 
-export const traerDoc = async (idH) => {
-    const cliente = newSecureClient();
+export const entregablesPorHito = async (id) => {
+    try {
+        const cliente = newSecureClient();
+        const response = await cliente.get(`/entregablesHito/ListByHito/${id}`)
+        if (response.status === 200) {
+            
+            return response.data.data[0];
+        }
+    }
+    catch (e) {
+        console.error(e.response.data.message);
+        alert(e.response.data.message)
+    }
 
-    return await cliente.get(`/entregableshito`)
-        .then(response => {
-            if (response.status === 200) {
-                console.log(response.data.data.filter((x)=> x.idHito === 2))
-                return response.data.data;
-            } else {
-                console.log('error');
-                throw new Error('No se pudo agregar el hito');
 
-            }
-        }).catch((e) => { console.log(e); throw new Error('No se pudo agregar el hito'); });
-};
+}
 
 //Endpoi
 
