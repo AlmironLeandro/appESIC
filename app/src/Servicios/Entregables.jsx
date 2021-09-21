@@ -74,7 +74,20 @@ export const entregablesPorHito = async (id) => {
         const response = await cliente.get(`/entregablesHito/ListByHito/${id}`)
         if (response.status === 200) {
 
-            return response.data.data[0];
+            return response.data.data;
+        }
+    }
+    catch (e) {
+        alert(e.response.data.message)
+    }
+}
+
+export const ultimoEntregable = async (id) => {
+    try {
+        const cliente = newSecureClient();
+        const response = await cliente.get(`/entregablesHito/ListUltimoByHito/${id}`)
+        if (response.status === 200) {
+            return response.data.data;
         }
     }
     catch (e) {

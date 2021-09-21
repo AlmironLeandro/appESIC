@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { traerHitosPorProyecto } from '../../../Servicios/Hito'
-import { entregablesPorHito } from '../../../Servicios/Entregables'
+import { entregablesPorHito, ultimoEntregable } from '../../../Servicios/Entregables'
 import { useEffect, useState } from 'react';
 import { pasarFecha } from '../../../function/pasarFecha';
 //import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
@@ -23,8 +23,9 @@ const TablaDeHitos = (props) => {
     try {
       const response = await traerHitosPorProyecto(props.id)
       setHitosDeProyecto(response)
+      console.log(`respuestas ${response[0]}`)
       response.map((r) =>
-        entregablesPorHito(r.id).then(res => setDocumento([...documento, res]))
+        ultimoEntregable(r.id).then(res => setDocumento([...documento, res]))
       )
 
     }
@@ -69,6 +70,8 @@ const TablaDeHitos = (props) => {
                 
                 </TableCell>
                 <TableCell >
+                  {console.log(documento)}
+                  {/*ultimoEntregable(hito.id)?'':<p>hay hito</p>*/}
                   {/*<PictureAsPdfIcon />*/}
                 </TableCell>
               </TableRow>
