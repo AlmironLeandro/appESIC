@@ -13,6 +13,7 @@ const newSecureClient = () => {
         }
     });
 }
+/*
 export const traerProyectoPorEstudiante = async (idEstudiante) => {
     try{
         const cliente = newSecureClient();
@@ -24,4 +25,17 @@ export const traerProyectoPorEstudiante = async (idEstudiante) => {
     catch (e) {
         alert(e.response.data.message)
     }    
+}*/
+export const traerProyectoPorEstudiante = async (idEstudiante) => {
+    const cliente = newSecureClient();
+    return await cliente.get(`/proyectos/ListByEstudiante/${idEstudiante}`)
+        .then(response => {
+            const proyectoXEst = response.data
+            return proyectoXEst
+        })
+        .catch(error => {
+            console.log(error)
+
+        }
+        )
 }

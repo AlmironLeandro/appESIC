@@ -17,6 +17,7 @@ import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import BuildIcon from '@material-ui/icons/Build';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import { pasarFecha } from '../../function/pasarFecha';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -27,8 +28,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function CustomizedTimeline({ hitos }) {
   const classes = useStyles();
+
 
   return (
     <Timeline align="alternate">
@@ -36,7 +39,7 @@ export default function CustomizedTimeline({ hitos }) {
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            {hitos[0].fechaEntrega}
+            {pasarFecha(hitos[0].fechaEntrega)}
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
@@ -64,7 +67,7 @@ export default function CustomizedTimeline({ hitos }) {
         <TimelineItem>
           <TimelineOppositeContent>
             <Typography variant="body2" color="textSecondary">
-              {hitos[1].fechaEntrega}
+              {pasarFecha(hitos[1].fechaEntrega)}  
             </Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
@@ -96,7 +99,7 @@ export default function CustomizedTimeline({ hitos }) {
         <TimelineItem>
           <TimelineOppositeContent>
             <Typography variant="body2" color="textSecondary">
-              {hitos[2].fechaEntrega}
+            {pasarFecha(hitos[2].fechaEntrega)}
             </Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
@@ -125,7 +128,7 @@ export default function CustomizedTimeline({ hitos }) {
         <TimelineItem>
           <TimelineOppositeContent>
             <Typography variant="body2" color="textSecondary">
-              {hitos[3].fechaEntrega}
+            {pasarFecha(hitos[1].fechaEntrega)}
             </Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>

@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import { traerHitosPorProyecto } from '../../../Servicios/Hito'
 import { entregablesPorHito } from '../../../Servicios/Entregables'
 import { useEffect, useState } from 'react';
+import { pasarFecha } from '../../../function/pasarFecha';
 //import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 const TablaDeHitos = (props) => {
@@ -63,8 +64,7 @@ const TablaDeHitos = (props) => {
                   {hito.tipoHito.nombre}
                 </TableCell>
                 <TableCell >{hito.descripcion} </TableCell>
-                <TableCell >{`${new Date(hito.fechaEntrega).getDate()} / ${new Date(hito.fechaEntrega).getDay()} / ${new Date(hito.fechaEntrega).getFullYear()}`
-                }</TableCell>
+                <TableCell >{pasarFecha(hito.fechaEntrega)}</TableCell>
                 <TableCell>
                 
                 </TableCell>

@@ -27,7 +27,7 @@ export const traerHitos = async () => {
     }
 }
 
-
+/*
 export const traerHitosPorProyecto = async (proyectoId) => {
     try {
         const cliente = newSecureClient();
@@ -39,6 +39,20 @@ export const traerHitosPorProyecto = async (proyectoId) => {
     catch (e) {
         alert(e.response.data.message)
     }
+}*/
+export const traerHitosPorProyecto = async (proyectoId) => {
+    const cliente = newSecureClient();
+    return await cliente.get(`/hitos/ListByProyecto/${proyectoId}`)
+        .then(response => {
+            const hitoTodos = response.data.hitos
+            console.log(hitoTodos)
+            return hitoTodos
+        })
+        .catch(error => {
+            console.log(error)
+
+        }
+        )
 }
 
 export const traerHito = async (id) => {
