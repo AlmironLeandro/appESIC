@@ -19,7 +19,7 @@ const CrearHito = (props) => {
 
     const handleShow = () => {
         setShow(true);
-
+       props.setCallBack(false)
     }
 
     //desestructuro hito
@@ -47,7 +47,7 @@ const CrearHito = (props) => {
     }
 
     //Función para enviar al back el hito
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
         e.preventDefault();
 
         // Validar el formulario
@@ -64,7 +64,7 @@ const CrearHito = (props) => {
 
 
         //Lamada a la función post con los atributos
-        insertarHito(
+      await  insertarHito(
 
             props.proyectoId,
             hito.idTipo,
@@ -83,8 +83,9 @@ const CrearHito = (props) => {
 
 
         //Función para cerrar el modal
-
+        props.setCallBack(true)
         setShow(false)
+
 
     };
 

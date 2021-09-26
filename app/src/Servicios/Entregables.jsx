@@ -87,7 +87,7 @@ export const ultimoEntregable = async (id) => {
         const cliente = newSecureClient();
         const response = await cliente.get(`/entregablesHito/ListUltimoByHito/${id}`)
         if (response.status === 200) {
-            return response.data.data;
+            return response.data;
         }
     }
     catch (e) {

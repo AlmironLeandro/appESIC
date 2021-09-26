@@ -6,7 +6,7 @@ import { useState } from "react";
 const PasarABase64 = () => {
   const [file, setFile] = useState(null);
   const [base64URL, setBase64URL] = useState("");
-  
+
 
   const getBase64 = (file) => {
     return new Promise((resolve) => {
@@ -20,12 +20,12 @@ const PasarABase64 = () => {
 
       // on reader load something...
       reader.onload = () => {
-        // Make a fileInfo Object
+      // Make a fileInfo Object
 
         baseURL = reader.result;
 
         resolve(baseURL);
-        localStorage.setItem("baseUrl", baseURL )
+        localStorage.setItem("baseUrl", baseURL)
       };
 
     });
@@ -38,7 +38,7 @@ const PasarABase64 = () => {
     getBase64(file)
       .then((result) => {
         file["base64"] = result;
-  
+
         this.setState({
           base64URL: result,
           file
@@ -52,8 +52,8 @@ const PasarABase64 = () => {
   };
 
   return (
-   <Fragment>
-         <input type="file" name="file" onChange={handleFileInputChange} />
+    <Fragment>
+      <input type="file" name="file" onChange={handleFileInputChange} />
     </Fragment>
   );
 };

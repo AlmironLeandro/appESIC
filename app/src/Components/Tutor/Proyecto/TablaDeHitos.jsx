@@ -10,29 +10,36 @@ import Paper from '@material-ui/core/Paper';
 import { traerHitosPorProyecto } from '../../../Servicios/Hito'
 import { entregablesPorHito, ultimoEntregable } from '../../../Servicios/Entregables'
 import { useEffect, useState } from 'react';
+import pasarAPdf from '../../../function/pasarAPdf'
 import { pasarFecha } from '../../../function/pasarFecha';
-//import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+
+
 
 const TablaDeHitos = (props) => {
+  // const response = await traerHitosPorProyecto(props.id)
+  // setHitosDeProyecto(response)
+  // response.forEach((Hito) =>
+  //   ultimoEntregable(Hito.id).then(
+  //     res => setDocumento((old) => [...old, res.data]))
+  // )
   const [hitosDeProyecto, setHitosDeProyecto] = useState([])
   const [documento, setDocumento] = useState([])
-
-
-  useEffect(async () => {
-
-    try {
-      const response = await traerHitosPorProyecto(props.id)
-      setHitosDeProyecto(response)
-      console.log(`respuestas ${response[0]}`)
-      response.map((r) =>
-        ultimoEntregable(r.id).then(res => setDocumento([...documento, res]))
-      )
+  useEffect(() => {
+    const traerHitos = async () => {
+      try {
+        const response = await traerHitosPorProyecto(props.id)
+        setHitosDeProyecto(response)
+        const respuestasUltimoEntregable = await Promise.all(response.map(hito => ultimoEntregable(hito.id)));
+        setDocumento(respuestasUltimoEntregable.map(res => res.data));
+        console.log(documento)
+      }
+      catch (e) {
+        console.error(e)
+      }
 
     }
-    catch (e) {
-      console.error(e)
-    }
-
+    traerHitos()
   }, [])
 
   const useStyles = makeStyles({
@@ -42,10 +49,14 @@ const TablaDeHitos = (props) => {
   });
 
   const classes = useStyles();
+  
 
   return (
     <Fragment>
+
       <TableContainer component={Paper}>
+        
+       
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -56,11 +67,12 @@ const TablaDeHitos = (props) => {
               <TableCell >Pdf</TableCell>
             </TableRow>
           </TableHead>
-     
+          {documento === undefined ? '' : 
           <TableBody>
-         
-            {hitosDeProyecto.map((hito) => (
-              <TableRow >
+            
+            {hitosDeProyecto.map((hito,i) => (
+
+              <TableRow key={i}>
                 <TableCell >
                   {hito.tipoHito.nombre}
                 </TableCell>
@@ -70,13 +82,17 @@ const TablaDeHitos = (props) => {
                 
                 </TableCell>
                 <TableCell >
-                  {console.log(documento)}
-                  {/*ultimoEntregable(hito.id)?'':<p>hay hito</p>*/}
-                  {/*<PictureAsPdfIcon />*/}
+                {/* */}
+                {documento[i] === null || documento[i] === undefined   ? '':
+                <PictureAsPdfIcon onClick={()=>pasarAPdf(documento[i].documento)} />  }
+                  
+
                 </TableCell>
               </TableRow>
             ))}
+            
           </TableBody>
+          }
         </Table>
       </TableContainer>
     </Fragment>
