@@ -1,10 +1,10 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import { Container, Modal, Button, Col, Row, Form, InputGroup, FormControl } from 'react-bootstrap'
 import { BsPlusCircle } from 'react-icons/bs'
 import { insertarHito } from '../../../Servicios/Hito'
 
 
-const CrearHito = (props) => {
+const CrearHito = ({ setCallBack, tiposHito, id }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const [error, setError] = useState(false);
@@ -19,11 +19,11 @@ const CrearHito = (props) => {
 
     const handleShow = () => {
         setShow(true);
-       props.setCallBack(false)
+        setCallBack(false)
     }
 
     //desestructuro hito
-    const {  idTipo, descripcion, fechaEntrega } = hito;
+    const { idTipo, descripcion, fechaEntrega } = hito;
 
     //función para setear el valor a cada atributo de hito
     const handleChange = (e) => {
@@ -64,9 +64,9 @@ const CrearHito = (props) => {
 
 
         //Lamada a la función post con los atributos
-      await  insertarHito(
+        await insertarHito(
 
-            props.proyectoId,
+            id,
             hito.idTipo,
             hito.descripcion,
             hito.fechaEntrega,
@@ -83,13 +83,13 @@ const CrearHito = (props) => {
 
 
         //Función para cerrar el modal
-        props.setCallBack(true)
+        setCallBack(true)
         setShow(false)
 
 
     };
 
-  
+
 
     return (
         <Container>
@@ -117,7 +117,7 @@ const CrearHito = (props) => {
                             <InputGroup size="sm" className="mb-3">
                                 <select name="idTipo" value={idTipo} onChange={handleChange}>
                                     <option >Seleccionar hito</option>
-                                    {props.tiposHito.map((tiposHito) => <option key={tiposHito.id} value={tiposHito.id}>   {tiposHito.nombre}</option>)}
+                                    {tiposHito.map((tiposHito) => <option key={tiposHito.id} value={tiposHito.id}>   {tiposHito.nombre}</option>)}
                                 </select>
                             </InputGroup>
 
@@ -140,14 +140,14 @@ const CrearHito = (props) => {
                                 <InputGroup.Prepend>
                                     <InputGroup.Text id="inputGroup-sizing-sm">Fecha de entrega:</InputGroup.Text>
                                 </InputGroup.Prepend>
-                                <FormControl 
+                                <FormControl
                                     type="date"
                                     name="fechaEntrega"
                                     onChange={handleChange}
                                     value={fechaEntrega}
                                 />
                             </InputGroup>
-                            
+
 
                             {/* <InputGroup.Text id="inputGroup-sizing-sm">Fecha de entrega:</InputGroup.Text> */}
 

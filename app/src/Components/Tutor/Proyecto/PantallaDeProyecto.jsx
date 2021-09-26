@@ -12,12 +12,12 @@ const PantallaDeProyecto = () => {
 
     const { id } = useParams()
     const [tiposHito, setTiposHito] = useState([])
-
+    const [callBack,setCallBack]= useState(false)
     const [proyecto, setProyecto]=useState()
     useEffect(() => {
         traerTiposDeHito().then(res => setTiposHito(res))
         buscarProyecto(id).then(res => setProyecto(res))
-    }, [])
+    }, [callBack])
 
 
     return (
@@ -25,8 +25,9 @@ const PantallaDeProyecto = () => {
             <HeaderUsuario></HeaderUsuario>
             <h3>Bienvenido a { proyecto !== undefined   ?  proyecto.proyecto.nombre : ''} </h3>
             <VolverMenu />
-            <CrearHito tiposHito={tiposHito} proyectoId={id}></CrearHito>
-            <TablaDeHitos id={id} ></TablaDeHitos>
+            <CrearHito tiposHito={tiposHito} id={id} 
+            setCallBack={setCallBack}/>
+            <TablaDeHitos id={id} callBack={callBack} />
         </Fragment>
     )
 }

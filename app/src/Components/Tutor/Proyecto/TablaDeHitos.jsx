@@ -40,7 +40,7 @@ const TablaDeHitos = (props) => {
 
     }
     traerHitos()
-  }, [])
+  }, [props.callBack])
 
   const useStyles = makeStyles({
     table: {
