@@ -12,7 +12,10 @@ import { entregablesPorHito, ultimoEntregable } from '../../../Servicios/Entrega
 import { useEffect, useState } from 'react';
 import pasarAPdf from '../../../function/pasarAPdf'
 import { pasarFecha } from '../../../function/pasarFecha';
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import DescriptionIcon from '@material-ui/icons/Description';
+
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import { Checkbox } from '@material-ui/core';
 
 
 
@@ -63,8 +66,9 @@ const TablaDeHitos = (props) => {
               <TableCell >Nombre</TableCell>
               <TableCell >Descripción</TableCell>
               <TableCell >Fecha de entrega</TableCell>
-              <TableCell >Entregado</TableCell>
-              <TableCell >Pdf</TableCell>
+              <TableCell >Comentario</TableCell>
+              <TableCell >Archivo</TableCell>
+              <TableCell >Aprobado</TableCell>
             </TableRow>
           </TableHead>
           {documento === undefined ? '' : 
@@ -79,15 +83,16 @@ const TablaDeHitos = (props) => {
                 <TableCell >{hito.descripcion} </TableCell>
                 <TableCell >{pasarFecha(hito.fechaEntrega)}</TableCell>
                 <TableCell>
-                
+                <TextareaAutosize/>
                 </TableCell>
                 <TableCell >
                 {/* */}
                 {documento[i] === null || documento[i] === undefined   ? '':
-                <PictureAsPdfIcon onClick={()=>pasarAPdf(documento[i].documento)} />  }
+                <DescriptionIcon onClick={()=>pasarAPdf(documento[i].documento)} />  }
                   
 
                 </TableCell>
+                <TableCell ><Checkbox></Checkbox></TableCell>
               </TableRow>
             ))}
             
