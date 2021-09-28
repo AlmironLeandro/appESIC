@@ -1,5 +1,6 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import HeaderUsuario from '../HeaderUsuario'
+import {traerCarreras} from '../../Servicios/Carrera'
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -100,6 +101,7 @@ const InicioCoordinador = () => {
   const [carrera, setCarrera] = useState(false);
   const [materia, setMateria] = useState(false);
   const [tutor, setTutor] = useState(false);
+  const [carreras, setCarreras] = useState([])
 
   const agregarCarrera = () => setCarrera(true)
   
@@ -107,6 +109,9 @@ const InicioCoordinador = () => {
  
   const agregarTutor = () => setTutor(true)
 
+  useEffect(() => {
+    traerCarreras().then(res => setCarreras(res) )
+}, [])
   
 
   
@@ -178,11 +183,17 @@ const InicioCoordinador = () => {
           <CrearCarrera avisoCalback={setCarrera} /> : ''
         }
         {materia ?
-          <CrearMateria avisoCalback={setMateria} /> : ''
+          <CrearMateria 
+          avisoCalback={setMateria}
+          carreras = {carreras}
+          /> : ''
         }
         {console.log(tutor)}
         {tutor ?
-        <FormularioTutor avisoCalback={setTutor}/> : ''
+        <FormularioTutor 
+        avisoCalback={setTutor}
+        carreras = {carreras}
+        /> : ''
 
         }
       </Fragment>)

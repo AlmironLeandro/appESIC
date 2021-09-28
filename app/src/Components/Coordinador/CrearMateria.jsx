@@ -5,11 +5,16 @@ const CrearMateria = (props) => {
     const [show, setShow] = useState(true);
     const [materia,setMateria]=useState({nombre:""})
     const handleClose = () => setShow(false);
+    const {nombre, idCarrera}=materia
+
     const submitForm = async () => {
       await  insertarMateria(
             
            
-            materia.nombre, 
+            nombre,
+            idCarrera 
+
+
             
           )
         
@@ -44,6 +49,12 @@ const CrearMateria = (props) => {
                 <Modal.Body>
 
 
+                <InputGroup size="sm" className="mb-3">
+                                <select  name="idCarrera"  value={idCarrera} onChange={handleChange}>
+                                <option >Seleccionar carrera</option>
+                                {props.carreras.map((carrera)=> <option key={carrera.id} value={carrera.id}>   {carrera.nombre}</option> )} 
+                                </select> 
+                            </InputGroup>
                     <InputGroup size="sm" className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroup-sizing-sm">Nombre/s:</InputGroup.Text>
@@ -53,7 +64,7 @@ const CrearMateria = (props) => {
                             placeholder="Nombre"
                             name="nombre"
                             onChange={handleChange}
-                            value={materia.nombre}
+                            value={nombre}
                         />
                     </InputGroup>
                     

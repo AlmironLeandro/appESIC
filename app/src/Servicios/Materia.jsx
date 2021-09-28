@@ -26,11 +26,11 @@ export const traerMaterias = async () => {
     }
 }
 
-export const insertarMateria = async (nombre) => {
+export const insertarMateria = async (nombre, idCarrera) => {
     try {
         const cliente = newSecureClient();
         const response = await cliente.post(`/materias`, {
-            nombre
+            nombre, idCarrera
         })
         if (response.status === 200) {
             alert("La materia fue creada con éxito")

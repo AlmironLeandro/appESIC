@@ -15,14 +15,10 @@ const FormularioTutor = (props) =>{
         dni:"",
         mail:"",  
     })
-    const [carreras, setCarreras] = useState([])
+   
 
     
     
-    //useEffect para traer las carreras y las guarda 
-    useEffect(() => {
-        traerCarreras().then(res => setCarreras(res) )
-    }, [])
     
     //desestructuro tutor
     const {nombre, apellido, dni, mail, idCarrera} = tutor;
@@ -108,13 +104,13 @@ const FormularioTutor = (props) =>{
                     <Modal.Body>
                     {error 
                     ? <p style={{color:"red"}}>Complete todos los campos</p>: <p></p>}
-                       {carreras === undefined  ? '' :
+                       {props.carreras === undefined  ? '' :
                         <Form  onSubmit={submitForm}>
                                
                             <InputGroup size="sm" className="mb-3">
                                 <select  name="idCarrera"  value={idCarrera} onChange={handleChange}>
                                 <option >Seleccionar carrera</option>
-                                {carreras.map((carrera)=> <option key={carrera.id} value={carrera.id}>   {carrera.nombre}</option> )} 
+                                {props.carreras.map((carrera)=> <option key={carrera.id} value={carrera.id}>   {carrera.nombre}</option> )} 
                                 </select> 
                             </InputGroup>
 
