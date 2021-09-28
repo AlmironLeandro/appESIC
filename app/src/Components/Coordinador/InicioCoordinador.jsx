@@ -1,4 +1,4 @@
-import React,{useState, Fragment} from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import HeaderUsuario from '../HeaderUsuario'
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -20,69 +20,69 @@ import CrearMateria from './CrearMateria'
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import SchoolIcon from '@material-ui/icons/School';
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
+import FormularioTutor from './FormularioTutor';
 
 
 
-const InicioCoordinador = ()=>
-  {
-const drawerWidth = 240;
+const InicioCoordinador = () => {
+  const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-}));
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+    },
+    appBar: {
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
+    appBarShift: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    hide: {
+      display: 'none',
+    },
+    drawer: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+    drawerPaper: {
+      width: drawerWidth,
+    },
+    drawerHeader: {
+      display: 'flex',
+      alignItems: 'center',
+      padding: theme.spacing(0, 1),
+      // necessary for content to be below app bar
+      ...theme.mixins.toolbar,
+      justifyContent: 'flex-end',
+    },
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing(3),
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      marginLeft: -drawerWidth,
+    },
+    contentShift: {
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginLeft: 0,
+    },
+  }));
 
 
   const classes = useStyles();
@@ -97,67 +97,71 @@ const useStyles = makeStyles((theme) => ({
     setOpen(false);
   };
 
- const [carrera, setCarrera] = useState(false);
- const [materia, setMateria] = useState(false);
+  const [carrera, setCarrera] = useState(false);
+  const [materia, setMateria] = useState(false);
+  const [tutor, setTutor] = useState(false);
 
- const agregarCarrera = ()=>{ setCarrera(true)
- }
- const agregarMateria = ()=>{ setMateria(true)
- }
+  const agregarCarrera = () => setCarrera(true)
+  
+  const agregarMateria = () => setMateria(true)
+ 
+  const agregarTutor = () => setTutor(true)
 
+  
 
+  
 
-      return(
-    <Fragment>
+    return (
+      <Fragment>
         <HeaderUsuario></HeaderUsuario>
         <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-       
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
+          <CssBaseline />
+          <AppBar
+            position="fixed"
+            className={clsx(classes.appBar, {
+              [classes.appBarShift]: open,
+            })}
+          >
+
+          </AppBar>
+          <Drawer
+            className={classes.drawer}
+            variant="persistent"
+            anchor="left"
+            open={open}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+          >
+            <div className={classes.drawerHeader}>
+              <IconButton onClick={handleDrawerClose}>
+                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+              </IconButton>
+            </div>
+            <Divider />
+
+            <List>
+
+              <ListItem button onClick={() => agregarCarrera()}>
+                <ListItemIcon><SchoolIcon /></ListItemIcon>
+                <ListItemText primary={"Crear carrera"} />
+              </ListItem>
+
+              <ListItem button onClick={() => agregarMateria()}>
+                <ListItemIcon> <ImportContactsIcon />  </ListItemIcon>
+                <ListItemText primary={"Crear materia"} />
+              </ListItem>
+
+              <ListItem button onClick={() => agregarTutor()}>
+                <ListItemIcon> <GroupAddIcon /> </ListItemIcon>
+                <ListItemText primary={"Cargar tutor"} />
+              </ListItem>
+
+            </List>
+          </Drawer>
+
         </div>
-        <Divider />
-      
-        <List>
-          
-            <ListItem button  onClick={()=> agregarCarrera()}>
-              <ListItemIcon><SchoolIcon/></ListItemIcon>
-              <ListItemText primary={"Crear carrera"} />
-            </ListItem>
-           
-            <ListItem button  onClick={()=> agregarMateria()}>
-              <ListItemIcon> <ImportContactsIcon/>  </ListItemIcon>
-              <ListItemText primary={"Crear materia"} />
-            </ListItem>
-          
-            <ListItem button  onClick={()=> alert("Cargar tutor")}>
-              <ListItemIcon> <GroupAddIcon /> </ListItemIcon>
-              <ListItemText primary={"Cargar tutor"} />
-            </ListItem>
-         
-        </List>
-      </Drawer>
-      
-    </div>
-    <Toolbar>
+        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -167,16 +171,21 @@ const useStyles = makeStyles((theme) => ({
           >
             <MenuIcon />
           </IconButton>
-          
+
         </Toolbar>
-        
-        {carrera?
-        <CrearCarrera avisoCalback={setCarrera}/>:''
+
+        {carrera ?
+          <CrearCarrera avisoCalback={setCarrera} /> : ''
         }
-        {materia?
-        <CrearMateria avisoCalback={setMateria}/>:''
+        {materia ?
+          <CrearMateria avisoCalback={setMateria} /> : ''
         }
-    </Fragment>)
-}
+        {console.log(tutor)}
+        {tutor ?
+        <FormularioTutor avisoCalback={setTutor}/> : ''
+
+        }
+      </Fragment>)
+  }
 
 export default InicioCoordinador;
