@@ -108,16 +108,20 @@ const InicioTutor = () => {
   const [proyectosPorId, setProyectosPorId] = useState([])
   const [callBack, setCallBack] = useState(false)
 
-  useEffect(async () => {
-    try {
-      setProyectosPorId([])
-      traerProyectoXTutor({ setProyectosPorId })
-      console.log(callBack)
-    }
-    catch (error) {
-      console.error(error)
-    }
+  useEffect( () => {
+    const traerProyectos = async () => {
 
+      try {
+        setProyectosPorId([])
+        traerProyectoXTutor({ setProyectosPorId })
+        console.log(callBack)
+      }
+      catch (error) {
+        console.error(error)
+      }
+    }
+    traerProyectos()
+      
   }, [callBack])
 
   return (

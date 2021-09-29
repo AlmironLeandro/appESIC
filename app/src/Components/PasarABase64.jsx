@@ -1,16 +1,15 @@
 import React from "react";
 import { Fragment } from "react";
-import { useState } from "react";
+
 
 
 const PasarABase64 = () => {
-  const [file, setFile] = useState(null);
-  const [base64URL, setBase64URL] = useState("");
+
 
 
   const getBase64 = (file) => {
     return new Promise((resolve) => {
-      let fileInfo;
+     // let fileInfo;
       let baseURL = "";
       // Make new FileReader
       let reader = new FileReader();
@@ -48,7 +47,6 @@ const PasarABase64 = () => {
         console.log(err);
       });
 
-    setFile(e.target.files[0]);
   };
 
   return (

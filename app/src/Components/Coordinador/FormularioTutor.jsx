@@ -1,6 +1,5 @@
-import React, {useState , useEffect} from 'react'
+import React, {useState } from 'react'
 import { Container, Modal, Button, Col, Row, Form, InputGroup, FormControl } from 'react-bootstrap'
-import {traerCarreras} from '../../Servicios/Carrera'
 import {insertarUsuario} from '../../Servicios/UsuariosServicio'
 
 

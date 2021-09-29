@@ -3,7 +3,7 @@ import { Form, Button, Col, Row } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
 import { login } from '../../function/pantallaLogin'
 import { serviceLogin } from '../../Servicios/UsuariosServicio'
-import { traerDoc } from '../../Servicios/Entregables'
+
 
 
 const Login = () => {

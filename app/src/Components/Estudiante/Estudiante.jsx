@@ -9,8 +9,8 @@ const Estudiante= ()=> {
   const [proyecto, setProyecto]=useState()
   const [hitos, setHitos]=useState()
   
-    useEffect(async () => {
-       
+    useEffect( () => {
+        const traerProyecto = async () => {
         try
         {
             const res = await  traerProyectoPorEstudiante(localStorage.getItem("id"))
@@ -21,6 +21,8 @@ const Estudiante= ()=> {
         {
             console.log(error)
         }
+    }
+    traerProyecto()
       
     }, [])
     return (

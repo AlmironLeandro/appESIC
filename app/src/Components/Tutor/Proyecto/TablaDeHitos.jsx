@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { traerHitosPorProyecto } from '../../../Servicios/Hito'
-import { entregablesPorHito, ultimoEntregable } from '../../../Servicios/Entregables'
+import { ultimoEntregable } from '../../../Servicios/Entregables'
 import { useEffect, useState } from 'react';
 import pasarAPdf from '../../../function/pasarAPdf'
 import { pasarFecha } from '../../../function/pasarFecha';
@@ -20,12 +20,7 @@ import { Checkbox } from '@material-ui/core';
 
 
 const TablaDeHitos = (props) => {
-  // const response = await traerHitosPorProyecto(props.id)
-  // setHitosDeProyecto(response)
-  // response.forEach((Hito) =>
-  //   ultimoEntregable(Hito.id).then(
-  //     res => setDocumento((old) => [...old, res.data]))
-  // )
+ 
   const [hitosDeProyecto, setHitosDeProyecto] = useState([])
   const [documento, setDocumento] = useState([])
   useEffect(() => {
