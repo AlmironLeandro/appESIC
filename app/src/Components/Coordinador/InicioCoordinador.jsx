@@ -1,6 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import HeaderUsuario from '../HeaderUsuario'
 import {traerCarreras} from '../../Servicios/Carrera'
+import {buscarUsuarioPorId} from '../../Servicios/UsuariosServicio'
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -22,6 +23,7 @@ import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import SchoolIcon from '@material-ui/icons/School';
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import FormularioTutor from './FormularioTutor';
+import TablaTutor from './TablaTutor';
 
 
 
@@ -102,15 +104,41 @@ const InicioCoordinador = () => {
   const [materia, setMateria] = useState(false);
   const [tutor, setTutor] = useState(false);
   const [carreras, setCarreras] = useState([])
-
-  const agregarCarrera = () => setCarrera(true)
+  const [tutores, setTutores] = useState([])
   
-  const agregarMateria = () => setMateria(true)
- 
-  const agregarTutor = () => setTutor(true)
 
-  useEffect(() => {
-    traerCarreras().then(res => setCarreras(res) )
+  const agregarCarrera = () => {
+    handleDrawerClose()
+    setCarrera(true)}
+  
+  const agregarMateria = () => {
+    handleDrawerClose()
+    setMateria(true)
+  }
+ 
+  const agregarTutor = () => {
+    handleDrawerClose()
+    setTutor(true)
+  }
+
+
+    useEffect(() => {
+      const traerTutorYCarreras= async () => {
+          try {
+            const traerTutores = await buscarUsuarioPorId(2)
+            setTutores(traerTutores)
+            const getCarreras = await traerCarreras()
+            setCarreras(getCarreras)
+            //console.log(traerTutores)
+          }
+          catch (e) {
+            console.error(e)
+          }
+         
+      }
+      traerTutorYCarreras()
+
+    
 }, [])
   
 
@@ -178,24 +206,32 @@ const InicioCoordinador = () => {
           </IconButton>
 
         </Toolbar>
-
+           
         {carrera ?
           <CrearCarrera avisoCalback={setCarrera} /> : ''
         }
+
         {materia ?
           <CrearMateria 
           avisoCalback={setMateria}
           carreras = {carreras}
           /> : ''
         }
-        {console.log(tutor)}
+
         {tutor ?
         <FormularioTutor 
         avisoCalback={setTutor}
         carreras = {carreras}
         /> : ''
-
         }
+
+        {!tutores ?  '':
+        
+        <TablaTutor
+        tutores={tutores}
+        />
+        }
+
       </Fragment>)
   }
 

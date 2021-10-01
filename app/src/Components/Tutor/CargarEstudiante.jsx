@@ -3,7 +3,7 @@ import HeaderUsuario from '../HeaderUsuario'
 import VolverMenu from './VolverMenuTutor';
 import FormularioEstudiante from './FormularioEstudiante';
 import TablaEstudiantes from './TablaEstudiantes';
-import { traerUsuarios } from '../../Servicios/UsuariosServicio'
+import { buscarUsuarioPorId } from '../../Servicios/UsuariosServicio'
 import EditarEstudiante from './EditarEstudiante';
 import { editarUsuario } from '../../function/editarUsuario';
 import EliminarUsuario from './EliminarUsuario';
@@ -28,12 +28,17 @@ const CargarEstudiante = () => {
     }
 
     useEffect(() => {
-        traerUsuarios().then(res => {
-            setEstudiantes(res)
-            
-        })
-
-
+        const usuarios = async (id) => {
+            try {
+              const response = await buscarUsuarioPorId(id)
+              setEstudiantes(response)
+            }
+            catch (e) {
+              console.error(e)
+            }
+           
+        }
+        usuarios(1)
     }, [cargaEstudiante])
 
     return (
@@ -67,6 +72,8 @@ const CargarEstudiante = () => {
                 setAlumnoAEliminar={setAlumnoAEliminar}
                /> 
            }
+
+           
 
         </Fragment>
 
