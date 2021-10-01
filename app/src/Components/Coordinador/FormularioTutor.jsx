@@ -58,7 +58,7 @@ const FormularioTutor = (props) =>{
         // Quitar el mensaje de error
         setError(false);
     
-
+       
         //Lamada a la función post con los atributos
       await  insertarUsuario(
             nombre,
@@ -80,7 +80,7 @@ const FormularioTutor = (props) =>{
 
         //Función para cerrar el modal
         props.avisoCalback(false)
-      
+        props.setCargaEstudiante(false)
         setShow(false)
 
         

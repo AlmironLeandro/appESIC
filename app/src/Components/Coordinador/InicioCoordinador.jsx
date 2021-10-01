@@ -105,7 +105,8 @@ const InicioCoordinador = () => {
   const [tutor, setTutor] = useState(false);
   const [carreras, setCarreras] = useState([])
   const [tutores, setTutores] = useState([])
-  
+  const [cargaEstudiante, setCargaEstudiante] = useState(false)
+
 
   const agregarCarrera = () => {
     handleDrawerClose()
@@ -117,6 +118,7 @@ const InicioCoordinador = () => {
   }
  
   const agregarTutor = () => {
+    setCargaEstudiante(true)
     handleDrawerClose()
     setTutor(true)
   }
@@ -129,7 +131,7 @@ const InicioCoordinador = () => {
             setTutores(traerTutores)
             const getCarreras = await traerCarreras()
             setCarreras(getCarreras)
-            //console.log(traerTutores)
+            //console.log(cargaEstudiante)
           }
           catch (e) {
             console.error(e)
@@ -139,7 +141,7 @@ const InicioCoordinador = () => {
       traerTutorYCarreras()
 
     
-}, [])
+}, [cargaEstudiante])
   
 
   
@@ -219,7 +221,8 @@ const InicioCoordinador = () => {
         }
 
         {tutor ?
-        <FormularioTutor 
+        <FormularioTutor
+        setCargaEstudiante ={setCargaEstudiante} 
         avisoCalback={setTutor}
         carreras = {carreras}
         /> : ''
