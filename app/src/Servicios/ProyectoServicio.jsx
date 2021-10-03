@@ -94,6 +94,6 @@ export const traerProyectosPorTutor = async (id) => {
         }
     }
     catch (e) {
-        alert(e.response.data.message)
+        alert("No hay proyectos cargados")
     }
 };
