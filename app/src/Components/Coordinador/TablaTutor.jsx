@@ -26,8 +26,8 @@ const TablaTutor = ({ tutores, traerUsuario, eliminaUsuario }) => {
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell >Nombre</TableCell>
                             <TableCell >Apellido</TableCell>
+                            <TableCell >Nombre</TableCell>
                             <TableCell >DNI</TableCell>
                             <TableCell >mail</TableCell>
                             <TableCell></TableCell>
@@ -36,8 +36,8 @@ const TablaTutor = ({ tutores, traerUsuario, eliminaUsuario }) => {
                     <TableBody>
                         {tutores.map(tutor => (
                             <TableRow >
-                                <TableCell >{tutor.nombre} </TableCell>
                                 <TableCell > {tutor.apellido}</TableCell>
+                                <TableCell >{tutor.nombre} </TableCell>
                                 <TableCell >{tutor.dni}</TableCell>
                                 <TableCell>{tutor.email}</TableCell>
                                 <TableCell>

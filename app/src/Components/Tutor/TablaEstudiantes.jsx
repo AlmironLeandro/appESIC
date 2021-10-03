@@ -1,4 +1,5 @@
 
+import {useEffect,useState} from 'react'
 import { BsPencil, BsFillTrashFill } from "react-icons/bs";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -18,7 +19,6 @@ const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminaUsuario }) => {
         },
     });
     const classes = useStyles();
-       
 
     return (
 
@@ -27,8 +27,8 @@ const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminaUsuario }) => {
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell >Nombre</TableCell>
                             <TableCell >Apellido</TableCell>
+                            <TableCell >Nombre</TableCell>
                             <TableCell >DNI</TableCell>
                             <TableCell >mail</TableCell>
                             <TableCell></TableCell>
@@ -37,8 +37,8 @@ const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminaUsuario }) => {
                     <TableBody>
                         {estudiantes.map(estudiante => (
                             <TableRow >
-                                <TableCell >{estudiante.nombre} </TableCell>
-                                <TableCell > {estudiante.apellido}</TableCell>
+                                <TableCell >{estudiante.apellido} </TableCell>
+                                <TableCell > {estudiante.nombre}</TableCell>
                                 <TableCell >{estudiante.dni}</TableCell>
                                 <TableCell>{estudiante.email}</TableCell>
                                 <TableCell>

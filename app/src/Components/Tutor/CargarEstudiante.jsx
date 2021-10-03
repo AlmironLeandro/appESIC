@@ -16,6 +16,7 @@ const CargarEstudiante = () => {
     const [estudiante, setEstudiante] = useState(null)
     const [alumnoAEliminar, setAlumnoAEliminar] = useState(null)
 
+    
     //Función para traer el usuario para el edit
     const traerUsuario = async (idestudiante) => {
         const estudiante = await editarUsuario(idestudiante)
@@ -31,7 +32,10 @@ const CargarEstudiante = () => {
         const usuarios = async (id) => {
             try {
               const response = await buscarUsuarioPorId(id)
-              setEstudiantes(response)
+            // copio la lista con [...list] y la ordeno con sort()
+             const sortedList = [...response].sort((a, b) => (a.apellido.toLowerCase() > b.apellido.toLowerCase() ? 1 : a.apellido.toLowerCase() < b.apellido.toLowerCase() ? -1 : 0))
+             // actualizo el estado con la nueva lista ya ordenada
+              setEstudiantes(sortedList)
             }
             catch (e) {
               console.error(e)
