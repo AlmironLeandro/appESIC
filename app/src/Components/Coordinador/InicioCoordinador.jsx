@@ -110,6 +110,7 @@ const InicioCoordinador = () => {
 
   const agregarCarrera = () => {
     handleDrawerClose()
+    setCargaEstudiante(true)
     setCarrera(true)}
   
   const agregarMateria = () => {
@@ -212,7 +213,7 @@ const InicioCoordinador = () => {
         </Toolbar>
            
         {carrera ?
-          <CrearCarrera avisoCalback={setCarrera} /> : ''
+          <CrearCarrera avisoCalback={setCarrera} setCargaEstudiante={setCargaEstudiante} /> : ''
         }
 
         {materia ?

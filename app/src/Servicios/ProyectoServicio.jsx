@@ -39,7 +39,7 @@ export const insertarProyecto =
             }
         }
         catch (e) {
-            alert(e.response.data.message)
+            alert(e.response.data)
         }
     }
 

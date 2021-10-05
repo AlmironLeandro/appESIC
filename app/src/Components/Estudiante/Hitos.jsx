@@ -76,7 +76,7 @@ export default function CustomizedTimeline({ hitos }) {
               <EntregarHito id={hitos[0].id}
               />
               {
-                 comentarios[0] === undefined || comentarios[0].devolucion ===  ""  ? '': <Button onClick={() => alert(comentarios[0].devolucion)}>
+              comentarios[0] === null || comentarios[0] === undefined || comentarios[0].devolucion ===  ""   ? '': <Button onClick={() => alert(comentarios[0].devolucion)}>
                   Ver comentario
                 </Button>
               }
@@ -114,7 +114,7 @@ export default function CustomizedTimeline({ hitos }) {
               <Typography><EntregarHito id={hitos[1].id}
               >Entregar</EntregarHito>
                 {
-                  comentarios[1] === undefined || comentarios[1].devolucion ===  ""  ? '': <Button onClick={() => alert(comentarios[1].devolucion)}>
+                comentarios[1] === null ||  comentarios[1] === undefined || comentarios[1].devolucion ===  ""  ? '': <Button onClick={() => alert(comentarios[1].devolucion)}>
                     Ver comentario
                   </Button>
                 }
@@ -151,7 +151,7 @@ export default function CustomizedTimeline({ hitos }) {
               >Entregar</EntregarHito>
               {console.log(comentarios)}
                 {
-                  comentarios[2] === undefined || comentarios[2].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[2].devolucion)}>
+                 comentarios[2] === null || comentarios[2] === undefined || comentarios[2].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[2].devolucion)}>
                     Ver comentario
                   </Button>
                 }
@@ -186,7 +186,7 @@ export default function CustomizedTimeline({ hitos }) {
                 <EntregarHito id={hitos[3].id}
                 >Entregar</EntregarHito>
                 {
-                  comentarios[3] === undefined || comentarios[3].devolucion ===  ""  ? '': <Button onClick={() => alert(comentarios[3].devolucion)}>
+                 comentarios[3] === null || comentarios[3] === undefined || comentarios[3].devolucion ===  ""  ? '': <Button onClick={() => alert(comentarios[3].devolucion)}>
                     Ver comentario
                   </Button>
                 }
