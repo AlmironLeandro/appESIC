@@ -11,7 +11,7 @@ import ModalEstaSeguro from './ModalEstaSeguro'
 
 
 const Editar = (props) => {
-
+console.log(props.alumnos)
   const [proyecto, setProyecto] = useState({
     nombre: props.nombreProyecto,
     descripcion: props.descripcion
@@ -29,7 +29,7 @@ const Editar = (props) => {
 
 
   const submitForm = async (e) => {
-
+    console.log(props.alumnos)
     e.preventDefault()
     await editarProyecto(
       props.idProyecto,
@@ -123,9 +123,9 @@ function ModalMostrarProyecto(props) {
           <Link style={{ textDecoration: 'none', color: 'white' }} to={{
             pathname: `/Proyecto/${props.idProyecto}`
           }} >Hitos</Link></Button>
-
+{/* 
         <Button variant="secondary" onClick={props.edit}>Editar proyecto</Button>
-        <Button variant="danger" onClick={props.eliminar}>Eliminar proyecto</Button>
+        <Button variant="danger" onClick={props.eliminar}>Eliminar proyecto</Button> */}
       </Modal.Footer>
     </Modal>
   );

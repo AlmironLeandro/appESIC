@@ -99,5 +99,16 @@ export const ultimoEntregable = async (id) => {
 
 
 
-
+export const insertarDevolucion = async (id,devolucion) => {
+    try {
+        const cliente = newSecureClient();
+        const response = await cliente.put(`/entregablesHito/devolucion/${id}`,{devolucion})
+        if (response.status === 200) {
+            alert("El comentario fue agregado")
+        }
+    }
+    catch (e) {
+        alert(e.response.data.message)
+    }
+}
 

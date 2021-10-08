@@ -35,7 +35,7 @@ export const serviceLogin = async (dni, pass) => {
         }
     }
     catch (e) {
-        alert(e.response.data.message)
+        
     }
 }
 

@@ -16,7 +16,8 @@ import {buscarAlumno} from '../../../function/funcionesAlumno'
 //Servicios
 import {traerMaterias}  from '../../../Servicios/Materia';
 import {traerCarreras}  from '../../../Servicios/Carrera';
-import {traerUsuarios as traerAlumnos}  from '../../../Servicios/UsuariosServicio';
+
+import {buscarUsuarioPorId} from '../../../Servicios/UsuariosServicio'
 import NombreDetalleBuscar from './NombreDetalleBuscar';
 
 
@@ -41,7 +42,7 @@ const FormularioProyecto = () =>
     //Lista de get a la base de datos ---> Alumnos
     const [getAlumnos, setAlumnos]=useState([])
     useEffect(() => {
-        traerAlumnos().then(res => setAlumnos(res))
+        buscarUsuarioPorId(1).then(res => setAlumnos(res))
     }, [])
     //Input alumno y su cambiador
     const [inputAlumno, setInputAlumno]=useState() 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {insertarCarrera} from '../../Servicios/Carrera'
 import { Container, Modal, Row, Col, Button, InputGroup, FormControl } from 'react-bootstrap'
+
 const CrearCarrera = (props) => {
     const [show, setShow] = useState(true);
     const [carrera,setCarrera]=useState({nombre:""})
@@ -14,6 +15,7 @@ const CrearCarrera = (props) => {
           )
         
         handleClose()
+        props.setCargaEstudiante(false)
         props.avisoCalback(false)
        
     } 
@@ -21,6 +23,7 @@ const CrearCarrera = (props) => {
     const cerrarModal =() => {
        
         handleClose()
+        props.setCargaEstudiante(false)
         props.avisoCalback(false)
     } 
     

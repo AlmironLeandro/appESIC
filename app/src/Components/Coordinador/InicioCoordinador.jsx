@@ -110,6 +110,7 @@ const InicioCoordinador = () => {
 
   const agregarCarrera = () => {
     handleDrawerClose()
+    setCargaEstudiante(true)
     setCarrera(true)}
   
   const agregarMateria = () => {
@@ -128,7 +129,9 @@ const InicioCoordinador = () => {
       const traerTutorYCarreras= async () => {
           try {
             const traerTutores = await buscarUsuarioPorId(2)
-            setTutores(traerTutores)
+            // copio la lista con [...list] y la ordeno con sort()
+             const sortedList = [...traerTutores].sort((a, b) => (a.apellido.toLowerCase() > b.apellido.toLowerCase() ? 1 : a.apellido.toLowerCase() < b.apellido.toLowerCase() ? -1 : 0))
+            setTutores(sortedList)
             const getCarreras = await traerCarreras()
             setCarreras(getCarreras)
             //console.log(cargaEstudiante)
@@ -210,7 +213,7 @@ const InicioCoordinador = () => {
         </Toolbar>
            
         {carrera ?
-          <CrearCarrera avisoCalback={setCarrera} /> : ''
+          <CrearCarrera avisoCalback={setCarrera} setCargaEstudiante={setCargaEstudiante} /> : ''
         }
 
         {materia ?

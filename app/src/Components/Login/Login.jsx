@@ -27,6 +27,7 @@ const Login = () => {
       setError(false)
       login(res.token, res.idRol, res.id, res.nombre)
       history.push(`/Usuario/${res.idRol}`)
+      
     }
     else {
       setUsuario({ dni: '', pass: '' })
