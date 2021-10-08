@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import { logout } from '../function/pantallaLogin'
 import { buscarUsuario } from '../Servicios/UsuariosServicio'
+import EditarPerfil from './EditarPerfil'
 
 
 const NavDeUsuarios = () => {
@@ -24,21 +25,24 @@ const NavDeUsuarios = () => {
             height: '65px'
         }
     }
-    const [nombre, setNombre] = useState()
-    const [apellido, setApellido] = useState()
+    const [estudiante, setEstudiante] = useState()
+    const [cargaEstudiante, setCargaEstudiante] = useState(false)
+    
+ 
     useEffect( () => {
         const traerUsuario = async ()=>{
         const res = await buscarUsuario(localStorage.getItem("id"))
-        setNombre(res.usuario.nombre)
-        setApellido(res.usuario.apellido)
+       
+        setEstudiante(res)
         }
         traerUsuario()
-    }, [])
+    }, [cargaEstudiante])
     const history = useHistory();
     const redirigir = async () => {
         await logout()
         history.push("/login")
     }
+    const editar = ()=>setCargaEstudiante(true)
     return (
         <Fragment>
             <div className="header">
@@ -50,15 +54,16 @@ const NavDeUsuarios = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <Dropdown  >
                         <Dropdown.Toggle bsPrefix='dropdown' as="Button" id="dropdown-basic">
-                            {nombre && apellido ? nombre + ' ' + apellido : ''}
+                            {estudiante ? estudiante.usuario.nombre + ' ' + estudiante.usuario.apellido : ''}
                         </Dropdown.Toggle>
                         <Dropdown.Menu >
                             {/* TODO: COMPLETAR LA PANTALLA DE PERFIL... */}
                             <Dropdown.Item href="#/action-1">
                                 <Link style={{ textDecoration: 'none' }} to={"/InicioTutor"}>Ver perfil</Link>
                             </Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">
-                                <Link style={{ textDecoration: 'none' }} to={"/EditarPerfil"}>Editar perfil</Link>
+                            <Dropdown.Item onClick={editar} >
+                                {/* <Link style={{ textDecoration: 'none' }} to={"/EditarPerfil"}>Editar perfil</Link> */}
+                            Editar perfil
                             </Dropdown.Item>
                             <Dropdown.Item onClick={redirigir}>
                                 Cerrar sesion
@@ -66,10 +71,17 @@ const NavDeUsuarios = () => {
                         </Dropdown.Menu>
                     </Dropdown>
                     <div>
-                        {nombre && apellido ? <Avatar style={styles.foto}>{nombre[0] + apellido[0]}</Avatar> : ''}
+                        {estudiante ? <Avatar style={styles.foto}>{estudiante.usuario.nombre[0] + estudiante.usuario.apellido[0]}</Avatar> : ''}
                     </div>
                 </div>
             </div>
+            {cargaEstudiante ? 
+                <EditarPerfil
+                    setCargaEstudiante={setCargaEstudiante}
+                    estudiante={estudiante}
+                />:
+                console.log(estudiante)
+            }
 
         </Fragment>
 
