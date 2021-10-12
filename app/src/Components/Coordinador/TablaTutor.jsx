@@ -1,4 +1,4 @@
-import { BsPencil, BsFillTrashFill } from "react-icons/bs";
+import { BsFillTrashFill } from "react-icons/bs";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -42,11 +42,8 @@ const TablaTutor = ({ tutores, traerUsuario, eliminaUsuario }) => {
                                 <TableCell>{tutor.email}</TableCell>
                                 <TableCell>
 
-                                    <BsPencil
-                                        onClick={() => alert("hola")}
-                                    />
                                     <BsFillTrashFill 
-                                        onClick={() => alert("hola")}
+                                        onClick={() => eliminarTutor()}
                                     />
                                 </TableCell>
                             </TableRow>
