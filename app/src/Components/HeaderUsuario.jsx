@@ -58,9 +58,7 @@ const NavDeUsuarios = () => {
                         </Dropdown.Toggle>
                         <Dropdown.Menu >
                             {/* TODO: COMPLETAR LA PANTALLA DE PERFIL... */}
-                            <Dropdown.Item href="#/action-1">
-                                <Link style={{ textDecoration: 'none' }} to={"/InicioTutor"}>Ver perfil</Link>
-                            </Dropdown.Item>
+                            
                             <Dropdown.Item onClick={editar} >
                                 {/* <Link style={{ textDecoration: 'none' }} to={"/EditarPerfil"}>Editar perfil</Link> */}
                             Editar perfil
