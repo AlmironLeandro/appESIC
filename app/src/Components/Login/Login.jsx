@@ -26,7 +26,12 @@ const Login = () => {
     if (res) {
       setError(false)
       login(res.token, res.idRol, res.id, res.nombre)
+      // if(parent(res.idRol)  === 3)
+      // {
+      //   localStorage.setItem('isAcceptado',"si");
+      // }
       history.push(`/Usuario/${res.idRol}`)
+
       
     }
     else {
@@ -42,8 +47,7 @@ const Login = () => {
     }
     )
   };
-
-
+  
   return (
     <div style={estilo} >
       <div>

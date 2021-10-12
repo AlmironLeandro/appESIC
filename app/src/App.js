@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route,useLocation} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Fragment } from 'react';
 import HeaderLogin from './Components/Login/HeaderLogin'
@@ -18,12 +18,12 @@ import EditarPerfil from './Components/EditarPerfil';
 function App() {
   function NoMatch() {
     let location = useLocation();
-  
+
     return (
       <div>
         <h3>
           Error 404, no se encontró la ruta
-           <code>{location.pathname}</code>
+          <code>{location.pathname}</code>
         </h3>
       </div>
     );
@@ -31,30 +31,37 @@ function App() {
   return (
 
 
-<Fragment>
+    <Fragment>
 
 
-<Router>
-  <Switch>
-    <Route path="/login" exact >
-      <HeaderLogin/>
-      <Login/>
-    </Route>
-    <Route exact path="/EditarPerfil"  component={EditarPerfil} />
-    <PrivateRoute exact path="/Usuario/2" rol={2} component={InicioTutor} />
-    <PrivateRoute exact path="/CargarEstudiante" rol={2} component={CargarEstudiante} />
-    <PrivateRoute exact path="/NuevoProyecto" component={FormularioProyecto} rol={2}/>
-    <PrivateRoute exact path="/Usuario/1" component={Estudiante} rol={1}/>
-    <PrivateRoute exact path="/Proyecto/:id" component={PantallaDeProyecto} rol={2}/>
-    <PrivateRoute exact path="/Usuario/3" component={InicioCoordinador} rol={3}/>
-    <Route path="*"                       component={NoMatch}/>
-  </Switch>
-</Router>
-    
-    
-    
-   
-   </Fragment>
+      <Router>
+        <Switch>
+          <Route path="/login" exact >
+            <HeaderLogin />
+            <Login />
+          </Route>
+          <Route exact path="/EditarPerfil" component={EditarPerfil} />
+          <PrivateRoute exact path="/Usuario/2" rol={2} component={InicioTutor} />
+          <PrivateRoute exact path="/CargarEstudiante" rol={2} component={CargarEstudiante} />
+          <PrivateRoute exact path="/NuevoProyecto" component={FormularioProyecto} rol={2} />
+          <PrivateRoute exact path="/Usuario/1" component={Estudiante} rol={1} />
+          <PrivateRoute exact path="/Usuario/3" component={InicioCoordinador} rol={3} />
+          <PrivateRoute exact path="/Proyecto/:id" component={PantallaDeProyecto} rol={2} />
+
+          {/* COORDINADO/TUTOR */}
+          <PrivateRoute exact path="/tutorCoordinador/Proyecto/:id" component={PantallaDeProyecto} rol={3} />
+          <PrivateRoute exact path="/tutorCoordinador" rol={3} component={InicioTutor} />
+          <PrivateRoute exact path="/tutorCoordinador/CargarEstudiante" rol={3} component={CargarEstudiante} />
+          <PrivateRoute exact path="/tutorCoordinador/NuevoProyecto" component={FormularioProyecto} rol={3} />
+          
+          <Route path="*" component={NoMatch} />
+        </Switch>
+      </Router>
+
+
+
+
+    </Fragment>
   );
 }
 

@@ -1,7 +1,7 @@
 //Import react
-import {useState, useEffect, Fragment } from 'react'
-import {Link} from 'react-router-dom';
-import {Table} from 'react-bootstrap'
+import { useState, useEffect, Fragment } from 'react'
+import { Link } from 'react-router-dom';
+import { Table } from 'react-bootstrap'
 
 //Import components
 import NavDeUsuarios from '../HeaderUsuario'
@@ -108,7 +108,7 @@ const InicioTutor = () => {
   const [proyectosPorId, setProyectosPorId] = useState([])
   const [callBack, setCallBack] = useState(false)
 
-  useEffect( () => {
+  useEffect(() => {
     const traerProyectos = async () => {
 
       try {
@@ -121,7 +121,7 @@ const InicioTutor = () => {
       }
     }
     traerProyectos()
-      
+
   }, [callBack])
 
   return (
@@ -157,19 +157,49 @@ const InicioTutor = () => {
 
 
 
-          <List>
-            <ListItem button  >
 
-              <ListItemIcon><SchoolIcon /></ListItemIcon>
-              <Link style={{ textDecoration: 'none' }} to={"/NuevoProyecto"}>Crear proyecto</Link>
-            </ListItem>
 
-            <ListItem button >
-              <ListItemIcon> <ImportContactsIcon />  </ListItemIcon>
-              <Link style={{ textDecoration: 'none' }} to={"/CargarEstudiante"}>Cargar estudiante</Link>
-            </ListItem>
 
-          </List>
+
+
+          {localStorage.getItem("idRol") === '3' ?
+
+            <List>
+
+              <ListItem button  >
+                <ListItemIcon><SchoolIcon /></ListItemIcon>
+                <Link style={{ textDecoration: 'none' }} to={"/tutorCoordinador/NuevoProyecto"}>Crear proyecto</Link>
+              </ListItem>
+
+              <ListItem button >
+                <ListItemIcon> <ImportContactsIcon />  </ListItemIcon>
+                <Link style={{ textDecoration: 'none' }} to={"/tutorCoordinador/CargarEstudiante"}>Cargar estudiante</Link>
+              </ListItem>
+
+              <ListItem button >
+                <ListItemIcon> <ImportContactsIcon />  </ListItemIcon>
+                <Link style={{ textDecoration: 'none' }} to={"/usuario/3"}>Cambiar a coordinador</Link>
+              </ListItem>
+            </List>
+
+            :
+
+            <List>
+              <ListItem button  >
+                <ListItemIcon><SchoolIcon /></ListItemIcon>
+                <Link style={{ textDecoration: 'none' }} to={"/NuevoProyecto"}>Crear proyecto</Link>
+              </ListItem>
+
+              <ListItem button >
+                <ListItemIcon> <ImportContactsIcon />  </ListItemIcon>
+                <Link style={{ textDecoration: 'none' }} to={"/CargarEstudiante"}>Cargar estudiante</Link>
+              </ListItem>
+
+            </List>
+          }
+
+
+
 
         </Drawer>
 

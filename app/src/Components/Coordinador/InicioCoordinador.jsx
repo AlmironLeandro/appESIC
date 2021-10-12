@@ -1,4 +1,5 @@
 import React, { useState, Fragment, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import HeaderUsuario from '../HeaderUsuario'
 import {traerCarreras} from '../../Servicios/Carrera'
 import {buscarUsuarioPorId} from '../../Servicios/UsuariosServicio'
@@ -28,6 +29,7 @@ import TablaTutor from './TablaTutor';
 
 
 const InicioCoordinador = () => {
+  const history = useHistory();
   const drawerWidth = 240;
 
   const useStyles = makeStyles((theme) => ({
@@ -124,6 +126,7 @@ const InicioCoordinador = () => {
     setTutor(true)
   }
 
+ 
 
     useEffect(() => {
       const traerTutorYCarreras= async () => {
@@ -152,6 +155,7 @@ const InicioCoordinador = () => {
     return (
       <Fragment>
         <HeaderUsuario></HeaderUsuario>
+        
         <div className={classes.root}>
           <CssBaseline />
           <AppBar
@@ -179,6 +183,7 @@ const InicioCoordinador = () => {
             <Divider />
 
             <List>
+              
 
               <ListItem button onClick={() => agregarCarrera()}>
                 <ListItemIcon><SchoolIcon /></ListItemIcon>
@@ -193,6 +198,11 @@ const InicioCoordinador = () => {
               <ListItem button onClick={() => agregarTutor()}>
                 <ListItemIcon> <GroupAddIcon /> </ListItemIcon>
                 <ListItemText primary={"Cargar tutor"} />
+              </ListItem>
+
+              <ListItem button onClick={() => history.push(`/tutorCoordinador`)}>
+                <ListItemIcon> <GroupAddIcon /> </ListItemIcon>
+                <ListItemText primary={"Cambiar a tutor"} />
               </ListItem>
 
             </List>
