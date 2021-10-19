@@ -22,6 +22,7 @@ import CrearCarrera from './CrearCarrera'
 import CrearMateria from './CrearMateria'
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import SchoolIcon from '@material-ui/icons/School';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import FormularioTutor from './FormularioTutor';
 import TablaTutor from './TablaTutor';
@@ -199,9 +200,9 @@ const InicioCoordinador = () => {
                 <ListItemIcon> <GroupAddIcon /> </ListItemIcon>
                 <ListItemText primary={"Cargar tutor"} />
               </ListItem>
-
+              
               <ListItem button onClick={() => history.push(`/tutorCoordinador`)}>
-                <ListItemIcon> <GroupAddIcon /> </ListItemIcon>
+                <ListItemIcon> <AccountBoxIcon /> </ListItemIcon>
                 <ListItemText primary={"Cambiar a tutor"} />
               </ListItem>
 

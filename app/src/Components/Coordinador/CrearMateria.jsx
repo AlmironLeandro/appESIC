@@ -1,34 +1,40 @@
 import React, { useState } from 'react'
-import {insertarMateria} from '../../Servicios/Materia'
+import { insertarMateria } from '../../Servicios/Materia'
 import { Container, Modal, Row, Col, Button, InputGroup, FormControl } from 'react-bootstrap'
 const CrearMateria = (props) => {
     const [show, setShow] = useState(true);
-    const [materia,setMateria]=useState({nombre:""})
+    const [materia, setMateria] = useState({ nombre: "" })
     const handleClose = () => setShow(false);
-    const {nombre, idCarrera}=materia
+    const [error, setError] = useState(false);
+    const { nombre, idCarrera } = materia
 
     const submitForm = async () => {
-      await  insertarMateria(
-            
-           
+        if (nombre.trim() === '' || idCarrera === undefined  || idCarrera === null 
+        || idCarrera === '') {
+            setError(true);
+            return;
+        }
+        await insertarMateria(
+
+
             nombre,
-            idCarrera 
+            idCarrera
 
 
-            
-          )
-        
+
+        )
+
         handleClose()
         props.avisoCalback(false)
-       
-    } 
-    
-    const cerrarModal =() => {
-       
+
+    }
+
+    const cerrarModal = () => {
+
         handleClose()
         props.avisoCalback(false)
-    } 
-    
+    }
+
     const handleChange = (e) => {
         setMateria({
             ...materia,
@@ -46,15 +52,17 @@ const CrearMateria = (props) => {
                 <Modal.Header>
                     <p>Crear nueva Materia</p>
                 </Modal.Header>
+                {error
+                    ? <p style={{ color: "red", textAlign: "center" }}>Complete todos los campos</p> : <p></p>}
                 <Modal.Body>
 
 
-                <InputGroup size="sm" className="mb-3">
-                                <select  name="idCarrera"  value={idCarrera} onChange={handleChange}>
-                                <option >Seleccionar carrera</option>
-                                {props.carreras.map((carrera)=> <option key={carrera.id} value={carrera.id}>   {carrera.nombre}</option> )} 
-                                </select> 
-                            </InputGroup>
+                    <InputGroup size="sm" className="mb-3">
+                        <select name="idCarrera" value={idCarrera} onChange={handleChange}>
+                            <option >Seleccionar carrera</option>
+                            {props.carreras.map((carrera) => <option key={carrera.id} value={carrera.id}>   {carrera.nombre}</option>)}
+                        </select>
+                    </InputGroup>
                     <InputGroup size="sm" className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroup-sizing-sm">Nombre/s:</InputGroup.Text>
@@ -67,7 +75,7 @@ const CrearMateria = (props) => {
                             value={nombre}
                         />
                     </InputGroup>
-                    
+
                     <Row>
                         <Col>
                             <Button size="sm" className="guardar" variant="secondary" type="submit" onClick={submitForm}>

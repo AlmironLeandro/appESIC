@@ -43,7 +43,7 @@ const TablaTutor = ({ tutores, traerUsuario, eliminaUsuario }) => {
                                 <TableCell>
 
                                     <BsFillTrashFill 
-                                        onClick={() => eliminarTutor()}
+                                       
                                     />
                                 </TableCell>
                             </TableRow>
