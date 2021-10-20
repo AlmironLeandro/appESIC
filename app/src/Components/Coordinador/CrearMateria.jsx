@@ -9,11 +9,12 @@ const CrearMateria = (props) => {
     const { nombre, idCarrera } = materia
 
     const submitForm = async () => {
-        if (nombre.trim() === '' || idCarrera === undefined  || idCarrera === null 
-        || idCarrera === '') {
+        if (nombre.trim() === '' || idCarrera === undefined || idCarrera === null
+            || idCarrera === '') {
             setError(true);
             return;
         }
+        
         await insertarMateria(
 
 
@@ -48,7 +49,7 @@ const CrearMateria = (props) => {
 
 
 
-            <Modal size="sm" show={show} >
+            <Modal size="sm" show={show}>
                 <Modal.Header>
                     <p>Crear nueva Materia</p>
                 </Modal.Header>
@@ -73,6 +74,7 @@ const CrearMateria = (props) => {
                             name="nombre"
                             onChange={handleChange}
                             value={nombre}
+                            maxlength="34"
                         />
                     </InputGroup>
 

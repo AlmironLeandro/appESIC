@@ -30,6 +30,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import SchoolIcon from '@material-ui/icons/School';
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
 
 
@@ -175,9 +176,9 @@ const InicioTutor = () => {
                 <ListItemIcon> <ImportContactsIcon />  </ListItemIcon>
                 <Link style={{ textDecoration: 'none' }} to={"/tutorCoordinador/CargarEstudiante"}>Cargar estudiante</Link>
               </ListItem>
-
+             
               <ListItem button >
-                <ListItemIcon> <ImportContactsIcon />  </ListItemIcon>
+                <ListItemIcon> <AccountBoxIcon />  </ListItemIcon>
                 <Link style={{ textDecoration: 'none' }} to={"/usuario/3"}>Cambiar a coordinador</Link>
               </ListItem>
             </List>

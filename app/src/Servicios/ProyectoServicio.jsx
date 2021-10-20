@@ -72,6 +72,19 @@ export const editarProyecto = async (ID, nombre, descripcion, idMateria, idTutor
     }
 };
 
+export const traerProyectosPorCarrera = async (id) => {
+    try {
+        const cliente = newSecureClient();
+        const response = await cliente.get(`/proyectos/listByCarrera/${id}`)
+        if (response.status === 200) {
+            return response.data;
+        }
+    }
+    catch (e) {
+        alert(e.response.data.message)
+    }
+};
+
 export const buscarProyecto = async (id) => {
     try {
         const cliente = newSecureClient();

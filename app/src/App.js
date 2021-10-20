@@ -13,6 +13,7 @@ import Estudiante from './Components/Estudiante/Estudiante';
 import InicioCoordinador from './Components/Coordinador/InicioCoordinador'
 import PrivateRoute from './Router/PrivateRoute'
 import EditarPerfil from './Components/EditarPerfil';
+import FiltroDeProyecto from './Components/Coordinador/FiltroDeProyecto'
 
 
 function App() {
@@ -45,10 +46,12 @@ function App() {
           <PrivateRoute exact path="/CargarEstudiante" rol={2} component={CargarEstudiante} />
           <PrivateRoute exact path="/NuevoProyecto" component={FormularioProyecto} rol={2} />
           <PrivateRoute exact path="/Usuario/1" component={Estudiante} rol={1} />
-          <PrivateRoute exact path="/Usuario/3" component={InicioCoordinador} rol={3} />
           <PrivateRoute exact path="/Proyecto/:id" component={PantallaDeProyecto} rol={2} />
 
           {/* COORDINADO/TUTOR */}
+          <PrivateRoute exact path="/Usuario/3" component={InicioCoordinador} rol={3} />
+          <PrivateRoute exact path="/tutorCoordinador/filtroProyectos" component={FiltroDeProyecto} rol={3} />
+
           <PrivateRoute exact path="/tutorCoordinador/Proyecto/:id" component={PantallaDeProyecto} rol={3} />
           <PrivateRoute exact path="/tutorCoordinador" rol={3} component={InicioTutor} />
           <PrivateRoute exact path="/tutorCoordinador/CargarEstudiante" rol={3} component={CargarEstudiante} />

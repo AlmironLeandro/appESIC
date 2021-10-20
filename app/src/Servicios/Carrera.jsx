@@ -69,3 +69,16 @@ export const eliminarCarrera = async (id) => {
         alert(e.response.data.message)
     }
 };
+
+// export const traerProyectosPorCarrera = async (id) => {
+//     try {
+//         const cliente = newSecureClient();
+//         const response = await cliente.get('/proyectos')
+//         if (response.status === 200) {
+//             return response.data.data
+//         }
+//     }
+//     catch (e) {
+//         alert(e.response.data.message)
+//     }
+// }

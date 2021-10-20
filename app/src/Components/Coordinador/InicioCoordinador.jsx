@@ -1,8 +1,10 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import HeaderUsuario from '../HeaderUsuario'
+
 import {traerCarreras} from '../../Servicios/Carrera'
 import {buscarUsuarioPorId} from '../../Servicios/UsuariosServicio'
+
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -26,6 +28,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import FormularioTutor from './FormularioTutor';
 import TablaTutor from './TablaTutor';
+import LocalParkingIcon from '@material-ui/icons/LocalParking';
 
 
 
@@ -109,6 +112,7 @@ const InicioCoordinador = () => {
   const [carreras, setCarreras] = useState([])
   const [tutores, setTutores] = useState([])
   const [cargaEstudiante, setCargaEstudiante] = useState(false)
+  
 
 
   const agregarCarrera = () => {
@@ -204,6 +208,11 @@ const InicioCoordinador = () => {
               <ListItem button onClick={() => history.push(`/tutorCoordinador`)}>
                 <ListItemIcon> <AccountBoxIcon /> </ListItemIcon>
                 <ListItemText primary={"Cambiar a tutor"} />
+              </ListItem>
+             
+              <ListItem button onClick={() => history.push(`/tutorCoordinador/filtroProyectos`)}>
+                <ListItemIcon> <LocalParkingIcon /> </ListItemIcon>
+                <ListItemText primary={"Ver proyectos"} />
               </ListItem>
 
             </List>

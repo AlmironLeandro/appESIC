@@ -66,6 +66,7 @@ const CrearCarrera = (props) => {
                             name="nombre"
                             onChange={handleChange}
                             value={carrera.nombre}
+                            maxlength="34"
                         />
                     </InputGroup>
 
