@@ -1,7 +1,7 @@
 import { Dropdown } from 'react-bootstrap'
 import Logo from '../Images/imgg.png'
 import { Fragment, useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import {  useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import { logout } from '../function/pantallaLogin'
 import { buscarUsuario } from '../Servicios/UsuariosServicio'
@@ -57,10 +57,8 @@ const NavDeUsuarios = () => {
                             {estudiante ? estudiante.usuario.nombre + ' ' + estudiante.usuario.apellido : ''}
                         </Dropdown.Toggle>
                         <Dropdown.Menu >
-                            {/* TODO: COMPLETAR LA PANTALLA DE PERFIL... */}
                             
                             <Dropdown.Item onClick={editar} >
-                                {/* <Link style={{ textDecoration: 'none' }} to={"/EditarPerfil"}>Editar perfil</Link> */}
                             Editar perfil
                             </Dropdown.Item>
                             <Dropdown.Item onClick={redirigir}>

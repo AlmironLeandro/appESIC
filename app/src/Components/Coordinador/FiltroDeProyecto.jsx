@@ -12,16 +12,20 @@ import { Link } from 'react-router-dom'
 import Button  from '@material-ui/core/Button';
  import { Button as boton} from 'react-bootstrap'
 import HeaderUsuario from '../HeaderUsuario'
+import DetalleProyecto from './DetalleProyecto'
 
 //Servicios
 import { traerCarreras } from '../../Servicios/Carrera'
-import { traerProyectosPorCarrera } from '../../Servicios/ProyectoServicio'
+import { traerProyectosPorCarrera, buscarProyecto } from '../../Servicios/ProyectoServicio'
 
 
 const FiltroDeProyecto = () => {
     const [carreras, setCarreras] = useState([])
     const [carrera, setCarrera] = useState()
     const [proyectos, setProyectos] = useState([])
+    const [detalle, setDetalle] = useState(false)
+    const [proyecto, setProyecto] = useState({})
+    
     const useStyles = makeStyles({
         table: {
             minWidth: 650,
@@ -56,6 +60,13 @@ const FiltroDeProyecto = () => {
             setProyectos(res.proyectosResponse)
         }
 
+    }
+
+    const traerProyecto = async (id)=>{
+        const response = await buscarProyecto(id)
+        setProyecto(response)
+       
+        setDetalle(true)
     }
 
 
@@ -103,7 +114,7 @@ const FiltroDeProyecto = () => {
                                     <TableCell >{proyecto.nombre} </TableCell>
                                     <TableCell >{proyecto.descripcion} </TableCell>
                                     <TableCell >
-                                        <Button variant="contained">+ Info</Button>
+                                        <Button variant="contained" onClick={()=>traerProyecto(proyecto.id)}>+ Info</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -115,6 +126,13 @@ const FiltroDeProyecto = () => {
                 }
 
             </TableContainer>
+            {detalle ? 
+            <DetalleProyecto
+            proyecto = {proyecto}
+            setDetalle = {setDetalle}
+            detalle={detalle}
+            />   :''
+        }
 
         </Fragment>
 
