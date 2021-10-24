@@ -2,8 +2,6 @@ import React, { useState, Fragment, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import HeaderUsuario from '../HeaderUsuario'
 
-import {traerCarreras} from '../../Servicios/Carrera'
-import {buscarUsuarioPorId} from '../../Servicios/UsuariosServicio'
 
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -30,6 +28,9 @@ import FormularioTutor from './FormularioTutor';
 import TablaTutor from './TablaTutor';
 import LocalParkingIcon from '@material-ui/icons/LocalParking';
 
+//Servicio
+import {traerCarreras} from '../../Servicios/Carrera'
+import {buscarUsuarioPorId} from '../../Servicios/UsuariosServicio'
 
 
 const InicioCoordinador = () => {

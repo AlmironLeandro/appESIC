@@ -9,8 +9,8 @@ import Paper from '@material-ui/core/Paper';
 import { InputGroup } from 'react-bootstrap'
 import { Fragment, useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
-import Button  from '@material-ui/core/Button';
- import { Button as boton} from 'react-bootstrap'
+import Button from '@material-ui/core/Button';
+import { Button as boton } from 'react-bootstrap'
 import HeaderUsuario from '../HeaderUsuario'
 import DetalleProyecto from './DetalleProyecto'
 
@@ -25,7 +25,7 @@ const FiltroDeProyecto = () => {
     const [proyectos, setProyectos] = useState([])
     const [detalle, setDetalle] = useState(false)
     const [proyecto, setProyecto] = useState({})
-    
+
     const useStyles = makeStyles({
         table: {
             minWidth: 650,
@@ -55,17 +55,25 @@ const FiltroDeProyecto = () => {
 
         }
         else {
+            //Ejemplo
+            // const respuestasUltimoEntregable = await Promise.all(hitos.map(hito => ultimoEntregable(hito.id)));
+            // setComentarios(respuestasUltimoEntregable.map(hito => hito.data));
+            
+            //Lo de este componente
             setCarrera(event.target.value)
-            const res = await traerProyectosPorCarrera(event.target.value)
-            setProyectos(res.proyectosResponse)
+            const res = await Promise.all( traerProyectosPorCarrera(event.target.value))
+            //Treamos proyectos por carrera y con las id traemos los proyectos nuevamente 
+            //con el endpoin buscarProyecto, que este trae todo completo.
+            setProyectos(res)
+           
         }
 
     }
 
-    const traerProyecto = async (id)=>{
+    const traerProyecto = async (id) => {
         const response = await buscarProyecto(id)
         setProyecto(response)
-       
+
         setDetalle(true)
     }
 
@@ -89,9 +97,9 @@ const FiltroDeProyecto = () => {
                         <option key={carrera.id} value={carrera.id}>   {carrera.nombre}</option>)}
                 </select>
             </InputGroup>
-            <boton style={{ background: '#ffffff', display:'flex', justifyContent:"flex-end" }} >
+            <boton style={{ background: '#ffffff', display: 'flex', justifyContent: "flex-end" }} >
                 <Link
-                    style={{ textDecoration: 'none', borderColor:"blue" }} to={"/Usuario/3"}>Volver
+                    style={{ textDecoration: 'none', borderColor: "blue" }} to={"/Usuario/3"}>Volver
                 </Link>
             </boton>
 
@@ -102,6 +110,11 @@ const FiltroDeProyecto = () => {
                             <TableRow>
                                 <TableCell >Nombre</TableCell>
                                 <TableCell >Descripcion</TableCell>
+                                <TableCell >Documento</TableCell>
+                                <TableCell >Relevamiento</TableCell>
+                                <TableCell >Mejora</TableCell>
+                                <TableCell >Evaluación </TableCell>
+                                <TableCell >Trabajo final </TableCell>
                                 <TableCell > </TableCell>
 
 
@@ -113,8 +126,13 @@ const FiltroDeProyecto = () => {
                                 <TableRow >
                                     <TableCell >{proyecto.nombre} </TableCell>
                                     <TableCell >{proyecto.descripcion} </TableCell>
+                                    <TableCell >Documento</TableCell>
+                                    <TableCell >Relevamiento</TableCell>
+                                    <TableCell >Mejora</TableCell>
+                                    <TableCell >Evaluación </TableCell>
+                                    <TableCell >Trabajo final </TableCell>
                                     <TableCell >
-                                        <Button variant="contained" onClick={()=>traerProyecto(proyecto.id)}>+ Info</Button>
+                                        <Button variant="contained" onClick={() => traerProyecto(proyecto.id)}>+ Info</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -126,13 +144,13 @@ const FiltroDeProyecto = () => {
                 }
 
             </TableContainer>
-            {detalle ? 
-            <DetalleProyecto
-            proyecto = {proyecto}
-            setDetalle = {setDetalle}
-            detalle={detalle}
-            />   :''
-        }
+            {detalle ?
+                <DetalleProyecto
+                    proyecto={proyecto}
+                    setDetalle={setDetalle}
+                    detalle={detalle}
+                /> : ''
+            }
 
         </Fragment>
 
