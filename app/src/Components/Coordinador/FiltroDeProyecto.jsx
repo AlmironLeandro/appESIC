@@ -6,13 +6,19 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { InputGroup } from 'react-bootstrap'
+import { InputGroup, Row, Col } from 'react-bootstrap'
 import { Fragment, useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
-import { Button as boton } from 'react-bootstrap'
+
 import HeaderUsuario from '../HeaderUsuario'
 import DetalleProyecto from './DetalleProyecto'
+
+import LensIcon from '@material-ui/icons/Lens';
+
+import DoneOutlineRoundedIcon from '@material-ui/icons/DoneOutlineRounded';
+
+import { green } from '@material-ui/core/colors';
 
 //Servicios
 import { traerCarreras } from '../../Servicios/Carrera'
@@ -21,10 +27,17 @@ import { traerProyectosPorCarrera, buscarProyecto } from '../../Servicios/Proyec
 
 const FiltroDeProyecto = () => {
     const [carreras, setCarreras] = useState([])
+
     const [carrera, setCarrera] = useState()
-    const [proyectos, setProyectos] = useState([])
+
     const [detalle, setDetalle] = useState(false)
+
     const [proyecto, setProyecto] = useState({})
+
+    //Proyectos completos
+    const [proyectosConHitos, setProyectosConHitos] = useState([])
+    //proyectos por carrera
+    const [proyectos, setProyectos] = useState([])
 
     const useStyles = makeStyles({
         table: {
@@ -55,17 +68,13 @@ const FiltroDeProyecto = () => {
 
         }
         else {
-            //Ejemplo
-            // const respuestasUltimoEntregable = await Promise.all(hitos.map(hito => ultimoEntregable(hito.id)));
-            // setComentarios(respuestasUltimoEntregable.map(hito => hito.data));
-            
-            //Lo de este componente
             setCarrera(event.target.value)
-            const res = await Promise.all( traerProyectosPorCarrera(event.target.value))
-            //Treamos proyectos por carrera y con las id traemos los proyectos nuevamente 
-            //con el endpoin buscarProyecto, que este trae todo completo.
-            setProyectos(res)
-           
+            const res = await traerProyectosPorCarrera(event.target.value)
+            const respuesta = await Promise.all(res.proyectosResponse.map(proyecto =>
+                buscarProyecto(proyecto.id)))
+            setProyectosConHitos(respuesta)
+
+
         }
 
     }
@@ -102,37 +111,92 @@ const FiltroDeProyecto = () => {
                     style={{ textDecoration: 'none', borderColor: "blue" }} to={"/Usuario/3"}>Volver
                 </Link>
             </boton>
-
+            <Row>
+                <Col style={{ textAlign: 'right' }}>
+                    Hito cerrado
+                    <LensIcon
+                        style={{ color: '#4bc257' }} /></Col>
+                <Col style={{ textAlign: 'center' }}>
+                    Hito en progreso
+                    <LensIcon
+                        style={{ color: '#efef69' }} /> </Col>
+                <Col style={{ textAlign: 'left' }}>
+                    Hito no creado
+                    <LensIcon
+                        style={{ color: '#ea6565' }} /> </Col>
+            </Row>
+            <hr></hr>
             <TableContainer component={Paper}>
-                {proyectos === undefined || proyectos.length === 0 ? '' :
+
+                {proyectosConHitos === undefined || proyectosConHitos.length === 0 ? '' :
                     <Table className={classes.table} aria-label="simple table">
+                        {console.log(proyectosConHitos)}
                         <TableHead>
                             <TableRow>
                                 <TableCell >Nombre</TableCell>
-                                <TableCell >Descripcion</TableCell>
-                                <TableCell >Documento</TableCell>
-                                <TableCell >Relevamiento</TableCell>
-                                <TableCell >Mejora</TableCell>
-                                <TableCell >Evaluación </TableCell>
-                                <TableCell >Trabajo final </TableCell>
-                                <TableCell > </TableCell>
-
-
+                                <TableCell style={{ textAlign: 'center' }} >Documento</TableCell>
+                                <TableCell style={{ textAlign: 'center' }}>Relevamiento</TableCell>
+                                <TableCell style={{ textAlign: 'center' }}>Mejora</TableCell>
+                                <TableCell style={{ textAlign: 'center' }}>Evaluación </TableCell>
+                                <TableCell style={{ textAlign: 'center' }}>Trabajo final </TableCell>
+                                <TableCell style={{ textAlign: 'center' }}> </TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {proyectos.map(proyecto =>
+                            {proyectosConHitos.map(proyecto =>
                             (
                                 <TableRow >
-                                    <TableCell >{proyecto.nombre} </TableCell>
-                                    <TableCell >{proyecto.descripcion} </TableCell>
-                                    <TableCell >Documento</TableCell>
-                                    <TableCell >Relevamiento</TableCell>
-                                    <TableCell >Mejora</TableCell>
-                                    <TableCell >Evaluación </TableCell>
-                                    <TableCell >Trabajo final </TableCell>
-                                    <TableCell >
-                                        <Button variant="contained" onClick={() => traerProyecto(proyecto.id)}>+ Info</Button>
+                                    <TableCell >{proyecto.proyecto.nombre} </TableCell>
+
+                                    <TableCell style={{ textAlign: 'center' }}> {proyecto.hitos[0] === undefined ? <LensIcon style={{ color: '#ea6565' }} /> :
+                                        proyecto.hitos[0].entregado === null ?
+                                            <LensIcon style={{ color: '#efef69' }} /> :
+                                            <LensIcon style={{ color: '#4bc257' }} />
+                                    }
+                                    </TableCell>
+                                    <TableCell style={{ textAlign: 'center' }} > {proyecto.hitos[1] === undefined ? <LensIcon style={{ color: '#ea6565' }} /> :
+                                        proyecto.hitos[1].entregado === null ?
+                                            <LensIcon
+                                                style={{ color: '#efef69' }} /> :
+
+                                            <LensIcon
+                                                style={{ color: "#4bc257" }} />
+
+                                    }
+
+                                    </TableCell>
+                                    <TableCell style={{ textAlign: 'center' }}> {proyecto.hitos[2] === undefined ? <LensIcon style={{ color: '#ea6565' }} /> :
+                                        proyecto.hitos[2].entregado === null ?
+                                            <LensIcon
+                                                style={{ color: '#efef69' }} /> :
+
+                                            <LensIcon
+                                                style={{ color: "#4bc257"}} />
+
+                                    }</TableCell>
+                                    <TableCell style={{ textAlign: 'center' }}> {proyecto.hitos[3] === undefined ? <LensIcon style={{ color: '#ea6565' }} /> :
+                                        proyecto.hitos[3].entregado === null ?
+                                            <LensIcon
+                                                style={{ color: '#efef69' }} /> :
+
+                                            <LensIcon />
+
+                                    } </TableCell>
+                                    <TableCell style={{ textAlign: 'center' }}>
+                                        {proyecto.hitos[4] === undefined ?
+                                         <LensIcon style={{ color: '#ea6565' }} />:
+                                            proyecto.hitos[4].entregado === null ?
+                                                <LensIcon
+                                                    style={{ color: '#efef69' }} />
+
+                                                :
+
+                                                <LensIcon
+                                                    style={{ color:" #4bc257" }} />
+
+                                        }</TableCell>
+                                    <TableCell style={{ textAlign: 'center' }}>
+                                        <Button variant="contained" onClick={() => traerProyecto(proyecto.proyecto.id)}>+ Info</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}

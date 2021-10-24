@@ -41,7 +41,7 @@ export default function CustomizedTimeline({ hitos }) {
       const traerComentarios = async () => {
         const respuestasUltimoEntregable = await Promise.all(hitos.map(hito => ultimoEntregable(hito.id)));
         setComentarios(respuestasUltimoEntregable.map(hito => hito.data));
-        
+
       }
       traerComentarios()
     }, [])
@@ -49,7 +49,7 @@ export default function CustomizedTimeline({ hitos }) {
 
   return (
     <Timeline align="alternate">
-      {/* Hito 1 */}
+      {/* Hito Documento  */}
 
       <TimelineItem>
         <TimelineOppositeContent>
@@ -76,7 +76,7 @@ export default function CustomizedTimeline({ hitos }) {
               <EntregarHito id={hitos[0].id}
               />
               {
-              comentarios[0] === null || comentarios[0] === undefined || comentarios[0].devolucion ===  ""   ? '': <Button onClick={() => alert(comentarios[0].devolucion)}>
+                comentarios[0] === null || comentarios[0] === undefined || comentarios[0].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[0].devolucion)}>
                   Ver comentario
                 </Button>
               }
@@ -86,13 +86,53 @@ export default function CustomizedTimeline({ hitos }) {
         </TimelineContent>
       </TimelineItem>
 
-      {/* Hito 2 */}
-      {hitos[1] === undefined ? '' :
+
+
+
+      {/* Hito  Relevamiento */}
+
+      <TimelineItem>
+        <TimelineOppositeContent>
+          <Typography variant="body2" color="textSecondary">
+            {pasarFecha(hitos[1].fechaEntrega)}
+          </Typography>
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineDot color="#9c9c9c">
+            < HowToRegIcon style={{ color: 'black' }} />
+          </TimelineDot>
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>
+          <Paper elevation={3} className={classes.paper}>
+            <Typography variant="h6" component="h1">
+              {hitos[1].tipoHito.nombre}
+
+            </Typography>
+            <Typography>Descripción: {hitos[1].descripcion}</Typography>
+
+            <Typography>
+
+              <EntregarHito id={hitos[1].id}
+              />
+              {
+                comentarios[1] === null || comentarios[1] === undefined || comentarios[1].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[1].devolucion)}>
+                  Ver comentario
+                </Button>
+              }
+
+            </Typography>
+          </Paper>
+        </TimelineContent>
+      </TimelineItem>
+
+      {/* Hito Mejora*/}
+      {hitos[2] === undefined ? '' :
 
         <TimelineItem>
           <TimelineOppositeContent>
             <Typography variant="body2" color="textSecondary">
-              {pasarFecha(hitos[1].fechaEntrega)}
+              {pasarFecha(hitos[2].fechaEntrega)}
             </Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
@@ -105,16 +145,16 @@ export default function CustomizedTimeline({ hitos }) {
 
             <Paper elevation={3} className={classes.paper}>
               <Typography variant="h6" component="h1">
-                {hitos[1].tipoHito.nombre}
+                {hitos[2].tipoHito.nombre}
 
 
               </Typography>
 
-              <Typography>Descripción: {hitos[1].descripcion}</Typography>
-              <Typography><EntregarHito id={hitos[1].id}
+              <Typography>Descripción: {hitos[2].descripcion}</Typography>
+              <Typography><EntregarHito id={hitos[2].id}
               >Entregar</EntregarHito>
                 {
-                comentarios[1] === null ||  comentarios[1] === undefined || comentarios[1].devolucion ===  ""  ? '': <Button onClick={() => alert(comentarios[1].devolucion)}>
+                  comentarios[2] === null || comentarios[2] === undefined || comentarios[2].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[2].devolucion)}>
                     Ver comentario
                   </Button>
                 }
@@ -124,13 +164,13 @@ export default function CustomizedTimeline({ hitos }) {
           </TimelineContent>
         </TimelineItem>
       }
-      {/* Hito 3 */}
+      {/* Hito Evaluacion */}
 
-      {hitos[2] === undefined ? '' :
+      {hitos[3] === undefined ? '' :
         <TimelineItem>
           <TimelineOppositeContent>
             <Typography variant="body2" color="textSecondary">
-              {pasarFecha(hitos[2].fechaEntrega)}
+              {pasarFecha(hitos[3].fechaEntrega)}
             </Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
@@ -143,15 +183,15 @@ export default function CustomizedTimeline({ hitos }) {
           <TimelineContent>
             <Paper elevation={3} className={classes.paper}>
               <Typography variant="h6" component="h1">
-                {hitos[2].tipoHito.nombre}
+                {hitos[3].tipoHito.nombre}
 
               </Typography>
-              <Typography>Descripción: {hitos[2].descripcion}</Typography>
-              <Typography><EntregarHito id={hitos[2].id}
+              <Typography>Descripción: {hitos[3].descripcion}</Typography>
+              <Typography><EntregarHito id={hitos[3].id}
               >Entregar</EntregarHito>
-              {console.log(comentarios)}
+
                 {
-                 comentarios[2] === null || comentarios[2] === undefined || comentarios[2].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[2].devolucion)}>
+                  comentarios[3] === null || comentarios[3] === undefined || comentarios[3].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[3].devolucion)}>
                     Ver comentario
                   </Button>
                 }
@@ -160,13 +200,13 @@ export default function CustomizedTimeline({ hitos }) {
           </TimelineContent>
         </TimelineItem>
       }
-      {/* Hito 4 */}
+      {/* Hito Entrega final */}
 
-      {hitos[3] === undefined ? '' :
+      {hitos[4] === undefined ? '' :
         <TimelineItem>
           <TimelineOppositeContent>
             <Typography variant="body2" color="textSecondary">
-              {pasarFecha(hitos[1].fechaEntrega)}
+              {pasarFecha(hitos[4].fechaEntrega)}
             </Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
@@ -178,15 +218,15 @@ export default function CustomizedTimeline({ hitos }) {
           <TimelineContent>
             <Paper elevation={3} className={classes.paper}>
               <Typography variant="h6" component="h1">
-                {hitos[3].tipoHito.nombre}
+                {hitos[4].tipoHito.nombre}
 
               </Typography>
-              <Typography>Descripción: {hitos[3].descripcion}</Typography>
+              <Typography>Descripción: {hitos[4].descripcion}</Typography>
               <Typography>
-                <EntregarHito id={hitos[3].id}
+                <EntregarHito id={hitos[4].id}
                 >Entregar</EntregarHito>
                 {
-                 comentarios[3] === null || comentarios[3] === undefined || comentarios[3].devolucion ===  ""  ? '': <Button onClick={() => alert(comentarios[3].devolucion)}>
+                  comentarios[4] === null || comentarios[4] === undefined || comentarios[4].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[4].devolucion)}>
                     Ver comentario
                   </Button>
                 }

@@ -23,7 +23,6 @@ function DetalleProyecto({ setDetalle, proyecto }) {
 
     return (
         <Container>
-            {console.log(proyecto)}
             <Modal size="sm" show={show} >
                 <Modal.Header>
                     <h4>Información del proyecto</h4>

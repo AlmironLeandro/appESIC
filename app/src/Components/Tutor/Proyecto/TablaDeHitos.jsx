@@ -45,23 +45,27 @@ const TablaDeHitos = (props) => {
       minWidth: 650,
     },
   });
+  const [documentoInicial, setDocumentoInicial]= useState()
   const [relevamiento, setRelevamiento] = useState()
   const [mejora, setMejora] = useState()
   const [evaluacion, setEvaluacion] = useState()
   const [trabajoFinal, setTrabajoFinal] = useState()
-
+  
   const handleChange0 = (e) => {
     setRelevamiento(e.target.value)
   };
   const handleChange1 = (e) => {
     setMejora(e.target.value)
   };
-
+  
   const handleChange2 = (e) => {
     setEvaluacion(e.target.value)
   };
   const handleChange3 = (e) => {
     setTrabajoFinal(e.target.value)
+  };
+  const handleChange4 = (e) => {
+    setDocumentoInicial(e.target.value)
   };
   const enviarComentario = async (id, nombre) => {
     await insertarDevolucion(id, nombre)
@@ -103,8 +107,30 @@ const TablaDeHitos = (props) => {
                   <TableCell >{hito.descripcion} </TableCell>
                   <TableCell >{pasarFecha(hito.fechaEntrega)}</TableCell>
                   {documento[i] === null || documento[i] === undefined ? '' :
-                    <TableCell style={{ display: 'flex', alignItems: 'center' }}>
-                      {i === 0 ?
+                    <TableCell style={{ display: 'flex', alignItems: 'center' }}> 
+                      {
+                       i === 0 ?
+                       <Fragment>
+                         <TextareaAutosize
+                           type="text"
+                           defaultValue={documento[i].devolucion}
+                           name="documentoInicial"
+                           value={documentoInicial}
+                           onChange={handleChange4}
+
+                         >
+
+                         </TextareaAutosize>
+                         <Button
+                           size="sm"
+                           variant="secondary"
+                           onClick={() => enviarComentario(documento[i].id, documentoInicial)}
+                         >
+                           Enviar
+                         </Button>
+                       </Fragment> :
+                      
+                      i === 1 ?
                         <Fragment>
                           <TextareaAutosize
                             type="text"
@@ -124,7 +150,7 @@ const TablaDeHitos = (props) => {
                             Enviar
                           </Button>
                         </Fragment> :
-                        i === 1 ?
+                        i === 2 ?
                           <Fragment>
                             <TextareaAutosize
                               type="text"
@@ -144,7 +170,7 @@ const TablaDeHitos = (props) => {
                               Enviar
                             </Button>
                           </Fragment> :
-                          i === 2 ?
+                          i === 3 ?
                             <Fragment>
                               <TextareaAutosize
                                 type="text"
