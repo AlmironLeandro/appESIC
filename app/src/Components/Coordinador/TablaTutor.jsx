@@ -42,9 +42,7 @@ const TablaTutor = ({ tutores, traerUsuario, eliminaUsuario }) => {
                                 <TableCell>{tutor.email}</TableCell>
                                 <TableCell>
 
-                                    <BsFillTrashFill 
-                                       
-                                    />
+                                    <BsFillTrashFill  onClick={()=> console.log(tutor.id)}/>
                                 </TableCell>
                             </TableRow>
                         ))};
