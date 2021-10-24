@@ -1,35 +1,41 @@
 /* HACER UN @media PARA CONTROLAR LOS PIXELES EN CELULAR Y ASI BAJAR LA LETRA */
-body{
+
+body {
   /* background-color: #e0f6f6; */
   background-color: white;
   color: #000;
-  font-family:'Roboto', 'sans-serif';
-  height: 100%;
+  font-family: 'Roboto', 'sans-serif';
+  height: 100vh;
+  margin: 0%;
+  padding: 0%;
+  overflow: hidden;
 }
-.buttonSeccion
-{
+
+.buttonSeccion {
   width: 150px;
   background-color: #5aa123;
-  
 }
 
 /* PARA QUE DESAPARECER LOS BOTONES DE SUBIR Y BAJAR EN EL INPUT DNI */
-input[type="number"] {
--moz-appearance: textfield;
 
+input[type="number"] {
+  -moz-appearance: textfield;
 }
+
 /* ESPACIADO DENTRO DEL FORMULARIO */
-.rowLogin
-{
+
+.rowLogin {
   margin: 10%;
 }
-.login
-{
+
+.login {
+  margin: 0%;
+  padding: 0%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 200px;
-  border: 3px solid green; 
+  border: 3px solid green;
   background-color: #fdfdfdf5;
   margin-top: 10%;
   box-shadow: 0px 2px 10px rgb(136, 136, 136);
@@ -37,120 +43,98 @@ input[type="number"] {
   height: 380px;
   border: 1px solid rgb(119, 184, 184);
   box-sizing: border-box;
-  border-radius: 20px;  
-  
+  border-radius: 20px;
 }
 
 /* ADAPTABLE PARA MOVILES FORMULARIO, CENTRADO, para pantallas menores a
 600 pixeles */
+
 @media (max-width: 600px) {
-  .login{
-  width: 300px;
-  height: 280px;
-  
+  .login {
+    margin: 0%;
+    padding: 0%;
+    width: 300px;
+    height: 350px;
   }
-  .rowLogin{
+  .rowLogin {
     justify-content: center;
     align-items: center;
-   
   }
 }
-.btn.btn-success
-{
+
+.btn.btn-success {
   border-radius: 12px;
 }
-.iniciar-seccion
-{
+
+.iniciar-seccion {
   margin: 2%;
   text-align: center;
   color: #5aa123;
- 
- 
 }
 
-.header
-{
+.header {
   display: flex;
   align-items: center;
   font-family: 'Mukta', sans-serif;
   box-shadow: 0px 2px 10px #888;
-  position:relative;
-  color:rgba(51, 51, 51, 0.658) ;
-  background-color:#4db6ad;
+  position: relative;
+  color: rgba(51, 51, 51, 0.658);
+  background-color: #4db6ad;
   justify-content: space-between;
-
-
-  
 }
 
-
-.volverMenu:hover{
+.volverMenu:hover {
   background-color: rgb(209, 225, 243);
 }
 
-.cancelar{
-  position:relative;
+.cancelar {
+  position: relative;
   right: 20px;
   bottom: 5px;
 }
 
-.guardar{
+.guardar {
   position: relative;
   left: 20px;
   bottom: 5px;
 }
 
-
-.dropdown
-{
+.dropdown {
   background-color: transparent;
   color: #e0f6f6;
   border: none;
 }
 
-
-
-
 /* Tabla estudiantes */
 
-.contenedorTablaDeAlumnos
-{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
- 
+.contenedorTablaDeAlumnos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.contenedorTablaDeAlumnos > div 
-{
+.contenedorTablaDeAlumnos>div {
   width: 19%;
-  
 }
-.iconosBorrarMod
-{
+
+.iconosBorrarMod {
   display: flex;
-  justify-content:center;
-  
+  justify-content: center;
 }
-.containerTablaEstudiantes
-{
+
+.containerTablaEstudiantes {
   margin: auto;
   width: 75%;
-  
 }
 
 @media (max-width: 850px) {
-  .containerTablaEstudiantes
-  {
+  .containerTablaEstudiantes {
     margin: auto;
     width: 100%;
-    
   }
-
 }
 
-.inputTextArea
-{
+.inputTextArea {
   background-color: #4db6ad;
   display: flex;
   align-items: center;

@@ -40,6 +40,21 @@ export const traerHitosPorProyecto = async (proyectoId) => {
         alert(e.response.data.message)
     }
 }*/
+export const cerrarHito = async (id) => {
+    const cliente = newSecureClient();
+    return await cliente.put(`/hitos/closed/${id}`)
+        .then(response => {
+            const hitoTodos = response.data.hitos
+            return hitoTodos
+        })
+        .catch(error => {
+            console.log(error)
+
+        }
+        )
+}
+
+
 export const traerHitosPorProyecto = async (proyectoId) => {
     const cliente = newSecureClient();
     return await cliente.get(`/hitos/ListByProyecto/${proyectoId}`)

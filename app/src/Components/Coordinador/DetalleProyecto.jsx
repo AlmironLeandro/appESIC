@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Modal, Button, Col, InputGroup, FormControl } from 'react-bootstrap'
 
 function DetalleProyecto({ setDetalle, proyecto }) {
@@ -8,56 +8,48 @@ function DetalleProyecto({ setDetalle, proyecto }) {
         setShow(false);
         setDetalle(false)
     }
+    const [alumnos, setAlumnos] = useState([])
+
+    useEffect(() => {
+        const estudiantes = () => {
+            const sortedList = [...proyecto.alumnos].sort((a, b) => (a.apellido.toLowerCase() > b.apellido.toLowerCase() ? 1 : a.apellido.toLowerCase() < b.apellido.toLowerCase() ? -1 : 0))
+            setAlumnos(sortedList)
+
+        }
+
+        estudiantes()
+    }, [])
+
 
     return (
         <Container>
             {console.log(proyecto)}
             <Modal size="sm" show={show} >
                 <Modal.Header>
-                    <p>Información del proyecto</p>
+                    <h4>Información del proyecto</h4>
                 </Modal.Header>
-                <Modal.Body>
-                    <InputGroup size="sm" className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text id="inputGroup-sizing-sm">Materia:</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                            defaultValue={`${proyecto.tutor.nombre} ${proyecto.tutor.apellido}`}
-                        />
-                    </InputGroup>
+                {alumnos === undefined || alumnos.length === 0 ? '' :
+                    <Modal.Body>
+                        <Modal.Body>
+                            <h6>{"Tutor/a: " + proyecto.tutor.nombre + " " + proyecto.tutor.apellido}</h6>
+                            <hr></hr>
+                            <h6>{"Materia: " + proyecto.materia.nombre}</h6>
+                            <hr></hr>
+                            <div style={{ textAlign: 'center' }}>
+                                <h6 style={{ display: 'inline-block' }}>Estudiantes</h6>
+                            </div>
+                            {alumnos.map((est) => <p >{"" + est.nombre + "  "}{"  " + est.apellido + "  "}</p>)}
+                        </Modal.Body>
+                        <Col>
+                            <div style={{ textAlign: 'center' }} >
+                                <Button size="sm" className="cancelar" variant="danger" onClick={handleClose}>
+                                    Cerrar
+                                </Button>
+                            </div>
+                        </Col>
 
-                    <InputGroup size="sm" className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text id="inputGroup-sizing-sm">Tutor/a:</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                            defaultValue={proyecto.materia.nombre}
-                        />
-                    </InputGroup>
-                    <InputGroup size="sm" className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text id="inputGroup-sizing-sm">Estudiantes:</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                            defaultValue={`${proyecto.alumnos[0].nombre} ${proyecto.alumnos[0].apellido} `}
-                        />
-                    </InputGroup>
-                    <InputGroup size="sm" className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text id="inputGroup-sizing-sm">Hitos:</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                            defaultValue={proyecto.materia.nombre}
-                        />
-                    </InputGroup>
-
-
-                    <Col>
-                        <Button size="sm" className="cancelar" variant="danger" onClick={handleClose}>
-                            Cancelar
-                </Button>
-                    </Col>
-                </Modal.Body>
+                    </Modal.Body>
+                }
             </Modal>
         </Container>
     )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useLocation, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Fragment } from 'react';
 import HeaderLogin from './Components/Login/HeaderLogin'
@@ -37,6 +37,9 @@ function App() {
 
       <Router>
         <Switch>
+          <Route exact path="/">
+            <Redirect to="/login" />
+          </Route>
           <Route path="/login" exact >
             <HeaderLogin />
             <Login />
@@ -56,7 +59,7 @@ function App() {
           <PrivateRoute exact path="/tutorCoordinador" rol={3} component={InicioTutor} />
           <PrivateRoute exact path="/tutorCoordinador/CargarEstudiante" rol={3} component={CargarEstudiante} />
           <PrivateRoute exact path="/tutorCoordinador/NuevoProyecto" component={FormularioProyecto} rol={3} />
-          
+
           <Route path="*" component={NoMatch} />
         </Switch>
       </Router>

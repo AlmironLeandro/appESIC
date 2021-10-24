@@ -76,7 +76,7 @@ const NavDeUsuarios = () => {
                     setCargaEstudiante={setCargaEstudiante}
                     estudiante={estudiante}
                 />:
-                console.log(estudiante)
+                ''
             }
 
         </Fragment>

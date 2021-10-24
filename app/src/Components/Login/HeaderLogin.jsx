@@ -3,6 +3,9 @@ import Logo from '../../Images/imgg.png'
 
 
 const styleHeader= {
+    margin:'0%',
+    padding:"0%",
+    height:"10vh ",
     justifyContent:'center',
     alignitems: 'center',
     fontFamily: 'Mukta, sans-serif',

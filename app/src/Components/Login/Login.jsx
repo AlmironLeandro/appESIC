@@ -8,10 +8,15 @@ import { serviceLogin } from '../../Servicios/UsuariosServicio'
 
 const Login = () => {
   const estilo = {
+    margin:'0%',
+    padding:'0%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
-    height: '90vh'
+ 
+    width:'100%',
+    height:"90vh",
+    alignItems: 'center'
+    
   }
   useEffect(() => {
 
@@ -32,7 +37,7 @@ const Login = () => {
       // }
       history.push(`/Usuario/${res.idRol}`)
 
-      
+
     }
     else {
       setUsuario({ dni: '', pass: '' })
@@ -47,7 +52,7 @@ const Login = () => {
     }
     )
   };
-  
+
   return (
     <div style={estilo} >
       <div>
@@ -59,7 +64,7 @@ const Login = () => {
 
               <Form.Group controlId="formBasicNumber">
                 <Form.Label  >Documento</Form.Label>
-                
+
                 <Form.Control value={usuario.dni} name="dni" type="number" placeholder="Ingresar documento" onChange={handleChange} />
               </Form.Group>
             </Row>
@@ -71,7 +76,7 @@ const Login = () => {
             </Row >
             {/* <Link style={{textDecoration: 'none'}} to={"/Usuario/2"}> */}
             <Row className="d-flex justify-content-center rowLogin">
-            {error ? <p style={{ color: 'red', textAlign: 'center', fontSize: '15px' }}> El usuario y/o contraseña es incorrecto </p> : null}
+              {error ? <p style={{ color: 'red', textAlign: 'center', fontSize: '15px' }}> El usuario y/o contraseña es incorrecto </p> : null}
               <Button className=" btn btn-success buttonSeccion "
                 type="submit" onClick={validarIngreso}  >
                 Iniciar sesion
@@ -83,7 +88,7 @@ const Login = () => {
 
 
           </Col>
-          
+
         </Form>
 
       </div>

@@ -7,8 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { traerHitosPorProyecto } from '../../../Servicios/Hito'
-import { ultimoEntregable, insertarDevolucion } from '../../../Servicios/Entregables'
 import { useEffect, useState } from 'react';
 import pasarAPdf from '../../../function/pasarAPdf'
 import { pasarFecha } from '../../../function/pasarFecha';
@@ -17,6 +15,9 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { Checkbox } from '@material-ui/core';
 import { Button } from 'react-bootstrap'
 
+//Servicios
+import { cerrarHito, traerHitosPorProyecto } from '../../../Servicios/Hito'
+import { ultimoEntregable, insertarDevolucion } from '../../../Servicios/Entregables'
 
 const TablaDeHitos = (props) => {
 
@@ -25,11 +26,11 @@ const TablaDeHitos = (props) => {
   useEffect(() => {
     const traerHitos = async () => {
       try {
+        props.setCallBack(false)
         const response = await traerHitosPorProyecto(props.id)
         setHitosDeProyecto(response)
         const respuestasUltimoEntregable = await Promise.all(response.map(hito => ultimoEntregable(hito.id)));
         setDocumento(respuestasUltimoEntregable.map(res => res.data));
-        console.log(documento)
       }
       catch (e) {
         console.error(e)
@@ -63,13 +64,16 @@ const TablaDeHitos = (props) => {
     setTrabajoFinal(e.target.value)
   };
   const enviarComentario = async (id, nombre) => {
-    console.log(id)
     await insertarDevolucion(id, nombre)
+    props.setCallBack(true)
+    props.setCallBack(false)
   }
 
   const classes = useStyles();
 
-
+  const aprobarHito = (id) => {
+    cerrarHito(id)
+  }
   return (
     <Fragment>
 
@@ -140,46 +144,46 @@ const TablaDeHitos = (props) => {
                               Enviar
                             </Button>
                           </Fragment> :
-                          i === 2 ? 
-                      <Fragment>
-                        <TextareaAutosize
-                          type="text"
-                          defaultValue={documento[i].devolucion}
-                          name="evaluacion"
-                          value={evaluacion}
-                          onChange={handleChange2}
+                          i === 2 ?
+                            <Fragment>
+                              <TextareaAutosize
+                                type="text"
+                                defaultValue={documento[i].devolucion}
+                                name="evaluacion"
+                                value={evaluacion}
+                                onChange={handleChange2}
 
-                        >
+                              >
 
-                        </TextareaAutosize>
-                        <Button
-                          size="sm"
-                          variant="secondary"
-                          onClick={() => enviarComentario(documento[i].id, evaluacion)}
-                        >
-                          Enviar
-                        </Button>
-                      </Fragment> :
+                              </TextareaAutosize>
+                              <Button
+                                size="sm"
+                                variant="secondary"
+                                onClick={() => enviarComentario(documento[i].id, evaluacion)}
+                              >
+                                Enviar
+                              </Button>
+                            </Fragment> :
 
-                      <Fragment>
-                        <TextareaAutosize
-                          type="text"
-                          defaultValue={documento[i].devolucion}
-                          name="trabajoFinal"
-                          value={trabajoFinal}
-                          onChange={handleChange3}
+                            <Fragment>
+                              <TextareaAutosize
+                                type="text"
+                                defaultValue={documento[i].devolucion}
+                                name="trabajoFinal"
+                                value={trabajoFinal}
+                                onChange={handleChange3}
 
-                        >
+                              >
 
-                        </TextareaAutosize>
-                        <Button
-                          size="sm"
-                          variant="secondary"
-                          onClick={() => enviarComentario(documento[i].id, trabajoFinal)}
-                        >
-                          Enviar
-                        </Button>
-                      </Fragment>
+                              </TextareaAutosize>
+                              <Button
+                                size="sm"
+                                variant="secondary"
+                                onClick={() => enviarComentario(documento[i].id, trabajoFinal)}
+                              >
+                                Enviar
+                              </Button>
+                            </Fragment>
                       }
 
 
@@ -192,7 +196,18 @@ const TablaDeHitos = (props) => {
 
 
                   </TableCell>
-                  <TableCell ><Checkbox></Checkbox></TableCell>
+                  {documento[i] === null || documento[i] === undefined ? '' :
+                    <TableCell >
+                      {console.log(documento)}
+                      {
+
+                        hito.entregado ? 'Aprobado' :
+                          documento[i].devolucion === '' ? '' :
+                            <Checkbox onClick={() => aprobarHito(hito.id)} ></Checkbox>
+                      }
+
+                    </TableCell>
+                  }
                 </TableRow>
               ))}
 

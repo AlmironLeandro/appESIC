@@ -27,7 +27,7 @@ const PantallaDeProyecto = () => {
             <VolverMenu />
             <CrearHito tiposHito={tiposHito} id={id} 
             setCallBack={setCallBack}/>
-            <TablaDeHitos id={id} callBack={callBack} />
+            <TablaDeHitos id={id} callBack={callBack} setCallBack={setCallBack}/>
         </Fragment>
     )
 }
