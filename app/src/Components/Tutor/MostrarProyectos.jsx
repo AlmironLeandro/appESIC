@@ -119,10 +119,19 @@ function ModalMostrarProyecto(props) {
         </p>
       </Modal.Body>
       <Modal.Footer style={{ display: 'flex', justifyContent: 'center' }}>
+      {localStorage.getItem("idRol") === '2' ?
         <Button variant="primary" onClick={props.onHide}>
+          
           <Link style={{ textDecoration: 'none', color: 'white' }} to={{
             pathname: `/Proyecto/${props.idProyecto}`
           }} >Hitos</Link></Button>
+          :
+          <Button variant="primary" onClick={props.onHide}>
+          
+          <Link style={{ textDecoration: 'none', color: 'white' }} to={{
+            pathname: `/tutorCoordinador/Proyecto/${props.idProyecto}`
+          }} >Hitos</Link></Button>
+        }
 {/* 
         <Button variant="secondary" onClick={props.edit}>Editar proyecto</Button>
         <Button variant="danger" onClick={props.eliminar}>Eliminar proyecto</Button> */}
