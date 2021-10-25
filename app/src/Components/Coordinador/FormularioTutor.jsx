@@ -40,7 +40,7 @@ const FormularioTutor = (props) =>{
             mail:"",    
         })
         setError(false);
-        props.avisoCalback(false)
+        props.avisoCallback(false)
         handleClose();
     }
 
@@ -79,8 +79,8 @@ const FormularioTutor = (props) =>{
         
 
         //Función para cerrar el modal
-        props.avisoCalback(false)
-        props.setCargaEstudiante(false)
+        props.avisoCallback(false)
+        props.setCallback(false)
         setShow(false)
 
         

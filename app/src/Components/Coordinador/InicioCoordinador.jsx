@@ -112,13 +112,13 @@ const InicioCoordinador = () => {
   const [tutor, setTutor] = useState(false);
   const [carreras, setCarreras] = useState([])
   const [tutores, setTutores] = useState([])
-  const [cargaEstudiante, setCargaEstudiante] = useState(false)
+  const [callback, setCallback] = useState(false)
   
 
 
   const agregarCarrera = () => {
     handleDrawerClose()
-    setCargaEstudiante(true)
+    setCallback(true)
     setCarrera(true)}
   
   const agregarMateria = () => {
@@ -127,7 +127,7 @@ const InicioCoordinador = () => {
   }
  
   const agregarTutor = () => {
-    setCargaEstudiante(true)
+    setCallback(true)
     handleDrawerClose()
     setTutor(true)
   }
@@ -143,7 +143,7 @@ const InicioCoordinador = () => {
             setTutores(sortedList)
             const getCarreras = await traerCarreras()
             setCarreras(getCarreras)
-            //console.log(cargaEstudiante)
+            //console.log(callback)
           }
           catch (e) {
             console.error(e)
@@ -153,7 +153,7 @@ const InicioCoordinador = () => {
       traerTutorYCarreras()
 
     
-}, [cargaEstudiante])
+}, [callback])
   
 
   
@@ -234,20 +234,21 @@ const InicioCoordinador = () => {
         </Toolbar>
            
         {carrera ?
-          <CrearCarrera avisoCalback={setCarrera} setCargaEstudiante={setCargaEstudiante} /> : ''
+          <CrearCarrera avisoCalback={setCarrera} setCallback={setCallback} /> : ''
         }
 
         {materia ?
           <CrearMateria 
           avisoCalback={setMateria}
           carreras = {carreras}
+          
           /> : ''
         }
 
         {tutor ?
         <FormularioTutor
-        setCargaEstudiante ={setCargaEstudiante} 
-        avisoCalback={setTutor}
+        setCallback ={setCallback} 
+        avisoCallback={setTutor}
         carreras = {carreras}
         /> : ''
         }
@@ -256,6 +257,8 @@ const InicioCoordinador = () => {
         
         <TablaTutor
         tutores={tutores}
+        setCallback={setCallback}
+
         />
         }
 

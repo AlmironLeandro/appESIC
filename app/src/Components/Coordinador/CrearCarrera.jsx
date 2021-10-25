@@ -21,7 +21,7 @@ const CrearCarrera = (props) => {
         )
 
         handleClose()
-        props.setCargaEstudiante(false)
+        props.setCallback(false)
         props.avisoCalback(false)
 
     }
@@ -29,7 +29,7 @@ const CrearCarrera = (props) => {
     const cerrarModal = () => {
 
         handleClose()
-        props.setCargaEstudiante(false)
+        props.setCallback(false)
         props.avisoCalback(false)
     }
 

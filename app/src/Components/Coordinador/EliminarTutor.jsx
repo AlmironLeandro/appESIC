@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import { Modal, Row, Col, Container, Button } from 'react-bootstrap'
 import { eliminarUsuario } from '../../Servicios/UsuariosServicio';
 
-const EliminarTutor = ({ setCargaEstudiante, alumnoAEliminar, setAlumnoAEliminar }) => {
+const EliminarTutor = ({ eliminarTutor, setEliminarTutor, setCallback }) => {
     const [show, setShow] = useState(true);
     const handleClose = () => {
-        setAlumnoAEliminar(null)
+        setEliminarTutor(null)
         setShow(false);
-        setCargaEstudiante(false)
+        setCallback(false)
+      
     }
 
-    const eliminar = async () => {
-        await eliminarUsuario(alumnoAEliminar.usuario.id)
-        setCargaEstudiante(true)
+    const eliminar = async (id) => {
+        await eliminarUsuario(id)
+       
         handleClose()
     }
 
@@ -24,13 +25,13 @@ const EliminarTutor = ({ setCargaEstudiante, alumnoAEliminar, setAlumnoAEliminar
 
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Nombre:  {alumnoAEliminar.usuario.nombre}</p>
-                    <p>Apellido:  {alumnoAEliminar.usuario.apellido}</p>
-                    <p>Dni:  {alumnoAEliminar.usuario.dni}</p>
+                    <p>Nombre:  {eliminarTutor.usuario.nombre}</p>
+                    <p>Apellido:  {eliminarTutor.usuario.apellido}</p>
+                    <p>Dni:  {eliminarTutor.usuario.dni}</p>
 
                     <Row>
                         <Col>
-                            <Button size="sm" className="guardar" variant="secondary" type="submit" onClick={eliminar}>
+                            <Button size="sm" className="guardar" variant="secondary" type="submit" onClick={()=> eliminar(eliminarTutor.usuario.id)}>
                                 Eliminar
                                     </Button>
                         </Col>

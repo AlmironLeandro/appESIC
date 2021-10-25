@@ -1,3 +1,4 @@
+import React, {useState, Fragment} from 'react' 
 import { BsFillTrashFill } from "react-icons/bs";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -7,9 +8,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import EliminarTutor from './EliminarTutor';
+import {buscarUsuario} from '../../Servicios/UsuariosServicio'
 
 
-const TablaTutor = ({ tutores, traerUsuario, eliminaUsuario }) => {
+const TablaTutor = ({ tutores, setCallback}) => {
   
     const useStyles = makeStyles({
         table: {
@@ -17,10 +20,20 @@ const TablaTutor = ({ tutores, traerUsuario, eliminaUsuario }) => {
         },
     });
     const classes = useStyles();
+    const [eliminarTutor, setEliminarTutor] = useState(null)
+
+    const eliminarUsuario = async (id) => {
+        
+            const res = await buscarUsuario(id) 
+            setEliminarTutor(res)
+            console.log(res)
+            setCallback(true)
+    }
        
 
     return (
 
+        <Fragment>
         <TableContainer component={Paper}>
             {tutores === undefined || tutores.length === 0 ? '' :
                 <Table className={classes.table} aria-label="simple table">
@@ -42,7 +55,7 @@ const TablaTutor = ({ tutores, traerUsuario, eliminaUsuario }) => {
                                 <TableCell>{tutor.email}</TableCell>
                                 <TableCell>
 
-                                    <BsFillTrashFill  onClick={()=> console.log(tutor.id)}/>
+                                    <BsFillTrashFill  onClick={()=> eliminarUsuario(tutor.id)}/>
                                 </TableCell>
                             </TableRow>
                         ))};
@@ -52,6 +65,15 @@ const TablaTutor = ({ tutores, traerUsuario, eliminaUsuario }) => {
 
 
         </TableContainer>
+        {eliminarTutor === null || eliminarTutor===undefined? '':
+        <EliminarTutor
+        eliminarTutor={eliminarTutor}
+        setEliminarTutor={setEliminarTutor}
+        setCallback = {setCallback}
+        />  
+        
+        }
+        </Fragment>
 
     );
 }
