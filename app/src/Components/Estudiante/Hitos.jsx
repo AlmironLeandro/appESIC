@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
 }));
+//Vunerabilidad, la desactivacion de enviar un nuevo documento se hizo en base a 
+//hitos={hitos[0].entregado} de esta forma si esta aprobado ya este hito se cierra, pero puede editarse en el 
+//browser
 
 
 export default function CustomizedTimeline({ hitos }) {
@@ -48,7 +51,7 @@ export default function CustomizedTimeline({ hitos }) {
 
 
   return (
-    <Timeline align="alternate">
+    <Timeline align="alternate" >
       {/* Hito Documento  */}
 
       <TimelineItem>
@@ -71,10 +74,11 @@ export default function CustomizedTimeline({ hitos }) {
             </Typography>
             <Typography>Descripción: {hitos[0].descripcion}</Typography>
 
-            <Typography>
+            <Typography >
+              {/* Si el hito esta aprobado/cerrado, este no muestra para entregar el hito, solo 
+              comentario */}
+              {hitos[0].entregado ? '' : <EntregarHito id={hitos[0].id} />}
 
-              <EntregarHito id={hitos[0].id}
-              />
               {
                 comentarios[0] === null || comentarios[0] === undefined || comentarios[0].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[0].devolucion)}>
                   Ver comentario
@@ -113,8 +117,8 @@ export default function CustomizedTimeline({ hitos }) {
 
             <Typography>
 
-              <EntregarHito id={hitos[1].id}
-              />
+              {hitos[1].entregado ? '' : <EntregarHito id={hitos[1].id} />}
+
               {
                 comentarios[1] === null || comentarios[1] === undefined || comentarios[1].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[1].devolucion)}>
                   Ver comentario
@@ -151,8 +155,8 @@ export default function CustomizedTimeline({ hitos }) {
               </Typography>
 
               <Typography>Descripción: {hitos[2].descripcion}</Typography>
-              <Typography><EntregarHito id={hitos[2].id}
-              >Entregar</EntregarHito>
+              <Typography>
+                {hitos[2].entregado ? '' : <EntregarHito id={hitos[2].id} />}
                 {
                   comentarios[2] === null || comentarios[2] === undefined || comentarios[2].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[2].devolucion)}>
                     Ver comentario
@@ -187,8 +191,8 @@ export default function CustomizedTimeline({ hitos }) {
 
               </Typography>
               <Typography>Descripción: {hitos[3].descripcion}</Typography>
-              <Typography><EntregarHito id={hitos[3].id}
-              >Entregar</EntregarHito>
+              <Typography>
+                {hitos[3].entregado ? '' : <EntregarHito id={hitos[3].id} />}
 
                 {
                   comentarios[3] === null || comentarios[3] === undefined || comentarios[3].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[3].devolucion)}>
@@ -223,8 +227,9 @@ export default function CustomizedTimeline({ hitos }) {
               </Typography>
               <Typography>Descripción: {hitos[4].descripcion}</Typography>
               <Typography>
-                <EntregarHito id={hitos[4].id}
-                >Entregar</EntregarHito>
+
+                {hitos[4].entregado ? '' : <EntregarHito id={hitos[4].id} />}
+
                 {
                   comentarios[4] === null || comentarios[4] === undefined || comentarios[4].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[4].devolucion)}>
                     Ver comentario

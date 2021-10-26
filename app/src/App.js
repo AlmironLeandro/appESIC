@@ -41,8 +41,11 @@ function App() {
             <Redirect to="/login" />
           </Route>
           <Route path="/login" exact >
-            <HeaderLogin />
-            <Login />
+            <div className="LoginPaginaPrincipal">
+              <HeaderLogin />
+              <Login />
+            </div>
+
           </Route>
           <Route exact path="/EditarPerfil" component={EditarPerfil} />
           <PrivateRoute exact path="/Usuario/2" rol={2} component={InicioTutor} />

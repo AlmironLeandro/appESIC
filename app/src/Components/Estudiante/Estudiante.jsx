@@ -1,6 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react'
+
+//Componentes propios
 import HeaderUsuario from '../HeaderUsuario'
 import Hitos from './Hitos'
+
+//Servicios
 import { traerProyectoPorEstudiante } from '../../Servicios/ProyectoPorEstudiante'
 import { buscarProyecto } from '../../Servicios/ProyectoServicio'
 import { traerHitosPorProyecto } from '../../Servicios/Hito'
@@ -26,7 +30,7 @@ const Estudiante = () => {
     return (
         <Fragment>
             <HeaderUsuario />
-            {!proyecto ? <h3>Todavía no estás asociado a un proyecto</h3>
+            {!proyecto ? <h3 style={{ textAlign: 'center' }}>Todavía no estás asociado a un proyecto</h3>
                 : <>
                     <h2 style={{ textAlign: 'center' }}>Bienvenido al proyecto:{proyecto.proyecto.nombre} </h2>
                     <h3 style={{ textAlign: 'center' }}>Materia: {proyecto.materia.nombre}</h3>

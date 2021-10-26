@@ -45,19 +45,19 @@ const TablaDeHitos = (props) => {
       minWidth: 650,
     },
   });
-  const [documentoInicial, setDocumentoInicial]= useState()
+  const [documentoInicial, setDocumentoInicial] = useState()
   const [relevamiento, setRelevamiento] = useState()
   const [mejora, setMejora] = useState()
   const [evaluacion, setEvaluacion] = useState()
   const [trabajoFinal, setTrabajoFinal] = useState()
-  
+
   const handleChange0 = (e) => {
     setRelevamiento(e.target.value)
   };
   const handleChange1 = (e) => {
     setMejora(e.target.value)
   };
-  
+
   const handleChange2 = (e) => {
     setEvaluacion(e.target.value)
   };
@@ -75,8 +75,10 @@ const TablaDeHitos = (props) => {
 
   const classes = useStyles();
 
-  const aprobarHito = (id) => {
-    cerrarHito(id)
+  const aprobarHito = async (id) => {
+    await cerrarHito(id)
+    props.setCallBack(true)
+    props.setCallBack(false)
   }
   return (
     <Fragment>
@@ -107,57 +109,16 @@ const TablaDeHitos = (props) => {
                   <TableCell >{hito.descripcion} </TableCell>
                   <TableCell >{pasarFecha(hito.fechaEntrega)}</TableCell>
                   {documento[i] === null || documento[i] === undefined ? '' :
-                    <TableCell style={{ display: 'flex', alignItems: 'center' }}> 
+                    <TableCell style={{ display: 'flex', alignItems: 'center' }}>
                       {
-                       i === 0 ?
-                       <Fragment>
-                         <TextareaAutosize
-                           type="text"
-                           defaultValue={documento[i].devolucion}
-                           name="documentoInicial"
-                           value={documentoInicial}
-                           onChange={handleChange4}
-
-                         >
-
-                         </TextareaAutosize>
-                         <Button
-                           size="sm"
-                           variant="secondary"
-                           onClick={() => enviarComentario(documento[i].id, documentoInicial)}
-                         >
-                           Enviar
-                         </Button>
-                       </Fragment> :
-                      
-                      i === 1 ?
-                        <Fragment>
-                          <TextareaAutosize
-                            type="text"
-                            defaultValue={documento[i].devolucion}
-                            name="relevamiento"
-                            value={relevamiento}
-                            onChange={handleChange0}
-
-                          >
-
-                          </TextareaAutosize>
-                          <Button
-                            size="sm"
-                            variant="secondary"
-                            onClick={() => enviarComentario(documento[i].id, relevamiento)}
-                          >
-                            Enviar
-                          </Button>
-                        </Fragment> :
-                        i === 2 ?
+                        i === 0 ?
                           <Fragment>
                             <TextareaAutosize
                               type="text"
                               defaultValue={documento[i].devolucion}
-                              name="mejora"
-                              value={mejora}
-                              onChange={handleChange1}
+                              name="documentoInicial"
+                              value={documentoInicial}
+                              onChange={handleChange4}
 
                             >
 
@@ -165,19 +126,20 @@ const TablaDeHitos = (props) => {
                             <Button
                               size="sm"
                               variant="secondary"
-                              onClick={() => enviarComentario(documento[i].id, mejora)}
+                              onClick={() => enviarComentario(documento[i].id, documentoInicial)}
                             >
                               Enviar
                             </Button>
                           </Fragment> :
-                          i === 3 ?
+
+                          i === 1 ?
                             <Fragment>
                               <TextareaAutosize
                                 type="text"
                                 defaultValue={documento[i].devolucion}
-                                name="evaluacion"
-                                value={evaluacion}
-                                onChange={handleChange2}
+                                name="relevamiento"
+                                value={relevamiento}
+                                onChange={handleChange0}
 
                               >
 
@@ -185,31 +147,71 @@ const TablaDeHitos = (props) => {
                               <Button
                                 size="sm"
                                 variant="secondary"
-                                onClick={() => enviarComentario(documento[i].id, evaluacion)}
+                                onClick={() => enviarComentario(documento[i].id, relevamiento)}
                               >
                                 Enviar
                               </Button>
                             </Fragment> :
+                            i === 2 ?
+                              <Fragment>
+                                <TextareaAutosize
+                                  type="text"
+                                  defaultValue={documento[i].devolucion}
+                                  name="mejora"
+                                  value={mejora}
+                                  onChange={handleChange1}
 
-                            <Fragment>
-                              <TextareaAutosize
-                                type="text"
-                                defaultValue={documento[i].devolucion}
-                                name="trabajoFinal"
-                                value={trabajoFinal}
-                                onChange={handleChange3}
+                                >
 
-                              >
+                                </TextareaAutosize>
+                                <Button
+                                  size="sm"
+                                  variant="secondary"
+                                  onClick={() => enviarComentario(documento[i].id, mejora)}
+                                >
+                                  Enviar
+                                </Button>
+                              </Fragment> :
+                              i === 3 ?
+                                <Fragment>
+                                  <TextareaAutosize
+                                    type="text"
+                                    defaultValue={documento[i].devolucion}
+                                    name="evaluacion"
+                                    value={evaluacion}
+                                    onChange={handleChange2}
 
-                              </TextareaAutosize>
-                              <Button
-                                size="sm"
-                                variant="secondary"
-                                onClick={() => enviarComentario(documento[i].id, trabajoFinal)}
-                              >
-                                Enviar
-                              </Button>
-                            </Fragment>
+                                  >
+
+                                  </TextareaAutosize>
+                                  <Button
+                                    size="sm"
+                                    variant="secondary"
+                                    onClick={() => enviarComentario(documento[i].id, evaluacion)}
+                                  >
+                                    Enviar
+                                  </Button>
+                                </Fragment> :
+
+                                <Fragment>
+                                  <TextareaAutosize
+                                    type="text"
+                                    defaultValue={documento[i].devolucion}
+                                    name="trabajoFinal"
+                                    value={trabajoFinal}
+                                    onChange={handleChange3}
+
+                                  >
+
+                                  </TextareaAutosize>
+                                  <Button
+                                    size="sm"
+                                    variant="secondary"
+                                    onClick={() => enviarComentario(documento[i].id, trabajoFinal)}
+                                  >
+                                    Enviar
+                                  </Button>
+                                </Fragment>
                       }
 
 
@@ -224,12 +226,14 @@ const TablaDeHitos = (props) => {
                   </TableCell>
                   {documento[i] === null || documento[i] === undefined ? '' :
                     <TableCell >
-                      {console.log(documento)}
+
                       {
 
                         hito.entregado ? 'Aprobado' :
                           documento[i].devolucion === '' ? '' :
-                            <Checkbox onClick={() => aprobarHito(hito.id)} ></Checkbox>
+                            <Checkbox onClick={() => aprobarHito(hito.id)} >
+                              
+                            </Checkbox>
                       }
 
                     </TableCell>

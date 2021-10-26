@@ -28,7 +28,7 @@ export default function UploadButtons( props) {
 
   }
   return (
-    <div className={classes.root}>
+    <div  className={classes.root}>
       <input
         accept=".pdf/*"
         className={classes.input}

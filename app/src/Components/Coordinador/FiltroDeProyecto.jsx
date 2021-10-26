@@ -1,3 +1,10 @@
+import { Fragment, useEffect, useState } from "react";
+import { InputGroup, Row, Col, Button as BotonBootstrap } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+
+//Material ui
+import Button from '@material-ui/core/Button';
+import LensIcon from '@material-ui/icons/Lens';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -6,19 +13,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { InputGroup, Row, Col } from 'react-bootstrap'
-import { Fragment, useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
 
+//Componentes propios
 import HeaderUsuario from '../HeaderUsuario'
 import DetalleProyecto from './DetalleProyecto'
 
-import LensIcon from '@material-ui/icons/Lens';
-
-import DoneOutlineRoundedIcon from '@material-ui/icons/DoneOutlineRounded';
-
-import { green } from '@material-ui/core/colors';
 
 //Servicios
 import { traerCarreras } from '../../Servicios/Carrera'
@@ -106,12 +105,18 @@ const FiltroDeProyecto = () => {
                         <option key={carrera.id} value={carrera.id}>   {carrera.nombre}</option>)}
                 </select>
             </InputGroup>
-            <boton style={{ background: '#ffffff', display: 'flex', justifyContent: "flex-end" }} >
-                <Link
-                    style={{ textDecoration: 'none', borderColor: "blue" }} to={"/Usuario/3"}>Volver
-                </Link>
-            </boton>
+            <div style={{ display: 'flex', justifyContent: "flex-end", marginRight: '20px' }}>
+                <BotonBootstrap
+                    style={{ background: '#ffffff' }} >
+                    <Link
+                        style={{ textDecoration: 'none' }} to={"/Usuario/3"}>
+                        Volver
+                    </Link>
+                </BotonBootstrap>
+            </div>
+
             <Row>
+
                 <Col style={{ textAlign: 'right' }}>
                     Hito cerrado
                     <LensIcon
@@ -171,7 +176,7 @@ const FiltroDeProyecto = () => {
                                                 style={{ color: '#efef69' }} /> :
 
                                             <LensIcon
-                                                style={{ color: "#4bc257"}} />
+                                                style={{ color: "#4bc257" }} />
 
                                     }</TableCell>
                                     <TableCell style={{ textAlign: 'center' }}> {proyecto.hitos[3] === undefined ? <LensIcon style={{ color: '#ea6565' }} /> :
@@ -184,7 +189,7 @@ const FiltroDeProyecto = () => {
                                     } </TableCell>
                                     <TableCell style={{ textAlign: 'center' }}>
                                         {proyecto.hitos[4] === undefined ?
-                                         <LensIcon style={{ color: '#ea6565' }} />:
+                                            <LensIcon style={{ color: '#ea6565' }} /> :
                                             proyecto.hitos[4].entregado === null ?
                                                 <LensIcon
                                                     style={{ color: '#efef69' }} />
@@ -192,7 +197,7 @@ const FiltroDeProyecto = () => {
                                                 :
 
                                                 <LensIcon
-                                                    style={{ color:" #4bc257" }} />
+                                                    style={{ color: " #4bc257" }} />
 
                                         }</TableCell>
                                     <TableCell style={{ textAlign: 'center' }}>
