@@ -51,7 +51,7 @@ return(
                 <Button style={style.botonAgregar} onClick={onClickAlumno}>Agregar</Button>
                     <datalist id="lista_alumnos"  >
                         {props.lista.map((alumno)=> 
-                        <option key={alumno.id}  value={alumno.apellido + ", " + alumno.nombre+ " Dni: " + alumno.dni} >  </option  >) }
+                        <option key={alumno.id}  value={alumno.nombre + " " +  alumno.dni} >  </option  >) }
                     </datalist>              
             </div>
     </div>

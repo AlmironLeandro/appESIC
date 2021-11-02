@@ -26,8 +26,10 @@ import { traerProyectosPorCarrera, buscarProyecto } from '../../Servicios/Proyec
 
 const FiltroDeProyecto = () => {
     const [carreras, setCarreras] = useState([])
-
+    const [hitos, setHitos] = useState([])
     const [carrera, setCarrera] = useState()
+    const [nuevaListaOrdenadaPorId, setNuevaListaOrdenadaPorId] = useState()
+    
 
     const [detalle, setDetalle] = useState(false)
 
@@ -69,8 +71,16 @@ const FiltroDeProyecto = () => {
         else {
             setCarrera(event.target.value)
             const res = await traerProyectosPorCarrera(event.target.value)
+
             const respuesta = await Promise.all(res.proyectosResponse.map(proyecto =>
                 buscarProyecto(proyecto.id)))
+            await respuesta.map((proyecto) =>
+                proyecto.hitos.map((hito) =>
+                    setHitos(hito)))
+            const nuevaListaOrdenada = [...hitos].sort((a, b) => (a > b ? 1 : a < b ? -1 : 0))
+            
+
+            setNuevaListaOrdenadaPorId(nuevaListaOrdenada)
             setProyectosConHitos(respuesta)
 
 
@@ -97,6 +107,7 @@ const FiltroDeProyecto = () => {
     return (
         <Fragment>
             <HeaderUsuario></HeaderUsuario>
+            {console.log(nuevaListaOrdenadaPorId)}
             <InputGroup size="sm" className="mb-3" style={styles.input} >
                 <select name="carrera" value={carrera} onChange={handleChange}>
 

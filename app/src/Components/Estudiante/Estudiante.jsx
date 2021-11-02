@@ -17,8 +17,11 @@ const Estudiante = () => {
         const traerProyecto = async () => {
             try {
                 const res = await traerProyectoPorEstudiante(localStorage.getItem("id"))
-                await buscarProyecto(res.proyects[0].id).then(res => setProyecto(res))
-                await traerHitosPorProyecto(res.proyects[0].id).then(res => setHitos(res))
+                const res2 = await buscarProyecto(res.proyects[0].id)
+                setProyecto(res2)
+                const res3 = await traerHitosPorProyecto(res.proyects[0].id)
+                const nuevaListaOrdenadaPorId = [...res3].sort((a, b) => (a.idTipo > b.idTipo ? 1 : a.idTipo < b.idTipo ? -1 : 0))
+                setHitos(nuevaListaOrdenadaPorId)
             }
             catch (error) {
                 console.log(error)

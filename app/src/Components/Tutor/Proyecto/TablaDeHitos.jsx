@@ -28,8 +28,13 @@ const TablaDeHitos = (props) => {
       try {
         props.setCallBack(false)
         const response = await traerHitosPorProyecto(props.id)
-        setHitosDeProyecto(response)
-        const respuestasUltimoEntregable = await Promise.all(response.map(hito => ultimoEntregable(hito.id)));
+        const nuevaListaOrdenadaPorId = [...response].sort((a, b) => (a.idTipo > b.idTipo ? 1 : a.idTipo < b.idTipo ? -1 : 0))
+        setHitosDeProyecto(nuevaListaOrdenadaPorId)
+        const respuestasUltimoEntregable = await Promise.all(nuevaListaOrdenadaPorId.map(hito => ultimoEntregable(hito.id)));
+
+        console.log(nuevaListaOrdenadaPorId)
+        console.log("Respuesta documento.............")
+        console.log(respuestasUltimoEntregable)
         setDocumento(respuestasUltimoEntregable.map(res => res.data));
       }
       catch (e) {
@@ -69,15 +74,15 @@ const TablaDeHitos = (props) => {
   };
   const enviarComentario = async (id, nombre) => {
     await insertarDevolucion(id, nombre)
-    // props.setCallBack(true)
-    
+    props.setCallBack(true)
+
   }
 
   const classes = useStyles();
 
   const aprobarHito = async (id) => {
     await cerrarHito(id)
-   // props.setCallBack(true)
+    props.setCallBack(true)
   }
   return (
     <Fragment>
@@ -102,7 +107,7 @@ const TablaDeHitos = (props) => {
               {hitosDeProyecto.map((hito, i) => (
 
                 <TableRow key={i}>
-                  {console.log(`${i} Indice`)}
+        
                   <TableCell >
                     {hito.tipoHito.nombre}
                   </TableCell>
