@@ -141,7 +141,6 @@ const CrearHito = ({ setCallBack, tiposHito, id }) => {
                                     <InputGroup.Text id="inputGroup-sizing-sm">Fecha de entrega:</InputGroup.Text>
                                 </InputGroup.Prepend>
                                 <FormControl
-                                    placeholder="dd/mm/aaaa"
                                     type="date"
                                     name="fechaEntrega"
                                     onChange={handleChange}

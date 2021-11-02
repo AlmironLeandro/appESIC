@@ -69,16 +69,15 @@ const TablaDeHitos = (props) => {
   };
   const enviarComentario = async (id, nombre) => {
     await insertarDevolucion(id, nombre)
-    props.setCallBack(true)
-    props.setCallBack(false)
+    // props.setCallBack(true)
+    
   }
 
   const classes = useStyles();
 
   const aprobarHito = async (id) => {
     await cerrarHito(id)
-    props.setCallBack(true)
-    props.setCallBack(false)
+   // props.setCallBack(true)
   }
   return (
     <Fragment>
@@ -103,6 +102,7 @@ const TablaDeHitos = (props) => {
               {hitosDeProyecto.map((hito, i) => (
 
                 <TableRow key={i}>
+                  {console.log(`${i} Indice`)}
                   <TableCell >
                     {hito.tipoHito.nombre}
                   </TableCell>
@@ -231,9 +231,7 @@ const TablaDeHitos = (props) => {
 
                         hito.entregado ? 'Aprobado' :
                           documento[i].devolucion === '' ? '' :
-                            <Checkbox onClick={() => aprobarHito(hito.id)} >
-                              
-                            </Checkbox>
+                            <Checkbox onClick={() => aprobarHito(hito.id)} />
                       }
 
                     </TableCell>
@@ -244,8 +242,8 @@ const TablaDeHitos = (props) => {
             </TableBody>
           }
         </Table>
-      </TableContainer>
-    </Fragment>
+      </TableContainer >
+    </Fragment >
   );
 }
 

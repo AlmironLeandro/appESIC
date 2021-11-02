@@ -132,9 +132,9 @@ function ModalMostrarProyecto(props) {
             pathname: `/tutorCoordinador/Proyecto/${props.idProyecto}`
           }} >Hitos</Link></Button>
         }
-{/* 
+
         <Button variant="secondary" onClick={props.edit}>Editar proyecto</Button>
-        <Button variant="danger" onClick={props.eliminar}>Eliminar proyecto</Button> */}
+        {/* <Button variant="danger" onClick={props.eliminar}>Eliminar proyecto</Button> */}
       </Modal.Footer>
     </Modal>
   );
@@ -171,6 +171,7 @@ const MostrarProyectos = (props) => {
         onHide={() => setModalShow(false)}
         eliminar={eliminar}
       />
+      {/* PODER ELIMINAR O PASARLE LISTA NUEVA DE ESTUDIANTES */}
       <Editar
         nombreProyecto={props.proyecto.proyecto.nombre}
         descripcion={props.proyecto.proyecto.descripcion}
