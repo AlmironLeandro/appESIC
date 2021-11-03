@@ -190,12 +190,17 @@ const FiltroDeProyecto = () => {
                                                 style={{ color: "#4bc257" }} />
 
                                     }</TableCell>
-                                    <TableCell style={{ textAlign: 'center' }}> {proyecto.hitos[3] === undefined ? <LensIcon style={{ color: '#ea6565' }} /> :
+                                    <TableCell style={{ textAlign: 'center' }}> 
+                                        {proyecto.hitos[3] === undefined ? 
+                                            <LensIcon style={{ color: '#ea6565' }} /> :
                                         proyecto.hitos[3].entregado === null ?
-                                            <LensIcon
-                                                style={{ color: '#efef69' }} /> :
+                                        <LensIcon
+                                        style={{ color: '#efef69' }} />
 
-                                            <LensIcon />
+                                    :
+
+                                    <LensIcon
+                                        style={{ color: " #4bc257" }} />
 
                                     } </TableCell>
                                     <TableCell style={{ textAlign: 'center' }}>
