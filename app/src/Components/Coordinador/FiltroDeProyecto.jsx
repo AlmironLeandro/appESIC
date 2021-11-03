@@ -28,7 +28,7 @@ const FiltroDeProyecto = () => {
     const [carreras, setCarreras] = useState([])
     const [hitos, setHitos] = useState([])
     const [carrera, setCarrera] = useState()
-    const [nuevaListaOrdenadaPorId, setNuevaListaOrdenadaPorId] = useState()
+    const [hitosOrdenados, setHitosOrdenados] = useState()
     
 
     const [detalle, setDetalle] = useState(false)
@@ -74,20 +74,19 @@ const FiltroDeProyecto = () => {
 
             const respuesta = await Promise.all(res.proyectosResponse.map(proyecto =>
                 buscarProyecto(proyecto.id)))
-            await respuesta.map((proyecto) =>
-                proyecto.hitos.map((hito) =>
-                    setHitos(hito)))
-            const nuevaListaOrdenada = [...hitos].sort((a, b) => (a > b ? 1 : a < b ? -1 : 0))
             
-
-            setNuevaListaOrdenadaPorId(nuevaListaOrdenada)
+            respuesta.map((proyecto) =>
+                ordenar(proyecto))
+           
+   
             setProyectosConHitos(respuesta)
-
-
         }
-
     }
-
+    const ordenar = (lista)=>{
+        const ordenadas = [...lista.hitos].sort((a, b) => (a.idTipo > b.idTipo ? 1 : a.idTipo < b.idTipo ? -1 : 0))
+        setHitosOrdenados(ordenadas)
+        console.log(ordenadas)
+    }
     const traerProyecto = async (id) => {
         const response = await buscarProyecto(id)
         setProyecto(response)
@@ -107,7 +106,7 @@ const FiltroDeProyecto = () => {
     return (
         <Fragment>
             <HeaderUsuario></HeaderUsuario>
-            {console.log(nuevaListaOrdenadaPorId)}
+            
             <InputGroup size="sm" className="mb-3" style={styles.input} >
                 <select name="carrera" value={carrera} onChange={handleChange}>
 
@@ -146,7 +145,7 @@ const FiltroDeProyecto = () => {
 
                 {proyectosConHitos === undefined || proyectosConHitos.length === 0 ? '' :
                     <Table className={classes.table} aria-label="simple table">
-                        {console.log(proyectosConHitos)}
+                        
                         <TableHead>
                             <TableRow>
                                 <TableCell >Nombre</TableCell>
@@ -169,6 +168,7 @@ const FiltroDeProyecto = () => {
                                             <LensIcon style={{ color: '#efef69' }} /> :
                                             <LensIcon style={{ color: '#4bc257' }} />
                                     }
+                                           
                                     </TableCell>
                                     <TableCell style={{ textAlign: 'center' }} > {proyecto.hitos[1] === undefined ? <LensIcon style={{ color: '#ea6565' }} /> :
                                         proyecto.hitos[1].entregado === null ?
