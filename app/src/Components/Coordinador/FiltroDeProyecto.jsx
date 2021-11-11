@@ -29,7 +29,7 @@ const FiltroDeProyecto = () => {
     const [hitos, setHitos] = useState([])
     const [carrera, setCarrera] = useState()
     const [hitosOrdenados, setHitosOrdenados] = useState()
-    
+
 
     const [detalle, setDetalle] = useState(false)
 
@@ -74,18 +74,19 @@ const FiltroDeProyecto = () => {
 
             const respuesta = await Promise.all(res.proyectosResponse.map(proyecto =>
                 buscarProyecto(proyecto.id)))
-            
+
             respuesta.map((proyecto) =>
-                ordenar(proyecto))
-           
-   
+                console.log(ordenar(proyecto)))
+
+
             setProyectosConHitos(respuesta)
         }
     }
-    const ordenar = (lista)=>{
+    const ordenar = (lista) => {
+
         const ordenadas = [...lista.hitos].sort((a, b) => (a.idTipo > b.idTipo ? 1 : a.idTipo < b.idTipo ? -1 : 0))
-        setHitosOrdenados(ordenadas)
-        console.log(ordenadas)
+        return ordenadas
+
     }
     const traerProyecto = async (id) => {
         const response = await buscarProyecto(id)
@@ -106,7 +107,7 @@ const FiltroDeProyecto = () => {
     return (
         <Fragment>
             <HeaderUsuario></HeaderUsuario>
-            
+
             <InputGroup size="sm" className="mb-3" style={styles.input} >
                 <select name="carrera" value={carrera} onChange={handleChange}>
 
@@ -130,22 +131,22 @@ const FiltroDeProyecto = () => {
                 <Col style={{ textAlign: 'right' }}>
                     Hito cerrado
                     <LensIcon
-                        style={{ color: '#4bc257' }} /></Col>
+                        style={{ color: 'green' }} /></Col>
                 <Col style={{ textAlign: 'center' }}>
                     Hito en progreso
                     <LensIcon
-                        style={{ color: '#efef69' }} /> </Col>
+                        style={{ color: 'orange' }} /> </Col>
                 <Col style={{ textAlign: 'left' }}>
                     Hito no creado
                     <LensIcon
-                        style={{ color: '#ea6565' }} /> </Col>
+                        style={{ color: 'red' }} /> </Col>
             </Row>
             <hr></hr>
             <TableContainer component={Paper}>
 
                 {proyectosConHitos === undefined || proyectosConHitos.length === 0 ? '' :
                     <Table className={classes.table} aria-label="simple table">
-                        
+
                         <TableHead>
                             <TableRow>
                                 <TableCell >Nombre</TableCell>
@@ -160,62 +161,93 @@ const FiltroDeProyecto = () => {
                         <TableBody>
                             {proyectosConHitos.map(proyecto =>
                             (
+
                                 <TableRow >
                                     <TableCell >{proyecto.proyecto.nombre} </TableCell>
+                                    {/* <LensIcon style={{ color: 'green' }}/> 
+                                        <LensIcon style={{ color: 'red' }} /> 
+                                        <LensIcon style={{ color: 'orange' }} /> */}
 
-                                    <TableCell style={{ textAlign: 'center' }}> {proyecto.hitos[0] === undefined ? <LensIcon style={{ color: '#ea6565' }} /> :
-                                        proyecto.hitos[0].entregado === null ?
-                                            <LensIcon style={{ color: '#efef69' }} /> :
-                                            <LensIcon style={{ color: '#4bc257' }} />
-                                    }
-                                           
-                                    </TableCell>
-                                    <TableCell style={{ textAlign: 'center' }} > {proyecto.hitos[1] === undefined ? <LensIcon style={{ color: '#ea6565' }} /> :
-                                        proyecto.hitos[1].entregado === null ?
-                                            <LensIcon
-                                                style={{ color: '#efef69' }} /> :
-
-                                            <LensIcon
-                                                style={{ color: "#4bc257" }} />
-
-                                    }
-
-                                    </TableCell>
-                                    <TableCell style={{ textAlign: 'center' }}> {proyecto.hitos[2] === undefined ? <LensIcon style={{ color: '#ea6565' }} /> :
-                                        proyecto.hitos[2].entregado === null ?
-                                            <LensIcon
-                                                style={{ color: '#efef69' }} /> :
-
-                                            <LensIcon
-                                                style={{ color: "#4bc257" }} />
-
-                                    }</TableCell>
-                                    <TableCell style={{ textAlign: 'center' }}> 
-                                        {proyecto.hitos[3] === undefined ? 
-                                            <LensIcon style={{ color: '#ea6565' }} /> :
-                                        proyecto.hitos[3].entregado === null ?
-                                        <LensIcon
-                                        style={{ color: '#efef69' }} />
-
-                                    :
-
-                                    <LensIcon
-                                        style={{ color: " #4bc257" }} />
-
-                                    } </TableCell>
+                                    {/* HITO 1 */}
                                     <TableCell style={{ textAlign: 'center' }}>
-                                        {proyecto.hitos[4] === undefined ?
-                                            <LensIcon style={{ color: '#ea6565' }} /> :
-                                            proyecto.hitos[4].entregado === null ?
-                                                <LensIcon
-                                                    style={{ color: '#efef69' }} />
+                                        {ordenar(proyecto)[0] !== undefined ?
+                                            (
+                                                ordenar(proyecto)[0].idTipo === 1 && ordenar(proyecto)[0].entregado === true ?
+                                                    <LensIcon style={{ color: 'green' }} /> :
+                                                    ordenar(proyecto)[0].idTipo === 1 && ordenar(proyecto)[0].entregado === null ?
+                                                        <LensIcon style={{ color: 'orange' }} /> :
+                                                        <LensIcon style={{ color: 'red' }} />
+                                            )
+                                            :
+                                            <LensIcon style={{ color: 'red' }} />
+                                        }
 
-                                                :
+                                    </TableCell>
 
-                                                <LensIcon
-                                                    style={{ color: " #4bc257" }} />
+                                    {/* HITO 2 */}
+                                    <TableCell style={{ textAlign: 'center' }} >
 
-                                        }</TableCell>
+                                        {ordenar(proyecto)[1] !== undefined ?
+                                            (
+                                                ordenar(proyecto)[1].idTipo === 2 && ordenar(proyecto)[1].entregado === true ?
+                                                    <LensIcon style={{ color: 'green' }} /> :
+                                                    ordenar(proyecto)[1].idTipo === 2 && ordenar(proyecto)[1].entregado === null ?
+                                                        <LensIcon style={{ color: 'orange' }} /> :
+                                                        <LensIcon style={{ color: 'red' }} />
+                                            )
+                                            :
+                                            <LensIcon style={{ color: 'red' }} />
+                                        }
+
+
+                                    </TableCell>
+
+                                    {/* HITO 3 */}
+                                    <TableCell style={{ textAlign: 'center' }}>
+
+                                        {ordenar(proyecto)[2] !== undefined ?
+                                            (
+                                                ordenar(proyecto)[2].idTipo === 3 && ordenar(proyecto)[2].entregado === true ?
+                                                    <LensIcon style={{ color: 'green' }} /> :
+                                                    ordenar(proyecto)[2].idTipo === 3 && ordenar(proyecto)[2].entregado === null ?
+                                                        <LensIcon style={{ color: 'orange' }} /> :
+                                                        <LensIcon style={{ color: 'red' }} />
+                                            )
+                                            :
+                                            <LensIcon style={{ color: 'red' }} />
+                                        }
+                                    </TableCell>
+
+                                    {/* HITO 4 */}
+                                    <TableCell style={{ textAlign: 'center' }}>
+                                        {ordenar(proyecto)[3] !== undefined ?
+                                            (
+                                                ordenar(proyecto)[3].idTipo === 4 && ordenar(proyecto)[3].entregado === true ?
+                                                    <LensIcon style={{ color: 'green' }} /> :
+                                                    ordenar(proyecto)[3].idTipo === 4 && ordenar(proyecto)[3].entregado === null ?
+                                                        <LensIcon style={{ color: 'orange' }} /> :
+                                                        <LensIcon style={{ color: 'red' }} />
+                                            )
+                                            :
+                                            <LensIcon style={{ color: 'red' }} />
+                                        }
+                                    </TableCell>
+
+                                    {/* HITO 5 */}
+                                    <TableCell style={{ textAlign: 'center' }}>
+                                        {ordenar(proyecto)[4] !== undefined ?
+                                            (
+                                                ordenar(proyecto)[4].idTipo === 5 && ordenar(proyecto)[4].entregado === true ?
+                                                    <LensIcon style={{ color: 'green' }} /> :
+                                                    ordenar(proyecto)[4].idTipo === 5 && ordenar(proyecto)[4].entregado === null ?
+                                                        <LensIcon style={{ color: 'orange' }} /> :
+                                                        <LensIcon style={{ color: 'red' }} />
+                                            )
+                                            :
+                                            <LensIcon style={{ color: 'red' }} />
+                                        }
+                                    </TableCell>
+
                                     <TableCell style={{ textAlign: 'center' }}>
                                         <Button variant="contained" onClick={() => traerProyecto(proyecto.proyecto.id)}>+ Info</Button>
                                     </TableCell>
