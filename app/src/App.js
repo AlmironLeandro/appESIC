@@ -15,6 +15,7 @@ import PrivateRoute from './Router/PrivateRoute'
 import EditarPerfil from './Components/EditarPerfil';
 import FiltroDeProyecto from './Components/Coordinador/FiltroDeProyecto'
 import RestablecerContraseña from './Components/Login/RestablecerContraseña';
+import CambiarContraeña from './Components/CambiarContraseña';
 
 
 function App() {
@@ -50,6 +51,10 @@ function App() {
 
           <Route exact path="/restablecerContraseña" >
             <RestablecerContraseña/>
+          </Route>
+
+          <Route exact path="/CambiarContraseña" >
+            <CambiarContraeña/>
           </Route>
 
           <Route exact path="/EditarPerfil" component={EditarPerfil} />

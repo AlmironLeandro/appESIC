@@ -1,7 +1,7 @@
 import { Dropdown } from 'react-bootstrap'
 import Logo from '../Images/imgg.png'
 import { Fragment, useEffect, useState } from 'react';
-import {  useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import { logout } from '../function/pantallaLogin'
 import { buscarUsuario } from '../Servicios/UsuariosServicio'
@@ -27,13 +27,13 @@ const NavDeUsuarios = () => {
     }
     const [estudiante, setEstudiante] = useState()
     const [cargaEstudiante, setCargaEstudiante] = useState(false)
-    
- 
-    useEffect( () => {
-        const traerUsuario = async ()=>{
-        const res = await buscarUsuario(localStorage.getItem("id"))
-       
-        setEstudiante(res)
+
+
+    useEffect(() => {
+        const traerUsuario = async () => {
+            const res = await buscarUsuario(localStorage.getItem("id"))
+
+            setEstudiante(res)
         }
         traerUsuario()
     }, [cargaEstudiante])
@@ -42,7 +42,11 @@ const NavDeUsuarios = () => {
         await logout()
         history.push("/login")
     }
-    const editar = ()=>setCargaEstudiante(true)
+    const editar = () => setCargaEstudiante(true)
+    const cambiarContraseña = ()=>
+    {
+        history.push('/CambiarContraseña')
+    }
     return (
         <Fragment>
             <div className="header">
@@ -57,9 +61,12 @@ const NavDeUsuarios = () => {
                             {estudiante ? estudiante.usuario.nombre + ' ' + estudiante.usuario.apellido : ''}
                         </Dropdown.Toggle>
                         <Dropdown.Menu >
-                            
+
                             <Dropdown.Item onClick={editar} >
-                            Editar perfil
+                                Editar perfil
+                            </Dropdown.Item>
+                            <Dropdown.Item onClick={cambiarContraseña}>
+                                Cambiar contraseña
                             </Dropdown.Item>
                             <Dropdown.Item onClick={redirigir}>
                                 Cerrar sesion
@@ -71,11 +78,11 @@ const NavDeUsuarios = () => {
                     </div>
                 </div>
             </div>
-            {cargaEstudiante ? 
+            {cargaEstudiante ?
                 <EditarPerfil
                     setCargaEstudiante={setCargaEstudiante}
                     estudiante={estudiante}
-                />:
+                /> :
                 ''
             }
 
