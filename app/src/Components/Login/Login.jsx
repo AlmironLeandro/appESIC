@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Col, Row } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom';
+import { useHistory,Redirect } from 'react-router-dom';
 import { login } from '../../function/pantallaLogin'
 import { serviceLogin } from '../../Servicios/UsuariosServicio'
 
@@ -8,23 +8,24 @@ import { serviceLogin } from '../../Servicios/UsuariosServicio'
 
 const Login = () => {
   const estilo = {
-    margin:'0%',
-    padding:'0%',
+    margin: '0%',
+    padding: '0%',
     display: 'flex',
     justifyContent: 'center',
- 
-    width:'100%',
-    height:"90vh",
-    alignItems: 'center'
-    
-  }
-  useEffect(() => {
 
-  }, [])
+    width: '100%',
+    height: "90vh",
+    alignItems: 'center'
+
+  }
+
   const [usuario, setUsuario] = useState({ dni: '', pass: '' })
   const [error, setError] = useState(false)
   const history = useHistory();
 
+  const rederigir = () => {
+    history.push("/restablecerContraseña")
+  }
   const validarIngreso = async (e) => {
     e.preventDefault();
     const res = await serviceLogin(usuario.dni, usuario.pass)
@@ -75,6 +76,9 @@ const Login = () => {
               </Form.Group>
             </Row >
             {/* <Link style={{textDecoration: 'none'}} to={"/Usuario/2"}> */}
+            <Row>
+              <p style={{ textAlign: 'center', cursor: 'pointer', color: 'blue' }} onClick={() => rederigir()} >Olvidates tu contraseña?</p>
+            </Row>
             <Row className="d-flex justify-content-center rowLogin">
               {error ? <p style={{ color: 'red', textAlign: 'center', fontSize: '15px' }}> El usuario y/o contraseña es incorrecto </p> : null}
               <Button className=" btn btn-success buttonSeccion "

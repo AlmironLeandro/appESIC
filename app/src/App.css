@@ -30,7 +30,7 @@ input[type="number"] {
 /* ESPACIADO DENTRO DEL FORMULARIO */
 
 .rowLogin {
-  margin: 10%;
+  margin: 5%;
 }
 
 .login {
@@ -143,4 +143,23 @@ input[type="number"] {
   background-color: #4db6ad;
   display: flex;
   align-items: center;
+}
+
+/* Restablecer contraseña */
+
+.ContenedorFormRestablecerContraseña
+{
+ 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.formRestablecerContraseña
+
+{
+  margin: 2%;
+  width: 50%;
+
 }

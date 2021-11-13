@@ -14,6 +14,7 @@ import InicioCoordinador from './Components/Coordinador/InicioCoordinador'
 import PrivateRoute from './Router/PrivateRoute'
 import EditarPerfil from './Components/EditarPerfil';
 import FiltroDeProyecto from './Components/Coordinador/FiltroDeProyecto'
+import RestablecerContraseña from './Components/Login/RestablecerContraseña';
 
 
 function App() {
@@ -40,13 +41,17 @@ function App() {
           <Route exact path="/">
             <Redirect to="/login" />
           </Route>
-          <Route path="/login" exact >
+          <Route exact path="/login"  >
             <div className="LoginPaginaPrincipal">
               <HeaderLogin />
               <Login />
             </div>
-
           </Route>
+
+          <Route exact path="/restablecerContraseña" >
+            <RestablecerContraseña/>
+          </Route>
+
           <Route exact path="/EditarPerfil" component={EditarPerfil} />
           <PrivateRoute exact path="/Usuario/2" rol={2} component={InicioTutor} />
           <PrivateRoute exact path="/CargarEstudiante" rol={2} component={CargarEstudiante} />
