@@ -77,7 +77,7 @@ const Login = () => {
             </Row >
             {/* <Link style={{textDecoration: 'none'}} to={"/Usuario/2"}> */}
             <Row>
-              <p style={{ textAlign: 'center', cursor: 'pointer', color: 'blue' }} onClick={() => rederigir()} >¿Olvidates tu contraseña?</p>
+              <p style={{ textAlign: 'center', cursor: 'pointer', color: 'blue' }} onClick={() => rederigir()} >¿Olvidaste tu contraseña?</p>
             </Row>
             <Row className="d-flex justify-content-center rowLogin">
               {error ? <p style={{ color: 'red', textAlign: 'center', fontSize: '15px' }}> El usuario y/o contraseña es incorrecto </p> : null}
