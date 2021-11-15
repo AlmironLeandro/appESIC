@@ -1,14 +1,17 @@
 import HeaderUsuario from './HeaderUsuario'
-import { Button, Form, Row } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
+import { actualizarContrasenia } from '../Servicios/UsuariosServicio'
+import { Link } from 'react-router-dom'
 
-import { useEffect, useState, Fragment } from 'react';
+import { useState, Fragment } from 'react';
 const CambiarContraseña = () => {
 
 
 
     const [usuario, setUsuario] = useState({ contraseñaActual: '', nuevaContraseña: '', repitaContraseña: '' })
-    const [enviado, setEnviado] = useState(false)
+    const { contraseñaActual, nuevaContraseña, repitaContraseña } = usuario
     const [error, setError] = useState(false)
+    const [validarContraseniasNuevas, setValidarContraseniasNuevas] = useState(false)
     const handleChange = (e) => {
         setUsuario({
             ...usuario,
@@ -16,19 +19,47 @@ const CambiarContraseña = () => {
         }
         )
     };
-    const enviar = () => {
-        console.log(usuario)
+    const enviar = async () => {
+
+        if (contraseñaActual <= 0 || nuevaContraseña <= 0 || repitaContraseña <= 0) {
+            setError(true)
+            setValidarContraseniasNuevas(false)
+        }
+        else if (nuevaContraseña !== repitaContraseña) {
+            setError(false)
+            setValidarContraseniasNuevas(true)
+        }
+        else {
+            await actualizarContrasenia(localStorage.getItem("id"), contraseñaActual, nuevaContraseña)
+            setError(false)
+            setValidarContraseniasNuevas(false)
+            setUsuario({ contraseñaActual: '', nuevaContraseña: '', repitaContraseña: '' })
+        }
+
+
     }
 
     return (
         <Fragment>
             <HeaderUsuario></HeaderUsuario>
+            <br></br>
+            <div style={{ display: 'flex', justifyContent: "flex-end", marginRight: '20px' }}>
+                <Button
+                    style={{ background: '#ffffff' }} >
+                    <Link
+                        style={{ textDecoration: 'none' }} to={"/Usuario/3"}>
+                        Volver
+                    </Link>
+                </Button>
+            </div>
             <h4 style={{ textAlign: 'center', margin: '4%' }}>Complete los campos para cambiar su contraseña.</h4>
             {/* {enviado ? <h5 style={{ textAlign: 'center', margin: '4%', color: 'green', textDecoration: 'underline green' }}>Si los datos coinciden se enviara un mail con un link para restablecer la contraseña.</h5> : ''} */}
             <div className="ContenedorFormRestablecerContraseña">
                 <Form className="formRestablecerContraseña">
                     <div style={{ textAlign: 'center' }}>
-                        {error ? <code>Debes completar todos los campos</code> : ''}
+
+                        {validarContraseniasNuevas ? <code>Las contraseñas no son iguales.</code> : ''}
+                        {error ? <code>Debes completar todos los campos.</code> : ''}
                     </div>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Contraseña actual</Form.Label>

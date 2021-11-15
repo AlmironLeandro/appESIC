@@ -36,7 +36,7 @@ export const serviceLogin = async (dni, pass) => {
         }
     }
     catch (e) {
-        
+
     }
 }
 
@@ -65,9 +65,9 @@ export const insertarUsuario = async (nombre, apellido, dni, email, pass, idRol,
             return response.data.data;
         }
     }
-        catch (e) {
-            alert(e.response.data.message)
-        }
+    catch (e) {
+        alert(e.response.data.message)
+    }
 };
 
 export const eliminarUsuario = async (id) => {
@@ -128,3 +128,36 @@ export const buscarUsuarioPorId = async (id) => {
     }
 
 };
+
+
+export const recuperarContrasenia = async (dni) => {
+    try {
+        const cliente = nuevoCliente();
+        const response = await cliente.post(`/usuarios/recuperarContrasenia`, {
+            dni
+        })
+        if (response.status === 200) {
+            return response.data.data;
+        }
+    }
+    catch (e) {
+        alert(e.response.data.message)
+    }
+}
+
+
+//Completar la ruta cuando este implementada.
+export const actualizarContrasenia = async (id, contraseñaActual, contraseñaNueva) => {
+    try {
+        const cliente = nuevoCliente();
+        const response = await cliente.put(`/usuarios/recuperarContrasenia`, {
+            id, contraseñaActual, contraseñaNueva
+        })
+        if (response.status === 200) {
+            return response.data.data;
+        }
+    }
+    catch (e) {
+        alert(e.response.data.message)
+    }
+}

@@ -1,12 +1,12 @@
 import HeaderLogin from './HeaderLogin'
-import { Button, Form, Row } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
+import { recuperarContrasenia } from '../../Servicios/UsuariosServicio'
 
-import { useEffect, useState, Fragment } from 'react';
+import { useState, Fragment } from 'react';
+
 const RestablecerContraseña = () => {
 
-
-
-    const [usuario, setUsuario] = useState({ dni: '', mail: '' })
+    const [usuario, setUsuario] = useState({ dni: '' })
     const [enviado, setEnviado] = useState(false)
     const [error, setError] = useState(false)
     const handleChange = (e) => {
@@ -16,17 +16,17 @@ const RestablecerContraseña = () => {
         }
         )
     };
-    const enviar = () => {
+    const enviar = async () => {
 
-        if (usuario.dni.length <= 0 || usuario.mail <= 0) {
+        if (usuario.dni.length <= 0) {
             setError(true)
             setEnviado(false)
         }
         else {
+            await recuperarContrasenia(usuario.dni)
             setError(false)
             setEnviado(true)
-            console.log(usuario)
-            setUsuario({ dni: '', mail: '' })
+            setUsuario({ dni: '' })
         }
     }
 
@@ -34,7 +34,7 @@ const RestablecerContraseña = () => {
         <Fragment>
             <HeaderLogin></HeaderLogin>
             <h4 style={{ textAlign: 'center', margin: '4%' }}>Complete los campos para restablecer su contraseña.</h4>
-            {enviado ? <h5 style={{ textAlign: 'center', margin: '4%', color: 'green', textDecoration: 'underline green' }}>Si los datos coinciden se enviara un mail con un link para restablecer la contraseña.</h5> : ''}
+            {enviado ? <h5 style={{ textAlign: 'center', margin: '4%', color: 'green', textDecoration: 'underline green' }}>Si los datos coinciden, se enviará un mail con un link para restablecer la contraseña.</h5> : ''}
             <div className="ContenedorFormRestablecerContraseña">
                 <Form className="formRestablecerContraseña">
                     <div style={{ textAlign: 'center' }}>
@@ -43,10 +43,6 @@ const RestablecerContraseña = () => {
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Documento</Form.Label>
                         <Form.Control name="dni" type="text" maxlength="8" placeholder="Ingrese su documento" onChange={handleChange} value={usuario.dni} />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control name="mail" type="email" maxlength="40" placeholder="Ingrese el mail de su cuenta" onChange={handleChange} value={usuario.mail} />
                     </Form.Group>
 
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
