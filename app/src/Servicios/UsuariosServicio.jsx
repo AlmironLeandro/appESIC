@@ -161,3 +161,18 @@ export const actualizarContrasenia = async (id, contraseñaActual, contraseñaNu
         alert(e.response.data.message)
     }
 }
+
+
+export const listaDeEstudiantesNoAsociadosAUnProyecto = async () => {
+    try {
+        const cliente = newSecureClient();
+        const response = await cliente.get(`usuarios/ListEstudiante/1`)
+        if (response.status === 200) {
+            return response.data;
+        }
+    }
+    catch (e) {
+        alert(e.response.data.message)
+    }
+
+};
