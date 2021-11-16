@@ -133,7 +133,7 @@ function ModalMostrarProyecto(props) {
           }} >Hitos</Link></Button>
         }
 
-        <Button variant="secondary" onClick={props.edit}>Editar proyecto</Button>
+        {/* <Button variant="secondary" onClick={props.edit}>Editar proyecto</Button> */}
         {/* <Button variant="danger" onClick={props.eliminar}>Eliminar proyecto</Button> */}
       </Modal.Footer>
     </Modal>
