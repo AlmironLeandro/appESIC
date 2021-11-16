@@ -147,18 +147,18 @@ export const recuperarContrasenia = async (dni) => {
 
 
 //Completar la ruta cuando este implementada.
-export const actualizarContrasenia = async (id, contraseñaActual, contraseñaNueva) => {
+export const actualizarContrasenia = async (id, contraseniaActual, contraseniaNueva) => {
     try {
-        const cliente = nuevoCliente();
-        const response = await cliente.put(`/usuarios/recuperarContrasenia`, {
-            id, contraseñaActual, contraseñaNueva
+        const cliente = newSecureClient();
+        const response = await cliente.post(`/usuarios/cambiarContrasenia`, {
+            id, contraseniaActual, contraseniaNueva
         })
         if (response.status === 200) {
             return response.data.data;
         }
     }
     catch (e) {
-        alert(e.response.data.message)
+        alert("No se ha podido cambiar la contraseña")
     }
 }
 
