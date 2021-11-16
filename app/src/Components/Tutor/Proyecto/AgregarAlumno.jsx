@@ -15,9 +15,12 @@ const TestAlumno = (props)=>
              <div style={{ height:'140px'}}>   
                 <Toast  onClose={onclickCruz}> 
                     <Toast.Header >
-                    <strong className="mr-auto">Estudiante</strong>
+                    <strong className="mr-auto">Estudiante  {props.estudiante.nombre} {props.estudiante.apellido}</strong>
                     </Toast.Header>
-                    <Toast.Body>Nombre : {props.estudiante.nombre}</Toast.Body>
+                    <div style={{display:'flex'}}>
+                    {/* <Toast.Body>Estudiante : {props.estudiante.nombre} {props.estudiante.apellido}</Toast.Body> */}
+                    
+                    </div>
                     <Toast.Body>Dni : {props.estudiante.dni}</Toast.Body>
                 </Toast>
             </div>

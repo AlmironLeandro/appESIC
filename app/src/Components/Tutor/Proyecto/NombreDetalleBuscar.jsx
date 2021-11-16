@@ -11,7 +11,7 @@ const NombreDetalleBuscar = (props)=>
         }
         else{
             const alumSplit = alum.split(" ");  list.map((estudiante)=> 
-            {if (estudiante.nombre === alumSplit[0] && estudiante.dni === alumSplit[1] && !validarAlumno(props.alumnoPorAgregar,estudiante)){
+            {if (estudiante.apellido === alumSplit[0] && estudiante.dni === alumSplit[1] && !validarAlumno(props.alumnoPorAgregar,estudiante)){
                     props.setAlumnoPorAgregar([...props.alumnoPorAgregar, estudiante])   
             }}
             )
@@ -51,7 +51,7 @@ return(
                 <Button style={style.botonAgregar} onClick={onClickAlumno}>Agregar</Button>
                     <datalist id="lista_alumnos"  >
                         {props.lista.map((alumno)=> 
-                        <option key={alumno.id}  value={alumno.nombre + " " +  alumno.dni} >  </option  >) }
+                        <option key={alumno.id}  value={alumno.apellido + " " +  alumno.dni} >  </option  >) }
                     </datalist>              
             </div>
     </div>
