@@ -19,7 +19,7 @@ const RestablecerContraseña = () => {
     };
     const enviar = async () => {
 
-        if (usuario.dni.length <= 0 || usuario.dni != parseInt(usuario.dni) ) {
+        if (   7<usuario.dni.length <= 0 || usuario.dni != parseInt(usuario.dni) ) {
             setError(true)
             setEnviado(false)
             setUsuario({ dni: '' })
