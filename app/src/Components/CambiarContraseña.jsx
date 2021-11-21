@@ -11,6 +11,7 @@ const CambiarContraseña = () => {
     const [usuario, setUsuario] = useState({ contraseñaActual: '', nuevaContraseña: '', repitaContraseña: '' })
     const { contraseñaActual, nuevaContraseña, repitaContraseña } = usuario
     const [error, setError] = useState(false)
+    const [enviado, setEnviado] = useState(false)
     const [validarContraseniasNuevas, setValidarContraseniasNuevas] = useState(false)
     const handleChange = (e) => {
         setUsuario({
@@ -53,11 +54,11 @@ const CambiarContraseña = () => {
                 </Button>
             </div>
             <h4 style={{ textAlign: 'center', margin: '4%' }}>Complete los campos para cambiar su contraseña.</h4>
-            {/* {enviado ? <h5 style={{ textAlign: 'center', margin: '4%', color: 'green', textDecoration: 'underline green' }}>Si los datos coinciden se enviara un mail con un link para restablecer la contraseña.</h5> : ''} */}
+            {enviado ? <h5 style={{ textAlign: 'center', margin: '4%', color: 'green', textDecoration: 'underline green' }}>Si los datos coinciden se enviara un mail con un link para restablecer la contraseña.</h5> : ''} 
             <div className="ContenedorFormRestablecerContraseña">
                 <Form className="formRestablecerContraseña">
                     <div style={{ textAlign: 'center' }}>
-
+    
                         {validarContraseniasNuevas ? <code>Las contraseñas no son iguales.</code> : ''}
                         {error ? <code>Debes completar todos los campos.</code> : ''}
                     </div>

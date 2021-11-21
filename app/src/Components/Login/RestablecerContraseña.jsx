@@ -1,7 +1,7 @@
 import HeaderLogin from './HeaderLogin'
 import { Button, Form } from 'react-bootstrap'
 import { recuperarContrasenia } from '../../Servicios/UsuariosServicio'
-
+import { Link } from 'react-router-dom'
 import { useState, Fragment } from 'react';
 
 const RestablecerContraseña = () => {
@@ -33,6 +33,16 @@ const RestablecerContraseña = () => {
     return (
         <Fragment>
             <HeaderLogin></HeaderLogin>
+            <br></br>
+            <div style={{ display: 'flex', justifyContent: "flex-end", marginRight: '20px' }}>
+                <Button
+                    style={{ background: '#ffffff' }} >
+                    <Link
+                        style={{ textDecoration: 'none' }} to={"/login"}>
+                        Volver
+                    </Link>
+                </Button>
+            </div>
             <h4 style={{ textAlign: 'center', margin: '4%' }}>Complete los campos para restablecer su contraseña.</h4>
             {enviado ? <h5 style={{ textAlign: 'center', margin: '4%', color: 'green', textDecoration: 'underline green' }}>Si los datos coinciden, se enviará un mail con un link para restablecer la contraseña.</h5> : ''}
             <div className="ContenedorFormRestablecerContraseña">
