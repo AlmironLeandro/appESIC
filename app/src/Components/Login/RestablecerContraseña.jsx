@@ -9,6 +9,7 @@ const RestablecerContraseña = () => {
     const [usuario, setUsuario] = useState({ dni: '' })
     const [enviado, setEnviado] = useState(false)
     const [error, setError] = useState(false)
+
     const handleChange = (e) => {
         setUsuario({
             ...usuario,
@@ -18,10 +19,12 @@ const RestablecerContraseña = () => {
     };
     const enviar = async () => {
 
-        if (usuario.dni.length <= 0) {
+        if (usuario.dni.length <= 0 || usuario.dni != parseInt(usuario.dni) ) {
             setError(true)
             setEnviado(false)
+            setUsuario({ dni: '' })
         }
+ 
         else {
             await recuperarContrasenia(usuario.dni)
             setError(false)
@@ -44,12 +47,17 @@ const RestablecerContraseña = () => {
                 </Button>
             </div>
             <h4 style={{ textAlign: 'center', margin: '4%' }}>Complete los campos para restablecer su contraseña.</h4>
-            {enviado ? <h5 style={{ textAlign: 'center', margin: '4%', color: 'green', textDecoration: 'underline green' }}>Si los datos coinciden, se enviará un mail con un link para restablecer la contraseña.</h5> : ''}
+
+            {enviado ? <h5 style={{ textAlign: 'center', margin: '4%', color: 'green', textDecoration: 'underline green' }}>Si los datos coinciden, se enviará un mail con un link para restablecer la contraseña. Porfavor revisar spam/correo no deseado. </h5> : ''}
+            
+
             <div className="ContenedorFormRestablecerContraseña">
                 <Form className="formRestablecerContraseña">
-                    <div style={{ textAlign: 'center' }}>
-                        {error ? <code>Debes completar todos los campos</code> : ''}
+                    {/* POSIBLES ERRORES */}
+                    <div style={{ textAlign: 'center',textDecoration: 'underline red'}}>
+                        {error ? <code>Debes ingresar un <strong>DNI</strong></code> : ''}
                     </div>
+                    
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Documento</Form.Label>
                         <Form.Control name="dni" type="text" maxlength="8" placeholder="Ingrese su documento" onChange={handleChange} value={usuario.dni} />

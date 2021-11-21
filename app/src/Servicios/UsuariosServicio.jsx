@@ -141,7 +141,7 @@ export const recuperarContrasenia = async (dni) => {
         }
     }
     catch (e) {
-        alert(e.response.data.message)
+        // alert(e)
     }
 }
 
