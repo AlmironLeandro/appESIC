@@ -1,5 +1,5 @@
 
-import {useEffect,useState} from 'react'
+import { useEffect, useState } from 'react'
 import { BsPencil, BsFillTrashFill } from "react-icons/bs";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -11,8 +11,10 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 
-const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminaUsuario }) => {
-  
+
+
+const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminaUsuario, carreras }) => {
+
     const useStyles = makeStyles({
         table: {
             minWidth: 650,
@@ -20,33 +22,38 @@ const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminaUsuario }) => {
     });
     const classes = useStyles();
 
+
     return (
 
         <TableContainer component={Paper}>
+            
             {estudiantes === undefined || estudiantes.length === 0 ? '' :
+
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell >Apellido</TableCell>
                             <TableCell >Nombre</TableCell>
                             <TableCell >DNI</TableCell>
-                            <TableCell >mail</TableCell>
+                            <TableCell >Mail</TableCell>
+                            <TableCell>Carrera</TableCell>
                             <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {estudiantes.map(estudiante => (
+                        {estudiantes.map((estudiante, i) => (
                             <TableRow >
                                 <TableCell >{estudiante.apellido} </TableCell>
                                 <TableCell > {estudiante.nombre}</TableCell>
                                 <TableCell >{estudiante.dni}</TableCell>
                                 <TableCell>{estudiante.email}</TableCell>
+                                <TableCell>{carreras[i]}</TableCell>
                                 <TableCell>
 
                                     <BsPencil
                                         onClick={() => traerUsuario(estudiante.id)}
                                     />
-                                    <BsFillTrashFill 
+                                    <BsFillTrashFill
                                         onClick={() => eliminaUsuario(estudiante.id)}
                                     />
                                 </TableCell>
