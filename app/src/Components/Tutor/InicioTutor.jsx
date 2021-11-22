@@ -33,6 +33,9 @@ import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
 
+import { Spinner, Button } from 'react-bootstrap'
+
+
 
 const InicioTutor = () => {
 
@@ -115,7 +118,7 @@ const InicioTutor = () => {
       try {
         setProyectosPorId([])
         traerProyectoXTutor({ setProyectosPorId })
-        console.log(callBack)
+
       }
       catch (error) {
         console.error(error)
@@ -129,6 +132,7 @@ const InicioTutor = () => {
     <Fragment>
       <NavDeUsuarios >
       </NavDeUsuarios>
+
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
@@ -176,7 +180,7 @@ const InicioTutor = () => {
                 <ListItemIcon> <ImportContactsIcon />  </ListItemIcon>
                 <Link style={{ textDecoration: 'none' }} to={"/tutorCoordinador/CargarEstudiante"}>Cargar estudiante</Link>
               </ListItem>
-             
+
               <ListItem button >
                 <ListItemIcon> <AccountBoxIcon />  </ListItemIcon>
                 <Link style={{ textDecoration: 'none' }} to={"/usuario/3"}>Cambiar a coordinador</Link>
@@ -205,6 +209,7 @@ const InicioTutor = () => {
         </Drawer>
 
       </div>
+
       <Toolbar>
         <IconButton
           color="inherit"
@@ -217,8 +222,22 @@ const InicioTutor = () => {
         </IconButton>
 
       </Toolbar>
+
+
+      <div style={{ display: 'flex', justifyContent: 'center',alignItems:'center' }}>
+
+        {proyectosPorId[0] === undefined ?
+          <Fragment>
+            <strong>Cargando</strong>
+            <Spinner style={{ width: '60px', height: '60px'}} animation="border" />
+          </Fragment>
+          : ''}
+      </div>
+
       <div style={{ display: 'flex', justifyContent: 'center' }}>
+
         <Table style={styles.tablaEstilo} striped bordered hover>
+
           <thead >
             <tr >
               <th style={{ textAlign: 'center' }}>Proyectos</th>
@@ -226,7 +245,10 @@ const InicioTutor = () => {
           </thead>
           <tbody>
 
-            {proyectosPorId === undefined && proyectosPorId === null ? '' :
+
+            {proyectosPorId === undefined || proyectosPorId === null ?
+              ''
+              :
               <div >
                 {proyectosPorId.map((proyecto, i) =>
                   <tr key={i}>

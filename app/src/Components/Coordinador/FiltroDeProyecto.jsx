@@ -18,6 +18,8 @@ import Paper from '@material-ui/core/Paper';
 import HeaderUsuario from '../HeaderUsuario'
 import DetalleProyecto from './DetalleProyecto'
 
+//Bootstrap
+import { Spinner } from 'react-bootstrap'
 
 //Servicios
 import { traerCarreras } from '../../Servicios/Carrera'
@@ -29,7 +31,7 @@ const FiltroDeProyecto = () => {
     const [hitos, setHitos] = useState([])
     const [carrera, setCarrera] = useState()
     const [hitosOrdenados, setHitosOrdenados] = useState()
-
+    const [hayProyectosConEsaCarrera, setHayProyectosConEsaCarrera] = useState(false)
 
     const [detalle, setDetalle] = useState(false)
 
@@ -78,8 +80,10 @@ const FiltroDeProyecto = () => {
             respuesta.map((proyecto) =>
                 console.log(ordenar(proyecto)))
 
-
             setProyectosConHitos(respuesta)
+            setTimeout(function(){setHayProyectosConEsaCarrera(false)}, 1000);
+            setTimeout(function(){setHayProyectosConEsaCarrera(true)}, 1500);
+
         }
     }
     const ordenar = (lista) => {
@@ -142,6 +146,16 @@ const FiltroDeProyecto = () => {
                         style={{ color: 'red' }} /> </Col>
             </Row>
             <hr></hr>
+            {proyectosConHitos[0] === undefined && carrera !== undefined &&
+                carrera !== 'default' && hayProyectosConEsaCarrera === false ?
+                <Fragment>
+
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <strong>Cargando</strong>
+                        <Spinner style={{ width: '60px', height: '60px' }} animation="border" />
+                    </div>
+                </Fragment>
+                : ''}
             <TableContainer component={Paper}>
 
                 {proyectosConHitos === undefined || proyectosConHitos.length === 0 ? '' :

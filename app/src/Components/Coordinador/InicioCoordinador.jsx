@@ -30,6 +30,9 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import LocalParkingIcon from '@material-ui/icons/LocalParking';
 
+//Bootstrap
+import { Spinner } from 'react-bootstrap'
+
 //Servicio
 import { traerCarreras } from '../../Servicios/Carrera'
 import { buscarUsuarioPorId } from '../../Servicios/UsuariosServicio'
@@ -271,7 +274,23 @@ const InicioCoordinador = () => {
         /> : ''
       }
 
-      {!tutores ? '' :
+
+
+
+      {tutores[0] === undefined ?
+        <Fragment>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <strong>Cargando</strong>
+            <Spinner style={{ width: '60px', height: '60px' }} animation="border" />
+          </div>
+        </Fragment>
+        : ''}
+
+
+      {!tutores ?
+        ''
+
+        :
 
         <TablaTutor
           tutores={tutores}

@@ -1,5 +1,4 @@
-
-import { useEffect, useState } from 'react'
+import { Fragment } from 'react'
 import { BsPencil, BsFillTrashFill } from "react-icons/bs";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -9,6 +8,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
+import { Spinner } from 'react-bootstrap'
 
 
 
@@ -26,7 +27,15 @@ const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminaUsuario, carreras 
     return (
 
         <TableContainer component={Paper}>
-            
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+                {estudiantes[0] === undefined ?
+                    <Fragment>
+                        <strong>Cargando</strong>
+                        <Spinner style={{ width: '60px', height: '60px' }} animation="border" />
+                    </Fragment>
+                    : ''}
+            </div>
             {estudiantes === undefined || estudiantes.length === 0 ? '' :
 
                 <Table className={classes.table} aria-label="simple table">
