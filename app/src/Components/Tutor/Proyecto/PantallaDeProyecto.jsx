@@ -1,13 +1,18 @@
+//React
 import React from 'react'
 import { Fragment, useState, useEffect} from 'react';
+import { useParams } from 'react-router';
+
+//Componentes propios
 import HeaderUsuario from '../../HeaderUsuario'
 import CrearHito from './CrearHito';
 import TablaDeHitos from './TablaDeHitos';
-import { traerTiposDeHito } from '../../../Servicios/TipoHito'
-
 import VolverMenu from '../VolverMenuTutor';
-import { useParams } from 'react-router';
+
+//Servicios
+import { traerTiposDeHito } from '../../../Servicios/TipoHito'
 import { buscarProyecto } from '../../../Servicios/ProyectoServicio';
+
 const PantallaDeProyecto = () => {
 
     const { id } = useParams()

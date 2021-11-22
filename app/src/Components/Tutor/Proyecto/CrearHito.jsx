@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
+
+//Boostrap
 import { Container, Modal, Button, Col, Row, Form, InputGroup, FormControl } from 'react-bootstrap'
 import { BsPlusCircle } from 'react-icons/bs'
+
+//Servicios
 import { insertarHito } from '../../../Servicios/Hito'
 
 
@@ -93,11 +97,11 @@ const CrearHito = ({ setCallBack, tiposHito, id }) => {
 
     return (
         <Container>
-
-            <BsPlusCircle
-                style={{ float: 'right', marginRight: '20%' }}
-                onClick={handleShow}
-            />
+            <div style={{display:'flex', justifyContent:'center'}}>
+                <Button style={{ background: '#ffffff', color: '#0d6efd' }} onClick={handleShow}>
+                    Agregar hito
+                </Button>
+            </div>
 
             <br />
 
