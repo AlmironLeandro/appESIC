@@ -1,4 +1,7 @@
-import React, { Fragment } from 'react'
+//React
+import React, { Fragment ,useEffect, useState } from 'react'
+
+//Material ui
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,12 +10,15 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { useEffect, useState } from 'react';
-import pasarAPdf from '../../../function/pasarAPdf'
-import { pasarFecha } from '../../../function/pasarFecha';
 import DescriptionIcon from '@material-ui/icons/Description';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { Checkbox } from '@material-ui/core';
+
+//Funciones
+import pasarAPdf from '../../../function/pasarAPdf'
+import { pasarFecha } from '../../../function/pasarFecha';
+
+//Bootstrap
 import { Button } from 'react-bootstrap'
 
 //Servicios
@@ -31,10 +37,6 @@ const TablaDeHitos = (props) => {
         const nuevaListaOrdenadaPorId = [...response].sort((a, b) => (a.idTipo > b.idTipo ? 1 : a.idTipo < b.idTipo ? -1 : 0))
         setHitosDeProyecto(nuevaListaOrdenadaPorId)
         const respuestasUltimoEntregable = await Promise.all(nuevaListaOrdenadaPorId.map(hito => ultimoEntregable(hito.id)));
-
-        console.log(nuevaListaOrdenadaPorId)
-        console.log("Respuesta documento.............")
-        console.log(respuestasUltimoEntregable)
         setDocumento(respuestasUltimoEntregable.map(res => res.data));
       }
       catch (e) {

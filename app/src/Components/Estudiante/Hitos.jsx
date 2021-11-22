@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 
+//Material-ui
 import { makeStyles } from '@material-ui/core/styles';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
@@ -10,16 +11,22 @@ import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+
+//Componentes propios
 import EntregarHito from './EntregarHito';
 
-//Íconos
+//Servicios y funciones
+import pasarAPdf from '../../function/pasarAPdf'
+import { ultimoEntregable } from '../../Servicios/Entregables'
+import { pasarFecha } from '../../function/pasarFecha';
+
+//Íconos---> Material-ui/bootstrap 
+import DescriptionIcon from '@material-ui/icons/Description';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import BuildIcon from '@material-ui/icons/Build';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import { pasarFecha } from '../../function/pasarFecha';
 import { Button } from 'react-bootstrap';
-import { ultimoEntregable } from '../../Servicios/Entregables'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
 }));
+
 //Vunerabilidad, la desactivacion de enviar un nuevo documento se hizo en base a 
 //hitos={hitos[0].entregado} de esta forma si esta aprobado ya este hito se cierra, pero puede editarse en el 
 //browser
@@ -82,9 +90,19 @@ export default function CustomizedTimeline({ hitos }) {
 
               {
                 comentarios[0] === null || comentarios[0] === undefined || comentarios[0].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[0].devolucion)}>
+                  {console.log(comentarios[0])}
                   Ver comentario
                 </Button>
               }
+              {
+                comentarios[0] === null || comentarios[0] === undefined || comentarios[0].documento === null || comentarios[0].documento === undefined ? '' :
+                  <Fragment>
+                    <hr></hr>
+                    <code>Ultimo entregable:</code><DescriptionIcon onClick={() => pasarAPdf(comentarios[0].documento)} />
+                  </Fragment>
+              }
+
+
 
             </Typography>
           </Paper>
@@ -125,6 +143,13 @@ export default function CustomizedTimeline({ hitos }) {
                   Ver comentario
                 </Button>
               }
+              {
+                comentarios[1] === null || comentarios[1] === undefined || comentarios[1].documento === null || comentarios[1].documento === undefined ? '' :
+                  <Fragment>
+                    <hr></hr>
+                    <code>Ultimo entregable:</code><DescriptionIcon onClick={() => pasarAPdf(comentarios[1].documento)} />
+                  </Fragment>
+              }
 
             </Typography>
           </Paper>
@@ -157,11 +182,18 @@ export default function CustomizedTimeline({ hitos }) {
 
               <Typography>Descripción: {hitos[2].descripcion}</Typography>
               <Typography>
-                {hitos[2].entregado ? <p>Estado del hito: <strong style={{color:'green'}}>Muy bien, aprobado.</strong></p> : <EntregarHito id={hitos[2].id} />}
+                {hitos[2].entregado ? <p>Estado del hito: <strong style={{ color: 'green' }}>Muy bien, aprobado.</strong></p> : <EntregarHito id={hitos[2].id} />}
                 {
                   comentarios[2] === null || comentarios[2] === undefined || comentarios[2].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[2].devolucion)}>
                     Ver comentario
                   </Button>
+                }
+                {
+                  comentarios[2] === null || comentarios[2] === undefined || comentarios[2].documento === null || comentarios[2].documento === undefined ? '' :
+                    <Fragment>
+                      <hr></hr>
+                      <code>Ultimo entregable:</code><DescriptionIcon onClick={() => pasarAPdf(comentarios[2].documento)} />
+                    </Fragment>
                 }
               </Typography>
             </Paper>
@@ -193,12 +225,19 @@ export default function CustomizedTimeline({ hitos }) {
               </Typography>
               <Typography>Descripción: {hitos[3].descripcion}</Typography>
               <Typography>
-                {hitos[3].entregado ? <p>Estado del hito: <strong style={{color:'green'}}>Muy bien, aprobado.</strong></p> : <EntregarHito id={hitos[3].id} />}
+                {hitos[3].entregado ? <p>Estado del hito: <strong style={{ color: 'green' }}>Muy bien, aprobado.</strong></p> : <EntregarHito id={hitos[3].id} />}
 
                 {
                   comentarios[3] === null || comentarios[3] === undefined || comentarios[3].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[3].devolucion)}>
                     Ver comentario
                   </Button>
+                }
+                {
+                  comentarios[3] === null || comentarios[3] === undefined || comentarios[3].documento === null || comentarios[3].documento === undefined ? '' :
+                    <Fragment>
+                      <hr></hr>
+                      <code>Ultimo entregable:</code><DescriptionIcon onClick={() => pasarAPdf(comentarios[3].documento)} />
+                    </Fragment>
                 }
               </Typography>
             </Paper>
@@ -229,12 +268,19 @@ export default function CustomizedTimeline({ hitos }) {
               <Typography>Descripción: {hitos[4].descripcion}</Typography>
               <Typography>
 
-                {hitos[4].entregado ? <p>Estado del hito: <strong style={{color:'green'}}>Muy bien, aprobado.</strong></p> : <EntregarHito id={hitos[4].id} />}
+                {hitos[4].entregado ? <p>Estado del hito: <strong style={{ color: 'green' }}>Muy bien, aprobado.</strong></p> : <EntregarHito id={hitos[4].id} />}
 
                 {
                   comentarios[4] === null || comentarios[4] === undefined || comentarios[4].devolucion === "" ? '' : <Button onClick={() => alert(comentarios[4].devolucion)}>
                     Ver comentario
                   </Button>
+                }
+                {
+                  comentarios[4] === null || comentarios[4] === undefined || comentarios[4].documento === null || comentarios[4].documento === undefined ? '' :
+                    <Fragment>
+                      <hr></hr>
+                      <code>Ultimo entregable:</code><DescriptionIcon onClick={() => pasarAPdf(comentarios[4].documento)} />
+                    </Fragment>
                 }
               </Typography>
             </Paper>
