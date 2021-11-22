@@ -1,12 +1,16 @@
 import React, { Fragment, useState, useEffect } from 'react'
+
+//Componentes propios
 import HeaderUsuario from '../HeaderUsuario'
 import VolverMenu from './VolverMenuTutor';
 import FormularioEstudiante from './FormularioEstudiante';
 import TablaEstudiantes from './TablaEstudiantes';
-import { buscarUsuarioPorId } from '../../Servicios/UsuariosServicio'
 import EditarEstudiante from './EditarEstudiante';
-import { editarUsuario } from '../../function/editarUsuario';
 import EliminarUsuario from './EliminarUsuario';
+
+//Servicios y funciones
+import { buscarUsuarioPorId } from '../../Servicios/UsuariosServicio'
+import { editarUsuario } from '../../function/editarUsuario';
 
 
 const CargarEstudiante = () => {
