@@ -39,7 +39,7 @@ const NavDeUsuarios = () => {
     }, [cargaEstudiante])
     const history = useHistory();
     const redirigir = async () => {
-        await logout()
+        logout()
         history.push("/login")
     }
     const editar = () => setCargaEstudiante(true)

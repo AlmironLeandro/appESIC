@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom'
 import { useState, Fragment } from 'react';
 const CambiarContraseña = () => {
 
-
-
     const [usuario, setUsuario] = useState({ contraseñaActual: '', nuevaContraseña: '', repitaContraseña: '' })
     const { contraseñaActual, nuevaContraseña, repitaContraseña } = usuario
     const [error, setError] = useState(false)
@@ -25,15 +23,18 @@ const CambiarContraseña = () => {
         if (contraseñaActual <= 0 || nuevaContraseña <= 0 || repitaContraseña <= 0) {
             setError(true)
             setValidarContraseniasNuevas(false)
+            setEnviado(false)
         }
         else if (nuevaContraseña !== repitaContraseña) {
             setError(false)
             setValidarContraseniasNuevas(true)
+            setEnviado(false)
         }
         else {
             await actualizarContrasenia(localStorage.getItem("id"), contraseñaActual, nuevaContraseña)
             setError(false)
             setValidarContraseniasNuevas(false)
+            setEnviado(true)
             setUsuario({ contraseñaActual: '', nuevaContraseña: '', repitaContraseña: '' })
         }
 
@@ -54,11 +55,11 @@ const CambiarContraseña = () => {
                 </Button>
             </div>
             <h4 style={{ textAlign: 'center', margin: '4%' }}>Complete los campos para cambiar su contraseña.</h4>
-            {enviado ? <h5 style={{ textAlign: 'center', margin: '4%', color: 'green', textDecoration: 'underline green' }}>Si los datos coinciden se enviara un mail con un link para restablecer la contraseña.</h5> : ''} 
+            {enviado ? <h5 style={{ textAlign: 'center', margin: '4%', color: 'green', textDecoration: 'underline green' }}>Se ha actualizado la contraseña satisfactoriamente</h5> : ''}
             <div className="ContenedorFormRestablecerContraseña">
                 <Form className="formRestablecerContraseña">
                     <div style={{ textAlign: 'center' }}>
-    
+
                         {validarContraseniasNuevas ? <code>Las contraseñas no son iguales.</code> : ''}
                         {error ? <code>Debes completar todos los campos.</code> : ''}
                     </div>

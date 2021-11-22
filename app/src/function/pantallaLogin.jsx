@@ -9,6 +9,8 @@ export const logout = () => {
     localStorage.removeItem('nombre');
     localStorage.removeItem('id');
     localStorage.removeItem('idRol');
+    localStorage.removeItem('baseUrl');
+
   }
   export const getUsuario = () => {
     const user = {
