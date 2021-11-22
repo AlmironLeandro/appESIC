@@ -3,7 +3,7 @@ import { Container, Modal, Button, Col, Row, Form, InputGroup, FormControl } fro
 import {insertarUsuario} from '../../Servicios/UsuariosServicio'
 
 
-const FormularioTutor = (props) =>{
+const FormularioTutorOCoordinador = (props) =>{
     
     const [show, setShow] = useState(true);
     const handleClose = () => setShow(false);
@@ -66,7 +66,7 @@ const FormularioTutor = (props) =>{
             dni,
             mail,
             dni,
-            2,
+            props.queEs.id,
             idCarrera)
     
         //Limpiar el form
@@ -96,7 +96,7 @@ const FormularioTutor = (props) =>{
                 <Modal size="sm" show={show} >
 
                     <Modal.Header >
-                    <Modal.Title>Datos del tutor</Modal.Title>
+                    <Modal.Title>Datos del {props.queEs.nombre}</Modal.Title>
                     </Modal.Header>
 
                     
@@ -185,4 +185,4 @@ const FormularioTutor = (props) =>{
     )
 }
 
-export default FormularioTutor
+export default FormularioTutorOCoordinador

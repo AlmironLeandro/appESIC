@@ -80,7 +80,6 @@ const CrearHito = ({ setCallBack, tiposHito, id }) => {
         //Limpiar el form
         sethito({
             idProyecto: "",
-            idTipo: "",
             descripcion: "",
             fechaEntrega: "",
         })
@@ -97,7 +96,7 @@ const CrearHito = ({ setCallBack, tiposHito, id }) => {
 
     return (
         <Container>
-            <div style={{display:'flex', justifyContent:'center'}}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Button style={{ background: '#ffffff', color: '#0d6efd' }} onClick={handleShow}>
                     Agregar hito
                 </Button>
