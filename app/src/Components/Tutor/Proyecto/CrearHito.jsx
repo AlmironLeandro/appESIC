@@ -56,9 +56,6 @@ const CrearHito = ({ setCallBack, tiposHito, id }) => {
 
         // Validar el formulario
         if (idTipo.trim() === '' || descripcion.trim() === '' || fechaEntrega.trim() === '') {
-            console.log(idTipo)
-            console.log(descripcion)
-            console.log(fechaEntrega)
             setError(true);
             return;
         }

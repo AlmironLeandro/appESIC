@@ -65,6 +65,7 @@ const CargarEstudiante = () => {
     return (
         <Fragment>
             <HeaderUsuario />
+
             <br />
             <VolverMenu />
             <FormularioEstudiante

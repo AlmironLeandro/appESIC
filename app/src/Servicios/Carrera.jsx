@@ -40,10 +40,10 @@ export const traerCarrera = async (id) => {
     }
 }
 
-export const insertarCarrera = (nombre) => {
+export const insertarCarrera = async (nombre) => {
     try {
         const cliente = newSecureClient();
-        const response = cliente.post(`/carreras`, {
+        const response = await cliente.post(`/carreras`, {
             nombre
         })
         if (response.status === 200) {

@@ -27,15 +27,17 @@ const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminaUsuario, carreras 
     return (
 
         <TableContainer component={Paper}>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
-                {estudiantes[0] === undefined ?
-                    <Fragment>
+
+            {estudiantes[0] === undefined ?
+                <Fragment>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <strong>Cargando</strong>
                         <Spinner style={{ width: '60px', height: '60px' }} animation="border" />
-                    </Fragment>
-                    : ''}
-            </div>
+                    </div>
+                </Fragment>
+                : ''}
+
             {estudiantes === undefined || estudiantes.length === 0 ? '' :
 
                 <Table className={classes.table} aria-label="simple table">

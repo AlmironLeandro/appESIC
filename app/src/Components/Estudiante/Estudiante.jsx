@@ -1,5 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react'
 
+//Bootstrap
+import { Spinner } from 'react-bootstrap'
+
 //Componentes propios
 import HeaderUsuario from '../HeaderUsuario'
 import Hitos from './Hitos'
@@ -33,7 +36,16 @@ const Estudiante = () => {
     return (
         <Fragment>
             <HeaderUsuario />
-            {!proyecto ? <h3 style={{ textAlign: 'center' }}>Todavía no estás asociado a un proyecto</h3>
+
+            {!proyecto ?
+                <Fragment>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <strong>Cargando</strong>
+                        <Spinner style={{ width: '60px', height: '60px' }} animation="border" />
+                    </div>
+                    <h3 style={{ textAlign: 'center' }}>Todavía no estás asociado a un proyecto</h3>
+                </Fragment>
+
                 : <>
                     <h2 style={{ textAlign: 'center' }}>Bienvenido al proyecto:{proyecto.proyecto.nombre} </h2>
                     <h3 style={{ textAlign: 'center' }}>Materia: {proyecto.materia.nombre}</h3>
