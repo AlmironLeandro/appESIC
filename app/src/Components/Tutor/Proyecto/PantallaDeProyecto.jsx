@@ -46,6 +46,9 @@ const PantallaDeProyecto = () => {
                 // tipoHito[0] = resTraerTipos[4]
                 setTipoHito([resTraerTipos[4]])
             }
+            else {
+                setTipoHito([])
+            }
 
         }
 

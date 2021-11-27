@@ -93,11 +93,13 @@ const CrearHito = ({ setCallBack, tiposHito, id }) => {
 
     return (
         <Container>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button style={{ background: '#ffffff', color: '#0d6efd' }} onClick={handleShow}>
-                    Agregar hito
-                </Button>
-            </div>
+            {tiposHito.length === 0 ? <h4 style={{color:'green',textAlign:'center'}}>Todos los hitos fueron creados!</h4> :
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Button style={{ background: '#ffffff', color: '#0d6efd' }} onClick={handleShow}>
+                        Agregar hito
+                    </Button>
+                </div>
+                }
 
             <br />
 
