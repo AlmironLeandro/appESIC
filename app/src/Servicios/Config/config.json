@@ -1,5 +1,5 @@
 {
-    "baseURL": "http://esic.unahur.edu.ar/api",
+    "baseURL": "https://desaappunahur2021.herokuapp.com/api",
     "timeout": 180000 
 } 
  

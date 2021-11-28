@@ -19,9 +19,8 @@ const Recomendacion = () => {
                 </Offcanvas.Header>
                 <hr></hr>
                 <Offcanvas.Body style={{fontSize:'20px'}}>
-                   <p> Usar este sistema con el browser <strong>Chrome</strong>. De lo contrario no se podra usar a su maximo potencial.</p>
-                   <p>Link de descarga de <strong>Chrome</strong> <a href="https://www.google.com/intl/es-419/chrome/">descargar</a> . </p>
-                   <p>Saludos Usuarios</p>
+                   <p>Para una mejor navegación se recomienda utilizar <strong>Chrome</strong></p>
+                   <p><a href="https://www.google.com/intl/es-419/chrome/">Link</a> de descarga de <strong>Chrome</strong>  . </p>
                 </Offcanvas.Body>
             </Offcanvas>
         </>

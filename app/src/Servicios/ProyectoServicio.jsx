@@ -91,7 +91,6 @@ export const buscarProyecto = async (id) => {
         const cliente = newSecureClient();
         const response = await cliente.get(`/proyectos/${id}`)
         if (response.status === 200) {
-
             return response.data;
         }
     }
