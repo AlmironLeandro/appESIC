@@ -117,7 +117,6 @@ export const buscarUsuario = async (id) => {
 
 export const buscarUsuarioPorId = async (id, setCargando) => {
     setCargando(true)
-
     try {
         const cliente = newSecureClient();
         const response = await cliente.get(`/usuarios/ListByRol/${id}`)

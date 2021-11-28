@@ -21,6 +21,7 @@ const CargarEstudiante = () => {
     const [estudiante, setEstudiante] = useState(null)
     const [alumnoAEliminar, setAlumnoAEliminar] = useState(null)
     const [carreras, setCarreras] = useState([])
+    const [cargar, setCargando]= useState(false)
 
 
     //Función para traer el usuario para el edit
@@ -37,7 +38,7 @@ const CargarEstudiante = () => {
     useEffect(() => {
         const usuarios = async (id) => {
             try {
-                const response = await buscarUsuarioPorId(id)
+                const response = await buscarUsuarioPorId(id,setCargando)
                 // copio la lista con [...list] y la ordeno con sort()
                 const sortedList = [...response].sort((a, b) => (a.apellido.toLowerCase() > b.apellido.toLowerCase() ? 1 : a.apellido.toLowerCase() < b.apellido.toLowerCase() ? -1 : 0))
                 // actualizo el estado con la nueva lista ya ordenada
@@ -72,6 +73,7 @@ const CargarEstudiante = () => {
                 avisoCallBack={setCargaEstudiante}
             />
             <TablaEstudiantes
+                cargar={cargar}
                 estudiantes={estudiantes}
                 traerUsuario={traerUsuario}
                 eliminaUsuario={eliminaUsuario}

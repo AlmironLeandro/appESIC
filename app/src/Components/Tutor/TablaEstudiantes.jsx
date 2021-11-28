@@ -14,7 +14,7 @@ import { Spinner } from 'react-bootstrap'
 
 
 
-const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminaUsuario, carreras }) => {
+const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminaUsuario, carreras , cargar}) => {
 
     const useStyles = makeStyles({
         table: {
@@ -22,12 +22,13 @@ const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminaUsuario, carreras 
         },
     });
     const classes = useStyles();
+    
 
 
     return (
         <Fragment>
 
-            {estudiantes[0] === undefined ?
+            {cargar ?
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <strong>Cargando</strong>
                     <Spinner style={{ width: '60px', height: '60px' }} animation="border" />
