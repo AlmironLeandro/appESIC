@@ -21,7 +21,7 @@ const CargarEstudiante = () => {
     const [estudiante, setEstudiante] = useState(null)
     const [alumnoAEliminar, setAlumnoAEliminar] = useState(null)
     const [carreras, setCarreras] = useState([])
-    const [cargar, setCargando]= useState(false)
+    const [cargar, setCargando] = useState(false)
 
 
     //Función para traer el usuario para el edit
@@ -37,8 +37,9 @@ const CargarEstudiante = () => {
 
     useEffect(() => {
         const usuarios = async (id) => {
+            setCargando(true)
             try {
-                const response = await buscarUsuarioPorId(id,setCargando)
+                const response = await buscarUsuarioPorId(id)
                 // copio la lista con [...list] y la ordeno con sort()
                 const sortedList = [...response].sort((a, b) => (a.apellido.toLowerCase() > b.apellido.toLowerCase() ? 1 : a.apellido.toLowerCase() < b.apellido.toLowerCase() ? -1 : 0))
                 // actualizo el estado con la nueva lista ya ordenada
@@ -46,7 +47,11 @@ const CargarEstudiante = () => {
                     sortedList.map((estudiante) =>
                         traerCarrera(estudiante.idCarrera).then(res => res.nombre)
                     )
+
                 )
+                if (res) {
+                    setCargando(false)
+                }
                 //De esta forma se setean los dos al mismo tiempo y se muetra todo junto
                 setEstudiantes(sortedList)
                 setCarreras(res)

@@ -101,18 +101,18 @@ export const buscarProyecto = async (id) => {
     }
 };
 
-export const traerProyectosPorTutor = async (id, setCargar) => {
-    setCargar(true)
+export const traerProyectosPorTutor = async (id) => {
+
     try {
         const cliente = newSecureClient();
         const response = await cliente.get(`/proyectos/ListByTutor/${id}`)
         if (response.status === 200) {
-            setCargar(false)
+
             return response.data.proyects;
         }
     }
     catch (e) {
-        setCargar(false)
+
         alert("No hay proyectos cargados")
     }
 };

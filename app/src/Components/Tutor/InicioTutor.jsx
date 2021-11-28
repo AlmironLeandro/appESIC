@@ -115,9 +115,10 @@ const InicioTutor = () => {
 
   useEffect(() => {
     const traerProyectos = async () => {
-
+      setCargar(true)
       try {
-       await traerProyectoXTutor({ setProyectosPorId, setCargar })
+        
+       const res = await traerProyectoXTutor({ setProyectosPorId,setCargar })
 
       }
       catch (error) {

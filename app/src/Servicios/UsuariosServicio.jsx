@@ -115,18 +115,18 @@ export const buscarUsuario = async (id) => {
 
 };
 
-export const buscarUsuarioPorId = async (id, setCargando) => {
-    setCargando(true)
+export const buscarUsuarioPorId = async (id) => {
+
     try {
         const cliente = newSecureClient();
         const response = await cliente.get(`/usuarios/ListByRol/${id}`)
         if (response.status === 200) {
-            setCargando(false)
+
             return response.data.data;
         }
     }
     catch (e) {
-        setCargando(false)
+
         alert(e.response.data.message)
     }
 
