@@ -28,15 +28,13 @@ import { traerProyectosPorCarrera, buscarProyecto } from '../../Servicios/Proyec
 
 const FiltroDeProyecto = () => {
     const [carreras, setCarreras] = useState([])
-    const [hitos, setHitos] = useState([])
     const [carrera, setCarrera] = useState()
-    const [hitosOrdenados, setHitosOrdenados] = useState()
     const [hayProyectosConEsaCarrera, setHayProyectosConEsaCarrera] = useState(false)
 
     const [detalle, setDetalle] = useState(false)
 
     const [proyecto, setProyecto] = useState({})
-
+    const [cargando, setCargando] = useState(false)
     //Proyectos completos
     const [proyectosConHitos, setProyectosConHitos] = useState([])
     //proyectos por carrera
@@ -72,17 +70,17 @@ const FiltroDeProyecto = () => {
         }
         else {
             setCarrera(event.target.value)
+            setCargando(true)
             const res = await traerProyectosPorCarrera(event.target.value)
-
             const respuesta = await Promise.all(res.proyectosResponse.map(proyecto =>
                 buscarProyecto(proyecto.id)))
-
             respuesta.map((proyecto) =>
                 console.log(ordenar(proyecto)))
-
             setProyectosConHitos(respuesta)
-            setTimeout(function(){setHayProyectosConEsaCarrera(false)}, 1000);
-            setTimeout(function(){setHayProyectosConEsaCarrera(true)}, 1500);
+            if (respuesta) {
+                setCargando(false)
+            }
+
 
         }
     }
@@ -146,8 +144,7 @@ const FiltroDeProyecto = () => {
                         style={{ color: 'red' }} /> </Col>
             </Row>
             <hr></hr>
-            {proyectosConHitos[0] === undefined && carrera !== undefined &&
-                carrera !== 'default' && hayProyectosConEsaCarrera === false ?
+            {cargando ?
                 <Fragment>
 
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
