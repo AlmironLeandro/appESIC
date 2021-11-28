@@ -86,27 +86,33 @@ export const traerProyectosPorCarrera = async (id) => {
 };
 
 export const buscarProyecto = async (id) => {
+
     try {
         const cliente = newSecureClient();
         const response = await cliente.get(`/proyectos/${id}`)
         if (response.status === 200) {
+
             return response.data;
         }
     }
     catch (e) {
+
         alert(e.response.data.message)
     }
 };
 
-export const traerProyectosPorTutor = async (id) => {
+export const traerProyectosPorTutor = async (id, setCargar) => {
+    setCargar(true)
     try {
         const cliente = newSecureClient();
         const response = await cliente.get(`/proyectos/ListByTutor/${id}`)
         if (response.status === 200) {
+            setCargar(false)
             return response.data.proyects;
         }
     }
     catch (e) {
+        setCargar(false)
         alert("No hay proyectos cargados")
     }
 };

@@ -111,13 +111,13 @@ const InicioTutor = () => {
   };
   const [proyectosPorId, setProyectosPorId] = useState([])
   const [callBack, setCallBack] = useState(false)
+  const [cargar, setCargar] = useState(false)
 
   useEffect(() => {
     const traerProyectos = async () => {
 
       try {
-        setProyectosPorId([])
-        traerProyectoXTutor({ setProyectosPorId })
+       await traerProyectoXTutor({ setProyectosPorId, setCargar })
 
       }
       catch (error) {
@@ -158,12 +158,6 @@ const InicioTutor = () => {
             </IconButton>
           </div>
           <Divider />
-
-
-
-
-
-
 
 
 
@@ -224,12 +218,12 @@ const InicioTutor = () => {
       </Toolbar>
 
 
-      <div style={{ display: 'flex', justifyContent: 'center',alignItems:'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
-        {!proyectosPorId[0] ?
+        {cargar ?
           <Fragment>
             <strong>Cargando</strong>
-            <Spinner style={{ width: '60px', height: '60px'}} animation="border" />
+            <Spinner style={{ width: '60px', height: '60px' }} animation="border" />
           </Fragment>
           : ''}
       </div>

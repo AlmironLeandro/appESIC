@@ -1,11 +1,12 @@
 import { traerProyectosPorTutor,buscarProyecto } from "../Servicios/ProyectoServicio";
 
-export const traerProyectoXTutor = async ({setProyectosPorId})=> 
+export const traerProyectoXTutor = async ({setProyectosPorId,setCargar})=> 
 {
-    const res = await traerProyectosPorTutor(localStorage.getItem("id"))
+    const res = await traerProyectosPorTutor(localStorage.getItem("id"),setCargar)
     if(res)
     {
-        return res.map((x) => buscarProyecto(x.id).then(res2 => setProyectosPorId(proyectosPorId => [...proyectosPorId, res2])))
+        return res.map((x) => buscarProyecto(x.id,setCargar).then(res2 => setProyectosPorId(proyectosPorId => [...proyectosPorId, res2])))
+
     }
    
 }
