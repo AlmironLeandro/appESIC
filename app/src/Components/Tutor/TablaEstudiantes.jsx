@@ -25,57 +25,57 @@ const TablaEstudiantes = ({ estudiantes, traerUsuario, eliminaUsuario, carreras 
 
 
     return (
-
-        <TableContainer component={Paper}>
-
+        <Fragment>
 
             {estudiantes[0] === undefined ?
-                <Fragment>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <strong>Cargando</strong>
-                        <Spinner style={{ width: '60px', height: '60px' }} animation="border" />
-                    </div>
-                </Fragment>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <strong>Cargando</strong>
+                    <Spinner style={{ width: '60px', height: '60px' }} animation="border" />
+                </div>
                 : ''}
+            <TableContainer component={Paper}>
 
-            {estudiantes === undefined || estudiantes.length === 0 ? '' :
 
-                <Table className={classes.table} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell >Apellido</TableCell>
-                            <TableCell >Nombre</TableCell>
-                            <TableCell >DNI</TableCell>
-                            <TableCell >Mail</TableCell>
-                            <TableCell>Carrera</TableCell>
-                            <TableCell></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {estudiantes.map((estudiante, i) => (
-                            <TableRow >
-                                <TableCell >{estudiante.apellido} </TableCell>
-                                <TableCell > {estudiante.nombre}</TableCell>
-                                <TableCell >{estudiante.dni}</TableCell>
-                                <TableCell>{estudiante.email}</TableCell>
-                                <TableCell>{carreras[i]}</TableCell>
-                                <TableCell>
 
-                                    <BsPencil
-                                        onClick={() => traerUsuario(estudiante.id)}
-                                    />
-                                    <BsFillTrashFill
-                                        onClick={() => eliminaUsuario(estudiante.id)}
-                                    />
-                                </TableCell>
+                {estudiantes === undefined || estudiantes.length === 0 ? '' :
+
+                    <Table className={classes.table} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell >Apellido</TableCell>
+                                <TableCell >Nombre</TableCell>
+                                <TableCell >DNI</TableCell>
+                                <TableCell >Mail</TableCell>
+                                <TableCell>Carrera</TableCell>
+                                <TableCell></TableCell>
                             </TableRow>
-                        ))};
-                    </TableBody>
-                </Table>
-            }
+                        </TableHead>
+                        <TableBody>
+                            {estudiantes.map((estudiante, i) => (
+                                <TableRow >
+                                    <TableCell >{estudiante.apellido} </TableCell>
+                                    <TableCell > {estudiante.nombre}</TableCell>
+                                    <TableCell >{estudiante.dni}</TableCell>
+                                    <TableCell>{estudiante.email}</TableCell>
+                                    <TableCell>{carreras[i]}</TableCell>
+                                    <TableCell>
+
+                                        <BsPencil
+                                            onClick={() => traerUsuario(estudiante.id)}
+                                        />
+                                        <BsFillTrashFill
+                                            onClick={() => eliminaUsuario(estudiante.id)}
+                                        />
+                                    </TableCell>
+                                </TableRow>
+                            ))};
+                        </TableBody>
+                    </Table>
+                }
 
 
-        </TableContainer>
+            </TableContainer>
+        </Fragment>
 
     );
 }

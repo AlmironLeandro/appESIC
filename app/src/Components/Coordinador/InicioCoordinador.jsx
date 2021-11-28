@@ -41,6 +41,7 @@ import { buscarUsuarioPorId } from '../../Servicios/UsuariosServicio'
 const InicioCoordinador = () => {
   const history = useHistory();
   const drawerWidth = 240;
+  const [cargando,setCargando]=useState(false)
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -146,7 +147,7 @@ const InicioCoordinador = () => {
   useEffect(() => {
     const traerTutorYCarreras = async () => {
       try {
-        const traerTutores = await buscarUsuarioPorId(2)
+        const traerTutores = await buscarUsuarioPorId(2,setCargando)
         // copio la lista con [...list] y la ordeno con sort()
         const sortedList = [...traerTutores].sort((a, b) => (a.apellido.toLowerCase() > b.apellido.toLowerCase() ? 1 : a.apellido.toLowerCase() < b.apellido.toLowerCase() ? -1 : 0))
         setTutores(sortedList)
@@ -275,9 +276,9 @@ const InicioCoordinador = () => {
       }
 
 
+{console.log(tutores[0])}
 
-
-      {tutores[0] === undefined ?
+      {cargando ?
         <Fragment>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <strong>Cargando</strong>

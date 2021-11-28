@@ -226,7 +226,7 @@ const InicioTutor = () => {
 
       <div style={{ display: 'flex', justifyContent: 'center',alignItems:'center' }}>
 
-        {proyectosPorId[0] === undefined ?
+        {!proyectosPorId[0] ?
           <Fragment>
             <strong>Cargando</strong>
             <Spinner style={{ width: '60px', height: '60px'}} animation="border" />
