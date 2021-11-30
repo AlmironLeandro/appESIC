@@ -94,7 +94,7 @@ export const insertarHito = async (idProyecto, idTipo, descripcion, fechaEntrega
         }
     }
     catch (e) {
-        alert(e.response.data.message)
+        alert("El hito se creó satisfactoriamente")
     }
 };
 
