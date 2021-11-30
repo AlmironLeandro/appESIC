@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Col, Row } from 'react-bootstrap'
-import { useHistory,Redirect } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { login } from '../../function/pantallaLogin'
 import { serviceLogin } from '../../Servicios/UsuariosServicio'
 import Recomendacion from './Recomendacion';
@@ -58,7 +58,10 @@ const Login = () => {
   return (
 
     <div style={estilo} >
-      <Recomendacion></Recomendacion>
+      {localStorage.getItem("aceptarRecomendacion") === "null" || localStorage.getItem("aceptarRecomendacion") === null ?
+        <Recomendacion></Recomendacion>
+        : ''}
+
       <div>
 
         <Form className="login">
