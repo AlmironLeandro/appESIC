@@ -1,4 +1,5 @@
 import HeaderUsuario from './HeaderUsuario'
+import { useHistory } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap'
 import { actualizarContrasenia } from '../Servicios/UsuariosServicio'
 import { Link } from 'react-router-dom'
@@ -10,6 +11,7 @@ const CambiarContraseña = () => {
     const { contraseñaActual, nuevaContraseña, repitaContraseña } = usuario
     const [error, setError] = useState(false)
     const [enviado, setEnviado] = useState(false)
+    const history = useHistory();
     const [validarContraseniasNuevas, setValidarContraseniasNuevas] = useState(false)
     const handleChange = (e) => {
         setUsuario({
@@ -40,22 +42,24 @@ const CambiarContraseña = () => {
 
 
     }
+     const volverAtras = ()=>
+     {
+        history.goBack()
+     }
 
     return (
         <Fragment>
             <HeaderUsuario></HeaderUsuario>
             <br></br>
             <div style={{ display: 'flex', justifyContent: "flex-end", marginRight: '20px' }}>
-                <Button
-                    style={{ background: '#ffffff' }} >
-                    <Link
-                        style={{ textDecoration: 'none' }} to={"/Usuario/3"}>
-                        Volver
-                    </Link>
+                <Button onClick={volverAtras}
+                    style={{ background: '#ffffff', color:'blue' }} >
+                   Volver
                 </Button>
             </div>
             <h4 style={{ textAlign: 'center', margin: '4%' }}>Complete los campos para cambiar su contraseña.</h4>
-            {enviado ? <h5 style={{ textAlign: 'center', margin: '4%', color: 'green', textDecoration: 'underline green' }}>Se ha actualizado la contraseña satisfactoriamente</h5> : ''}
+            {enviado ? <h5 style={{ textAlign: 'center', margin: '4%', color: 'green', textDecoration: 'underline green' }}>
+                Si la contraseña actual coincide, se estara actualizando la contraseña.</h5> : ''}
             <div className="ContenedorFormRestablecerContraseña">
                 <Form className="formRestablecerContraseña">
                     <div style={{ textAlign: 'center' }}>
