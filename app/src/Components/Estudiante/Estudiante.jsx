@@ -15,9 +15,12 @@ import { traerHitosPorProyecto } from '../../Servicios/Hito'
 const Estudiante = () => {
     const [proyecto, setProyecto] = useState()
     const [hitos, setHitos] = useState()
+    const [cargando, setCargando] = useState(false)
+
 
     useEffect(() => {
         const traerProyecto = async () => {
+            setCargando(true)
             try {
                 const res = await traerProyectoPorEstudiante(localStorage.getItem("id"))
                 const res2 = await buscarProyecto(res.proyects[0].id)
@@ -25,8 +28,19 @@ const Estudiante = () => {
                 const res3 = await traerHitosPorProyecto(res.proyects[0].id)
                 const nuevaListaOrdenadaPorId = [...res3].sort((a, b) => (a.idTipo > b.idTipo ? 1 : a.idTipo < b.idTipo ? -1 : 0))
                 setHitos(nuevaListaOrdenadaPorId)
+                
+                if(res3)
+                {
+                    setCargando(false)
+
+                }
+                else
+                {
+                    setCargando(false)
+                }
             }
             catch (error) {
+                setCargando(false)
                 console.log(error)
             }
         }
@@ -36,16 +50,22 @@ const Estudiante = () => {
     return (
         <Fragment>
             <HeaderUsuario />
+            {cargando ?
 
-            {!proyecto ?
                 <Fragment>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <strong>Cargando</strong>
                         <Spinner style={{ width: '60px', height: '60px' }} animation="border" />
                     </div>
-                    <h3 style={{ textAlign: 'center' }}>Todavía no estás asociado a un proyecto</h3>
-                </Fragment>
 
+                </Fragment>
+                :
+                ''
+
+            }
+
+            {!proyecto ?
+                < h3 style={{ textAlign: 'center' }}>Todavía no estás asociado a un proyecto</h3>
                 : <>
                     <h2 style={{ textAlign: 'center' }}>Bienvenido al proyecto:{proyecto.proyecto.nombre} </h2>
                     <h3 style={{ textAlign: 'center' }}>Materia: {proyecto.materia.nombre}</h3>
@@ -56,7 +76,7 @@ const Estudiante = () => {
                         <code>Todavía no hay hitos </code></h1> : <Hitos hitos={hitos}> </Hitos>}
                 </>
             }
-        </Fragment>
+        </Fragment >
 
     )
 }
