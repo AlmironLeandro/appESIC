@@ -113,7 +113,7 @@ export default function CustomizedTimeline({ hitos }) {
 
 
       {/* Hito  Relevamiento */}
-
+              {hitos[1]===undefined ? '' :
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
@@ -155,6 +155,7 @@ export default function CustomizedTimeline({ hitos }) {
           </Paper>
         </TimelineContent>
       </TimelineItem>
+      }
 
       {/* Hito Mejora*/}
       {hitos[2] === undefined ? '' :

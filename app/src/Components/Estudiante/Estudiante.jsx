@@ -49,6 +49,7 @@ const Estudiante = () => {
     }, [])
     return (
         <Fragment>
+            {console.log(hitos)}
             <HeaderUsuario />
             {cargando ?
 
@@ -67,13 +68,14 @@ const Estudiante = () => {
             {!proyecto ?
                 < h3 style={{ textAlign: 'center' }}>Todavía no estás asociado a un proyecto</h3>
                 : <>
-                    <h2 style={{ textAlign: 'center' }}>Bienvenido al proyecto:{proyecto.proyecto.nombre} </h2>
+                    <h2 style={{ textAlign: 'center' }}>Bienvenido al proyecto: {proyecto.proyecto.nombre} </h2>
                     <h3 style={{ textAlign: 'center' }}>Materia: {proyecto.materia.nombre}</h3>
 
 
                     <br />
                     {hitos === null || hitos === undefined || hitos.length === 0 ? <h1 style={{ textAlign: 'center' }}>
-                        <code>Todavía no hay hitos </code></h1> : <Hitos hitos={hitos}> </Hitos>}
+                        <code>Todavía no hay hitos </code></h1> :
+                         <Hitos hitos={hitos}> </Hitos>}
                 </>
             }
         </Fragment >
