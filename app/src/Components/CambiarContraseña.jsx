@@ -59,7 +59,7 @@ const CambiarContraseña = () => {
             </div>
             <h4 style={{ textAlign: 'center', margin: '4%' }}>Complete los campos para cambiar su contraseña.</h4>
             {enviado ? <h5 style={{ textAlign: 'center', margin: '4%', color: 'green', textDecoration: 'underline green' }}>
-                Si la contraseña actual coincide, se estara actualizando la contraseña.</h5> : ''}
+                Si la contraseña actual coincide, se estará actualizando la contraseña.</h5> : ''}
             <div className="ContenedorFormRestablecerContraseña">
                 <Form className="formRestablecerContraseña">
                     <div style={{ textAlign: 'center' }}>

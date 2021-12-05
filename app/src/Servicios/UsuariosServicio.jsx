@@ -161,7 +161,7 @@ export const actualizarContrasenia = async (id, contraseniaActual, contraseniaNu
         }
     }
     catch (e) {
-        alert("No se ha podido cambiar la contraseña")
+        alert(e.response.data.message)
     }
 }
 
