@@ -77,7 +77,7 @@ const CambiarContraseña = () => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                        <Form.Label>Contraseña nueva</Form.Label>
+                        <Form.Label>Repita la nueva contraseña</Form.Label>
                         <Form.Control name="repitaContraseña" type="password" maxlength="40" placeholder="Vuelva a ingrese su nueva contraseña" onChange={handleChange} value={usuario.repitaContraseña} />
                     </Form.Group>
 
